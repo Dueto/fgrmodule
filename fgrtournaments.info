@@ -1,0 +1,6 @@
+name = FGR Tournaments
+description = Module to show FGR Tournaments.
+core = 7.x
+
+files[] = fgrtournaments.api.inc
+dependencies[] = fgrtournaments:fgrtournament

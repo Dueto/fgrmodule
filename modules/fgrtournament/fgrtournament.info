@@ -1,0 +1,3 @@
+name = FGR Tournament Bracket
+description = Module to show FGR tournament bracket.
+core = 7.x
