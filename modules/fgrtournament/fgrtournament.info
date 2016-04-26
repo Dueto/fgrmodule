@@ -1,3 +1,6 @@
 name = FGR Tournament Bracket
 description = Module to show FGR tournament bracket.
 core = 7.x
+
+;dependencies[] = fgrtournaments:fgrgames
+;dependencies[] = fgrtournaments:fgrteams

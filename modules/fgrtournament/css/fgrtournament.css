@@ -1,0 +1,71 @@
+main{
+    display:flex !important;
+    flex-direction:row;
+}
+.round{
+    display:flex !important;
+    flex-direction:column;
+    justify-content:center;
+    width:200px;
+    list-style:none;
+    padding:0;
+}
+.round .spacer{ flex-grow:1; }
+.round .spacer:first-child,
+.round .spacer:last-child{ flex-grow:.5; }
+
+.round .game-spacer{
+    flex-grow:1;
+}
+
+/*
+ *  General Styles
+*/
+body{
+    font-family:sans-serif;
+    font-size:small;
+    padding:10px;
+    line-height:1.4em;
+}
+
+li.game{
+    padding-left:20px;
+}
+
+li.game.winner{
+    font-weight:bold;
+}
+li.game span{
+    float:right;
+    margin-right:5px;
+}
+li.game span.team_name{
+}
+
+li.game-top{
+    border-bottom:2px solid #d5ebf6;
+}
+
+li.game-top.winner{
+    border-bottom:2px solid #82c4e3;
+}
+
+li.game-spacer{
+    border-right:2px solid #82c4e3;
+    min-height:40px;
+}
+
+li.game-bottom{
+    border-top:2px solid #d5ebf6;
+}
+
+li.game-bottom.winner{
+    border-top:2px solid #82c4e3;
+}
+
+img.team_icon {
+   width: 20px;
+   height: 20px;
+}
+
+
