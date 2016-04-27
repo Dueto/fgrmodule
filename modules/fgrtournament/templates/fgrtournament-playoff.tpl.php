@@ -1,123 +1,122 @@
 <h2><?php print $tournament_data['title'] . ', ' . $tournament_data['season'] . ', '
         . $tournament_data['league'] . ', ' . $tournament_data['gender'] . ' - ' . $tournament_data['stage']?></h2>
-<main id="tournament">
-    <ul class="round round-1">
-        <li class="spacer">&nbsp;</li>
-
-        <li class="game game-top winner">
-            <img src="http://icons.iconarchive.com/icons/paomedia/small-n-flat/1024/sign-check-icon.png" class="team_icon">
-            <span class="team_name">Lousville</span>
-            <span class="count">79</span>
-        </li>
-        <li class="game game-spacer">&nbsp;</li>
-        <li class="game game-bottom ">
-            <img src="http://icons.iconarchive.com/icons/paomedia/small-n-flat/1024/sign-check-icon.png" class="team_icon">
-            <span class="team_name">NC A&T</span>
-            <span class="count">48</span>
-        </li>
-
-
-        <li class="spacer">&nbsp;</li>
-
-        <li class="game game-top winner">
-            <img src="http://icons.iconarchive.com/icons/paomedia/small-n-flat/1024/sign-check-icon.png" class="team_icon">
-            Colo St
-            <span class="count">84</span>
-        </li>
-        <li class="game game-spacer">&nbsp;</li>
-        <li class="game game-bottom ">
-            <img src="http://icons.iconarchive.com/icons/paomedia/small-n-flat/1024/sign-check-icon.png" class="team_icon">
-            Missouri
-            <span class="count">72</span>
-        </li>
-
-        <li class="spacer">&nbsp;</li>
-
-        <li class="game game-top ">Oklahoma St <span class="count">55</span></li>
-        <li class="game game-spacer">&nbsp;</li>
-        <li class="game game-bottom winner">Oregon <span class="count">68</span></li>
-
-        <li class="spacer">&nbsp;</li>
-
-        <li class="game game-top winner">Saint Louis <span class="count">64</span></li>
-        <li class="game game-spacer">&nbsp;</li>
-        <li class="game game-bottom ">New Mexico St <span class="count">44</span></li>
-
-        <li class="spacer">&nbsp;</li>
-
-        <li class="game game-top winner">Memphis <span class="count">54</span></li>
-        <li class="game game-spacer">&nbsp;</li>
-        <li class="game game-bottom ">St Mary's <span class="count">52</span></li>
-
-        <li class="spacer">&nbsp;</li>
-
-        <li class="game game-top winner">Mich St <span class="count">65</span></li>
-        <li class="game game-spacer">&nbsp;</li>
-        <li class="game game-bottom ">Valparaiso <span class="count">54</span></li>
-
-        <li class="spacer">&nbsp;</li>
-
-        <li class="game game-top winner">Creighton <span class="count">67</span></li>
-        <li class="game game-spacer">&nbsp;</li>
-        <li class="game game-bottom ">Cincinnati <span class="count">63</span></li>
-
-        <li class="spacer">&nbsp;</li>
-
-        <li class="game game-top winner">Duke <span class="count">73</span></li>
-        <li class="game game-spacer">&nbsp;</li>
-        <li class="game game-bottom ">Albany <span class="count">61</span></li>
-
-        <li class="spacer">&nbsp;</li>
+<div class="tabs">
+    <ul class="tab-links">
+        <li><a href="<?php print './' . $node->nid . '?tournament_id=' . $tournament_data['id'] . '&type=games' ?>">Матчи</a></li>
+        <li><a href="<?php print './' . $node->nid . '?tournament_id=' . $tournament_data['id'] . '&type=competition&view=chess_mates'?>">Статистика команд</a></li>
+        <li class="active"><a href="<?php print './' . $node->nid . '?tournament_id=' . $tournament_data['id'] . '&type=playoff' ?>">Плейофф</a></li>
     </ul>
-    <ul class="round round-2">
-        <li class="spacer">&nbsp;</li>
-
-        <li class="game game-top winner">Lousville <span class="count">82</span></li>
-        <li class="game game-spacer">&nbsp;</li>
-        <li class="game game-bottom ">Colo St <span class="count">56</span></li>
-
-        <li class="spacer">&nbsp;</li>
-
-        <li class="game game-top winner">Oregon <span class="count">74</span></li>
-        <li class="game game-spacer">&nbsp;</li>
-        <li class="game game-bottom ">Saint Louis <span class="count">57</span></li>
-
-        <li class="spacer">&nbsp;</li>
-
-        <li class="game game-top ">Memphis <span class="count">48</span></li>
-        <li class="game game-spacer">&nbsp;</li>
-        <li class="game game-bottom winner">Mich St <span class="count">70</span></li>
-
-        <li class="spacer">&nbsp;</li>
-
-        <li class="game game-top ">Creighton <span class="count">50</span></li>
-        <li class="game game-spacer">&nbsp;</li>
-        <li class="game game-bottom winner">Duke <span class="count">66</span></li>
-
-        <li class="spacer">&nbsp;</li>
-    </ul>
-    <ul class="round round-3">
-        <li class="spacer">&nbsp;</li>
-
-        <li class="game game-top winner">Lousville <span class="count">77</span></li>
-        <li class="game game-spacer">&nbsp;</li>
-        <li class="game game-bottom ">Oregon <span class="count">69</span></li>
-
-        <li class="spacer">&nbsp;</li>
-
-        <li class="game game-top ">Mich St <span class="count">61</span></li>
-        <li class="game game-spacer">&nbsp;</li>
-        <li class="game game-bottom winner">Duke <span class="count">71</span></li>
-
-        <li class="spacer">&nbsp;</li>
-    </ul>
-    <ul class="round round-4">
-        <li class="spacer">&nbsp;</li>
-
-        <li class="game game-top winner">Lousville <span class="count">85</span></li>
-        <li class="game game-spacer">&nbsp;</li>
-        <li class="game game-bottom ">Duke <span class="count">63</span></li>
-
-        <li class="spacer">&nbsp;</li>
+</div>
+<main id="tournament-head">
+    <?php foreach ($tournament_data['rounds'] as $key => $round): ?>
+        <ul class="round round-<?php print $key + 1 ?>">
+            <?php if($key + 1 == count($tournament_data['rounds'])): ?>
+                <h3 class="stage">Финал</h3>
+            <?php elseif($key + 2 == count($tournament_data['rounds'])): ?>
+                <h3 class="stage">Полуфинал</h3>
+            <?php elseif($key + 3 == count($tournament_data['rounds'])): ?>
+                <h3 class="stage">1/4 финала</h3>
+            <?php elseif($key + 4 == count($tournament_data['rounds'])): ?>
+                <h3 class="stage">1/8 финала</h3>
+            <?php else: ?>
+                <h3 class="stage">Раунд <?php print $key + 1?></h3>
+            <?php endif; ?>
+        </ul>
+    <?php endforeach; ?>
+    <ul class="round round-<?php print count($tournament_data['rounds']) + 1 ?>">
+        <h3 class="stage">Победитель</h3>
     </ul>
 </main>
+<main id="tournament">
+    <?php foreach ($tournament_data['rounds'] as $key => $round): ?>
+        <ul class="round round-<?php print $key + 1 ?>">
+            <li class="spacer">&nbsp;</li>
+            <?php foreach ($round as $key_game => $round_game): ?>
+                <li class="game game-top <?php if($round_game['winner'] == $round_game['team_a']['id']){print 'winner';}; ?>">
+                    <img src="<?php print $round_game['team_a']['icon_url']?>" class="team_icon">
+                    <span class="team_name">
+                        <a href="<?php print './' . $team_node_id . '?team_id=' . $round_game['team_a']['id'] ?>">
+                            <?php print $round_game['team_a']['title']?>
+                        </a>
+                    </span>
+                    <span class="count"><?php print $round_game['score_a']?></span>
+                </li>
+                <li class="game game-spacer">&nbsp;</li>
+                <li class="game game-bottom <?php if($round_game['winner'] == $round_game['team_b']['id']){print 'winner';}; ?>">
+                    <img src="<?php print $round_game['team_b']['icon_url']?>" class="team_icon">
+                    <span class="team_name">
+                        <a href="<?php print './' . $team_node_id . '?team_id=' . $round_game['team_b']['id'] ?>">
+                            <?php print $round_game['team_b']['title']?>
+                        </a>
+                    </span>
+                    <span class="count"><?php print $round_game['score_b']?></span>
+                </li>
+                <li class="spacer">&nbsp;</li>
+            <?php endforeach; ?>
+        </ul>
+    <?php endforeach; ?>
+    <ul class="round round-<?php print count($tournament_data['rounds']) + 1 ?>">
+        <li class="spacer">&nbsp;</li>
+        <li class="game game-top winner">
+            <img src="<?php if(end($tournament_data['rounds'])[0]['winner'] ==
+                    end($tournament_data['rounds'])[0]['team_a']['id']) {
+                    print end($tournament_data['rounds'])[0]['team_a']['icon_url'];}
+                else {
+                    print end($tournament_data['rounds'])[0]['team_b']['icon_url'];}; ?>" class="team_icon">
+            <span class="team_name"><?php if(end($tournament_data['rounds'])[0]['winner'] ==
+                    end($tournament_data['rounds'])[0]['team_a']['id']) {
+                    print end($tournament_data['rounds'])[0]['team_a']['title'];}
+                else {
+                    print end($tournament_data['rounds'])[0]['team_b']['title'];}; ?></span>
+        </li>
+    </ul>
+</main>
+
+
+<?php if($tournament_data['round_third_place'] != NULL): ?>
+    <h2>3,4,5 место</h2>
+    <main id="tournament">
+        <?php foreach ($tournament_data['round_third_place'] as $key => $round): ?>
+            <ul class="round round-<?php print $key + 1 ?>">
+                <li class="spacer">&nbsp;</li>
+                <?php foreach ($round as $key_game => $round_game): ?>
+                    <li class="game game-top <?php if($round_game['winner'] == $round_game['team_a']['id']){print 'winner';}; ?>">
+                        <img src="<?php print $round_game['team_a']['icon_url']?>" class="team_icon">
+                        <span class="team_name">
+                            <a href="<?php print './' . $team_node_id . '?team_id=' . $round_game['team_a']['id'] ?>">
+                                <?php print $round_game['team_a']['title']?>
+                            </a>
+                        </span>
+                        <span class="count"><?php print $round_game['score_a']?></span>
+                    </li>
+                    <li class="game game-spacer">&nbsp;</li>
+                    <li class="game game-bottom <?php if($round_game['winner'] == $round_game['team_b']['id']){print 'winner';}; ?>">
+                        <img src="<?php print $round_game['team_b']['icon_url']?>" class="team_icon">
+                        <span class="team_name">
+                            <a href="<?php print './' . $team_node_id . '?team_id=' . $round_game['team_b']['id'] ?>">
+                                <?php print $round_game['team_b']['title']?>
+                            </a>
+                        </span>
+                        <span class="count"><?php print $round_game['score_b']?></span>
+                    </li>
+                    <li class="spacer">&nbsp;</li>
+                <?php endforeach; ?>
+            </ul>
+        <?php endforeach; ?>
+        <ul class="round round-<?php print count($tournament_data['round_third_place']) + 1 ?>">
+            <li class="spacer">&nbsp;</li>
+            <li class="game game-top winner">
+                <img src="<?php if(end($tournament_data['round_third_place'])[0]['winner'] ==
+                    end($tournament_data['round_third_place'])[0]['team_a']['id']) {
+                    print end($tournament_data['round_third_place'])[0]['team_a']['icon_url'];}
+                else {
+                    print end($tournament_data['round_third_place'])[0]['team_b']['icon_url'];}; ?>" class="team_icon">
+                <span class="team_name"><?php if(end($tournament_data['round_third_place'])[0]['winner'] ==
+                        end($tournament_data['round_third_place'])[0]['team_a']['id']) {
+                        print end($tournament_data['round_third_place'])[0]['team_a']['title'];}
+                    else {
+                        print end($tournament_data['round_third_place'])[0]['team_b']['title'];}; ?></span>
+            </li>
+        </ul>
+    </main>
+<?php endif; ?>

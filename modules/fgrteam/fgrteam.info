@@ -1,3 +1,6 @@
-name = FGR Tournament 123
-description = Module to show FGR tournament bracket.
+name = FGR Teams module
+description = Module to show FGR teams.
 core = 7.x
+
+;dependencies[] = fgrtournaments:fgrgames
+;dependencies[] = fgrtournaments:fgrteams

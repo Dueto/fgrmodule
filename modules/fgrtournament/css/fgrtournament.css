@@ -6,9 +6,10 @@ main{
     display:flex !important;
     flex-direction:column;
     justify-content:center;
-    width:200px;
+    width:230px;
     list-style:none;
     padding:0;
+    margin:0;
 }
 .round .spacer{ flex-grow:1; }
 .round .spacer:first-child,
@@ -29,7 +30,8 @@ body{
 }
 
 li.game{
-    padding-left:20px;
+    padding-left:5px;
+    height: 38px;
 }
 
 li.game.winner{
@@ -38,8 +40,23 @@ li.game.winner{
 li.game span{
     float:right;
     margin-right:5px;
+    margin-top: 10px;
+    cursor: pointer;
+    font-size: 10px;
 }
+
+li.game span:hover{
+    text-decoration: underline;
+}
+
 li.game span.team_name{
+    float:left;
+    cursor: pointer;
+}
+
+li.game span.team_name a{
+    text-decoration: none;
+    color: black;
 }
 
 li.game-top{
@@ -52,7 +69,7 @@ li.game-top.winner{
 
 li.game-spacer{
     border-right:2px solid #82c4e3;
-    min-height:40px;
+    min-height:45px;
 }
 
 li.game-bottom{
@@ -63,9 +80,122 @@ li.game-bottom.winner{
     border-top:2px solid #82c4e3;
 }
 
+ul.round h3.stage{
+    margin-top: 0;
+    margin-bottom: 0;
+    text-align: center;
+}
+
 img.team_icon {
-   width: 20px;
-   height: 20px;
+   width: 35px;
+   height: 35px;
+   float: left;
+   margin-right: 5px;
+   margin-top: 1px;
+   cursor: pointer;
+}
+
+/*----- Tabs -----*/
+.tabs {
+    width:100%;
+    display:inline-block;
+    margin-bottom: 5px;
+}
+
+div.tabs ul {
+    padding: 0;
+    margin: 0;
+}
+/*----- Tab Links -----*/
+/* Clearfix */
+.tab-links:after {
+    display:block;
+    clear:both;
+    content:'';
+}
+
+.tab-links li {
+    margin:0px 1px;
+    float:left;
+    list-style:none; !important;
+}
+
+.tab-links a {
+    padding:9px 15px;
+    display:inline-block;
+    border-radius:3px 3px 0px 0px;
+    background: linear-gradient(to bottom, #52a9e5 0%,#227fbf 100%);;
+    font-size:14px;
+    font-weight:600;
+    color:white;
+    transition:all linear 0.15s;
+    text-decoration:none;
+    /*border: 2px solid #227fbf;*/
+}
+
+.tab-links a:hover {
+    color:#fff;
+    background:#52a9e5;
+}
+
+li.active a, li.active a:hover {
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    background:#fff;
+    border-radius:3px 3px 0px 0px;
+    box-shadow:0px 0px 0px 1px #227fbf inset;
+    /*border: 2px solid #227fbf;*/
+    color:#4c4c4c;
+}
+/*.table {*/
+    /*border:1px solid #C0C0C0;*/
+    /*border-collapse:collapse;*/
+    /*padding:5px;*/
+    /*font-size: 18px;*/
+/*}*/
+/*.table th {*/
+    /*border:1px solid #C0C0C0;*/
+    /*padding:10px;*/
+    /*color: white;*/
+    /*font-size: 20px;*/
+    /*background:#7DA2EC;*/
+/*}*/
+/*.table-tournament td {*/
+    /*border:1px solid #C0C0C0;*/
+    /*padding:10px;*/
+    /*text-align: center;*/
+/*}*/
+
+/*.table-tournament td:nth-child(2) {*/
+    /*text-align: left;*/
+    /*width: 500px;*/
+/*}*/
+
+/* Sortable tables */
+table.sortable thead {
+    /*background-color:#eee;*/
+    /*color:#666666;*/
+    /*font-weight: bold;*/
+    /*cursor: default;*/
+}
+
+td span.team_name_table {
+    vertical-align: middle;
+    cursor: pointer;
+}
+
+td span.team_name_table:hover {
+    text-decoration: underline;
+}
+
+td span.team_name_table a{
+    text-decoration: none;
+    color: black;
+}
+
+td img {
+    vertical-align: middle;
 }
 
 

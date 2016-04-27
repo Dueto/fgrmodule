@@ -49,7 +49,7 @@ function fgrtournament_load($nodes)
 
 function fill_tournament_node($node, $id) {
     module_load_include('inc', 'fgrtournament', 'fgrtournament.api');
-    $additional_tournament_data = get_tournament_by_id($id);
+    $additional_tournament_data = get_tournament_by_id_playoff($id);
 
 }
 

@@ -1,0 +1,110 @@
+
+/*----- Tabs -----*/
+.tabs {
+    width:100%;
+    display:inline-block;
+    margin-bottom: 21px;
+}
+
+div.tabs ul {
+    padding: 0;
+    margin: 0;
+}
+/*----- Tab Links -----*/
+/* Clearfix */
+.tab-links:after {
+    display:block;
+    clear:both;
+    content:'';
+}
+
+.tab-links li {
+    margin:0px 5px;
+    float:left;
+    list-style:none; !important;
+}
+
+.tab-links a {
+    padding:9px 15px;
+    display:inline-block;
+    border-radius:3px 3px 3px 3px;
+    background:#7DA2EC;
+    font-size:16px;
+    font-weight:600;
+    color:white;
+    transition:all linear 0.15s;
+    text-decoration:none;
+    border: 2px solid #7DA2EC;
+}
+
+.tab-links a:hover {
+    background:#a7cce5;
+}
+
+li.active a, li.active a:hover {
+    background:#fff;
+    border-radius:3px 3px 3px 3px;
+    border: 2px solid #7DA2EC;
+    color:#4c4c4c;
+}
+.table {
+    border:1px solid #C0C0C0;
+    border-collapse:collapse;
+    padding:5px;
+    font-size: 18px;
+}
+.table th {
+    border:1px solid #C0C0C0;
+    padding:10px;
+    color: white;
+    font-size: 20px;
+    background:#7DA2EC;
+}
+.table td {
+    border:1px solid #C0C0C0;
+    padding:10px;
+    text-align: center;
+}
+
+.table td:nth-child(2) {
+    text-align: left;
+    width: 500px;
+}
+
+/* Sortable tables */
+table.sortable thead {
+    /*background-color:#eee;*/
+    /*color:#666666;*/
+    /*font-weight: bold;*/
+    /*cursor: default;*/
+}
+
+td img {
+    vertical-align: middle;
+}
+
+.member_table td:nth-child(3) {
+    text-align: left;
+    width: 450px;
+    cursor: pointer;
+}
+
+.member_table td:nth-child(3):hover {
+    text-decoration: underline;
+}
+
+.member_table td {
+    padding:10px;
+    text-align: center;
+}
+
+.member_icon {
+    width: 30px;
+}
+.member_icon_info {
+    width: 200px;
+}
+
+.ui-dialog { z-index: 1000 !important ;}
+
+
