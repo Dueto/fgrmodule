@@ -198,4 +198,38 @@ td img {
     vertical-align: middle;
 }
 
+td .winner {
+    font-weight:bold;
+}
+
+.table_games {
+    text-align: center;
+}
+
+.table_games td.right img{
+    float: right;
+}
+
+.table_games td.left img{
+    float: left;
+}
+
+.table_games td:nth-child(2),.table_games td:nth-child(4) {
+    width: 260px;
+}
+
+td span.game_score_table {
+    vertical-align: middle;
+    cursor: pointer;
+}
+
+td span.game_score_table:hover {
+    text-decoration: underline;
+}
+
+td span.game_score_table a{
+    text-decoration: none;
+    color: black;
+}
+
 

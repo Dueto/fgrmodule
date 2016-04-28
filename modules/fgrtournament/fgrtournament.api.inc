@@ -346,3 +346,88 @@ function get_last_tournaments() {
 //    return drupal_json_decode($response['data']);
     return drupal_json_decode($tournaments_json);
 }
+
+function get_tournament_games_by_id($tournament_id, $page, $count) {
+    $games_json = '{
+    "id": 1,
+	"title": "Чемпионат РФ",
+	"season": "Лето",
+	"league": "Суперлига",
+	"gender": "Мужчины",
+	"stage": "плейофф",
+    "games": [{
+            "game_id": 111,
+            "date": "2016.01.01",
+            "stage": "Предварительный этап",
+            "round": 0,
+            "team_b": {
+                "title": "Медведи",
+                "id": 31,
+                "icon_url": "http://localhost:8181/fgr/rushandball.ru/files/styles/team_logo/public/logo.png?itok=1TFMmFpI"
+            },
+            "team_a": {
+                "title": "Каустик",
+                "id": 32,
+                "icon_url": "http://localhost:8181/fgr/rushandball.ru/files/styles/team_logo/public/logotip_kaustik.png?itok=fWzzBqBF"
+            },
+            "winner": 32,
+            "score_a": 43,
+            "score_b": 21
+        },{
+            "game_id": 222,
+            "date": "2016.01.01",
+            "stage": "Предварительный этап",
+            "round": 0,
+            "team_b": {
+                "title": "Университет-Нева",
+                "id": 33,
+                "icon_url": "http://localhost:8181/fgr/rushandball.ru/files/styles/team_logo/public/univer_lesgafta.png?itok=kAlhSuZb"
+            },
+            "team_a": {
+                "title": "Сунгуль",
+                "id": 34,
+                "icon_url": "http://localhost:8181/fgr/rushandball.ru/files/styles/team_logo/public/syngul.png?itok=tnPg91kp"
+            },
+            "winner": 33,
+            "score_a": 51,
+            "score_b": 76
+        },{
+            "game_id": 333,
+            "date": "2016.01.01",
+            "stage": "Предварительный этап",
+            "round": 0,
+            "team_b": {
+                "title": "Энергия",
+                "id": 35,
+                "icon_url": "http://localhost:8181/fgr/rushandball.ru/files/styles/team_logo/public/energiya_voronej.png?itok=v7yZyYPQ"
+            },
+            "team_a": {
+                "title": "Пермские медведи",
+                "id": 36,
+                "icon_url": "http://localhost:8181/fgr/rushandball.ru/files/styles/team_logo/public/permskiemedvedi.png?itok=j48qIXP8"
+            },
+            "winner": 35,
+            "score_a": 12,
+            "score_b": 66
+        },{
+            "game_id": 444,
+            "date": "2016.01.01",
+            "stage": "Предварительный этап",
+            "round": 0,
+            "team_b": {
+                "title": "СКИФ",
+                "id": 37,
+                "icon_url": "http://localhost:8181/fgr/rushandball.ru/files/styles/team_logo/public/skif_krasnodar.png?itok=0Y8X8_sK"
+            },
+            "team_a": {
+                "title": "Локомотив-Полет",
+                "id": 38,
+                "icon_url": "http://localhost:8181/fgr/rushandball.ru/files/styles/team_logo/public/lokomotiv.png?itok=L0OCjMi0"
+            },
+            "winner": 38,
+            "score_a": 42,
+            "score_b": 38
+        }
+    ]}';
+    return drupal_json_decode($games_json);
+}
