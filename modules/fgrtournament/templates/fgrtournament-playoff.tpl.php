@@ -39,7 +39,11 @@
                             <?php print $round_game['team_a']['title']?>
                         </a>
                     </span>
-                    <span class="count"><?php print $round_game['score_a']?></span>
+                    <span class="count">
+                        <a class="blank_link" href="<?php print './' . $game_node_id . '?game_id=' . $round_game['game_id']?>">
+                            <?php print $round_game['score_a']?>
+                        </a>
+                    </span>
                 </li>
                 <li class="game game-spacer">&nbsp;</li>
                 <li class="game game-bottom <?php if($round_game['winner'] == $round_game['team_b']['id']){print 'winner';}; ?>">
@@ -49,7 +53,11 @@
                             <?php print $round_game['team_b']['title']?>
                         </a>
                     </span>
-                    <span class="count"><?php print $round_game['score_b']?></span>
+                    <span class="count">
+                        <a class="blank_link" href="<?php print './' . $game_node_id . '?game_id=' . $round_game['game_id']?>">
+                            <?php print $round_game['score_b']?>
+                        </a>
+                    </span>
                 </li>
                 <li class="spacer">&nbsp;</li>
             <?php endforeach; ?>
@@ -87,7 +95,11 @@
                                 <?php print $round_game['team_a']['title']?>
                             </a>
                         </span>
-                        <span class="count"><?php print $round_game['score_a']?></span>
+                        <span class="count">
+                            <a class="blank_link" href="<?php print './' . $game_node_id . '?game_id=' . $round_game['game_id']?>">
+                                <?php print $round_game['score_a']?>
+                            </a>
+                        </span>
                     </li>
                     <li class="game game-spacer">&nbsp;</li>
                     <li class="game game-bottom <?php if($round_game['winner'] == $round_game['team_b']['id']){print 'winner';}; ?>">
@@ -97,7 +109,11 @@
                                 <?php print $round_game['team_b']['title']?>
                             </a>
                         </span>
-                        <span class="count"><?php print $round_game['score_b']?></span>
+                        <span class="count">
+                            <a class="blank_link" href="<?php print './' . $game_node_id . '?game_id=' . $round_game['game_id']?>">
+                                <?php print $round_game['score_b']?>
+                            </a>
+                        </span>
                     </li>
                     <li class="spacer">&nbsp;</li>
                 <?php endforeach; ?>

@@ -1,0 +1,279 @@
+
+/*----- Tabs -----*/
+.tabs {
+    width:100%;
+    display:inline-block;
+    margin-bottom: 21px;
+}
+
+div.tabs ul {
+    padding: 0;
+    margin: 0;
+}
+/*----- Tab Links -----*/
+/* Clearfix */
+.tab-links:after {
+    display:block;
+    clear:both;
+    content:'';
+}
+
+.tab-links li {
+    margin:0px 5px;
+    float:left;
+    list-style:none; !important;
+}
+
+.tab-links a {
+    padding:9px 15px;
+    display:inline-block;
+    border-radius:3px 3px 3px 3px;
+    background:#7DA2EC;
+    font-size:16px;
+    font-weight:600;
+    color:white;
+    transition:all linear 0.15s;
+    text-decoration:none;
+    border: 2px solid #7DA2EC;
+}
+
+.tab-links a:hover {
+    background:#a7cce5;
+}
+
+li.active a, li.active a:hover {
+    background:#fff;
+    border-radius:3px 3px 3px 3px;
+    border: 2px solid #7DA2EC;
+    color:#4c4c4c;
+}
+.table {
+    border:1px solid #C0C0C0;
+    border-collapse:collapse;
+    padding:5px;
+    font-size: 18px;
+}
+.table th {
+    border:1px solid #C0C0C0;
+    padding:10px;
+    color: white;
+    font-size: 20px;
+    background:#7DA2EC;
+}
+.table td {
+    border:1px solid #C0C0C0;
+    padding:10px;
+    text-align: center;
+}
+
+.table td:nth-child(2) {
+    text-align: left;
+    width: 500px;
+}
+
+/* Sortable tables */
+table.sortable thead {
+    /*background-color:#eee;*/
+    /*color:#666666;*/
+    /*font-weight: bold;*/
+    /*cursor: default;*/
+}
+
+td img {
+    vertical-align: middle;
+}
+
+.member_table td:nth-child(3) {
+    text-align: left;
+    width: 450px;
+    cursor: pointer;
+}
+
+.member_table td:nth-child(3):hover {
+    text-decoration: underline;
+}
+
+.member_table td {
+    padding:10px;
+    text-align: center;
+}
+
+.member_icon {
+    width: 30px;
+}
+.member_icon_info {
+    width: 200px;
+}
+
+.ui-dialog { z-index: 1000 !important ;}
+
+.table_game_head td.right {
+    text-align: right;
+    width: 500px;
+}
+
+.table_game_head td a{
+    text-decoration: none;
+    color: black;
+}
+
+.table_game_head td.right:hover {
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.table_game_head td.left {
+    text-align: left;
+    width: 500px;
+}
+
+.table_game_head td.left:hover {
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.table_game_head td{
+    padding: 0px;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.table_game_head td:nth-child(2) {
+    /*width: 20px;*/
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.logo_table_game {
+    background-color: white;
+    width: 200px;
+    height: 190px;
+}
+
+.table_game {
+    border-bottom: 1px solid black;
+}
+
+.border_right {
+    border-right: 1px solid black;
+}
+
+.border_left {
+    border-left: 1px solid black;
+}
+
+/*.logo_table_game td.right img{*/
+    /*float: right;*/
+/*}*/
+
+/*.logo_table_game td.left img{*/
+    /*float: left;*/
+/*}*/
+
+.game_stage {
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.time {
+    /*margin-top: 30px;*/
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.date {
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.text-middle {
+    text-align: center;
+}
+
+.tiny {
+    font-size: 11px;
+}
+
+.bold {
+    font-weight: bold;
+}
+
+a.blank_link {
+    color: black;
+    text-decoration: none;
+}
+
+a.blank_link:hover {
+    text-decoration: underline;
+    color: black;
+}
+
+.display_inline {
+    display: inline-block;
+    width: 100%;
+    margin-top: 20px;
+}
+
+.score {
+    font-size: 60px;
+    margin-bottom: 30px;
+    margin-top: 90px;
+}
+
+.game_icons {
+    margin-bottom: 20px;
+}
+
+.score_game_ended {
+    font-size: 40px;
+    margin-bottom: 100px;
+    /*margin-top: 90px;*/
+}
+
+.score_game_ended_half {
+    font-size: 20px;
+    margin-bottom: 50px;
+    margin-top: 0px;
+    /*margin-top: 90px;*/
+}
+
+.gamers_table_game {
+    width: 200px;
+    font-size: 10px;
+}
+
+.gamers_table_game tr {
+    border-bottom: 1px solid black;
+    height: 10px;
+}
+.gamers_table_game tr:last-child {
+    border-bottom: none;
+}
+
+.gamers_table_game td:nth-child(2){
+    width: 150px;
+}
+
+.gamers_table_game td:nth-child(2):hover{
+    cursor: pointer;
+}
+
+.gamers_table_game td:nth-child(2):hover span{
+    text-decoration: underline;
+}
+
+.gamers_table_game td img{
+    width: 25px;
+}
+
+.gamers_table_game tr td{
+    padding: 0px;
+}
+
+table.right {
+    text-align: end !important;
+}
+
+.penalty {
+    width: 12px !important;
+}

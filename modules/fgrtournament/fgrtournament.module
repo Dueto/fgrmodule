@@ -42,6 +42,7 @@ function fgrtournament_node_view($node, $view_mode, $langcode)
                     $tournament_type = $_GET['type'];
                 }
                 $team_node_id = get_fgrteam_node_id();
+                $game_node_id = get_fgrgame_node_id();
                 switch ($tournament_type) {
                     case 'games':
                         $page= 1;
@@ -50,13 +51,13 @@ function fgrtournament_node_view($node, $view_mode, $langcode)
                         $count = 1;
                         $tournament_games = get_tournament_games_by_id($tournament_id, $page, $count);
                         $node->content['fgrtournament_games'] = array(
-                            "#markup" => theme('fgrtournament_games', array('tournament_data' => $tournament_games, 'node' => $node, 'team_node_id' => $team_node_id['nid']))
+                            "#markup" => theme('fgrtournament_games', array('tournament_data' => $tournament_games, 'node' => $node, 'team_node_id' => $team_node_id['nid'], 'game_node_id' => $game_node_id['nid']))
                         );
                         break;
                     case 'playoff':
                         $tournament_data = get_tournament_by_id_playoff($tournament_id);
                         $node->content['fgrtournament_playoff'] = array(
-                            "#markup" => theme('fgrtournament_playoff', array('tournament_data' => $tournament_data, 'node' => $node, 'team_node_id' => $team_node_id['nid']))
+                            "#markup" => theme('fgrtournament_playoff', array('tournament_data' => $tournament_data, 'node' => $node, 'team_node_id' => $team_node_id['nid'], 'game_node_id' => $game_node_id['nid']))
                         );
                         break;
                     case 'competition':

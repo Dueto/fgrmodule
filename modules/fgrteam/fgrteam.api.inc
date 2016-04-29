@@ -43,6 +43,156 @@ function get_team_by_id($id) {
                 "score_in_current_season": 48,
                 "birthday": "1985.12.21",
                 "season_club": "Rostov-Don"
+            },
+            {
+                "member_photo_url": "http://res.ehf.eu/picture/players/2016/6514/538968/.jpg",
+                "first_name": "Екатерина",
+                "second_name": "Илина",
+                "citizenship": "РФ",
+                "citizenship_url": "http://flags.ehf.eu/2/RUS.gif",
+                "score_in_current_season": 43,
+                "birthday": "1991.03.07",
+                "season_club": "Rostov-Don"
+            },
+            {
+                "member_photo_url": "http://res.ehf.eu/picture/players/2016/6514/529701/.jpg",
+                "first_name": "Юлия",
+                "second_name": "Манагарова",
+                "citizenship": "Украина",
+                "citizenship_url": "http://flags.ehf.eu/2/UKR.gif",
+                "score_in_current_season": 72,
+                "birthday": "1988.09.27",
+                "season_club": "Rostov-Don"
+            },
+            {
+                "member_photo_url": "http://res.ehf.eu/picture/players/2016/6514/520626/.jpg",
+                "first_name": "Регина",
+                "second_name": "Шумкуте",
+                "citizenship": "РФ",
+                "citizenship_url": "http://flags.ehf.eu/2/RUS.gif",
+                "score_in_current_season": 48,
+                "birthday": "1985.12.21",
+                "season_club": "Rostov-Don"
+            },
+            {
+                "member_photo_url": "http://res.ehf.eu/picture/players/2016/6514/538968/.jpg",
+                "first_name": "Екатерина",
+                "second_name": "Илина",
+                "citizenship": "РФ",
+                "citizenship_url": "http://flags.ehf.eu/2/RUS.gif",
+                "score_in_current_season": 43,
+                "birthday": "1991.03.07",
+                "season_club": "Rostov-Don"
+            },
+            {
+                "member_photo_url": "http://res.ehf.eu/picture/players/2016/6514/529701/.jpg",
+                "first_name": "Юлия",
+                "second_name": "Манагарова",
+                "citizenship": "Украина",
+                "citizenship_url": "http://flags.ehf.eu/2/UKR.gif",
+                "score_in_current_season": 72,
+                "birthday": "1988.09.27",
+                "season_club": "Rostov-Don"
+            },
+            {
+                "member_photo_url": "http://res.ehf.eu/picture/players/2016/6514/520626/.jpg",
+                "first_name": "Регина",
+                "second_name": "Шумкуте",
+                "citizenship": "РФ",
+                "citizenship_url": "http://flags.ehf.eu/2/RUS.gif",
+                "score_in_current_season": 48,
+                "birthday": "1985.12.21",
+                "season_club": "Rostov-Don"
+            },
+            {
+                "member_photo_url": "http://res.ehf.eu/picture/players/2016/6514/538968/.jpg",
+                "first_name": "Екатерина",
+                "second_name": "Илина",
+                "citizenship": "РФ",
+                "citizenship_url": "http://flags.ehf.eu/2/RUS.gif",
+                "score_in_current_season": 43,
+                "birthday": "1991.03.07",
+                "season_club": "Rostov-Don"
+            },
+            {
+                "member_photo_url": "http://res.ehf.eu/picture/players/2016/6514/529701/.jpg",
+                "first_name": "Юлия",
+                "second_name": "Манагарова",
+                "citizenship": "Украина",
+                "citizenship_url": "http://flags.ehf.eu/2/UKR.gif",
+                "score_in_current_season": 72,
+                "birthday": "1988.09.27",
+                "season_club": "Rostov-Don"
+            },
+            {
+                "member_photo_url": "http://res.ehf.eu/picture/players/2016/6514/520626/.jpg",
+                "first_name": "Регина",
+                "second_name": "Шумкуте",
+                "citizenship": "РФ",
+                "citizenship_url": "http://flags.ehf.eu/2/RUS.gif",
+                "score_in_current_season": 48,
+                "birthday": "1985.12.21",
+                "season_club": "Rostov-Don"
+            },
+            {
+                "member_photo_url": "http://res.ehf.eu/picture/players/2016/6514/538968/.jpg",
+                "first_name": "Екатерина",
+                "second_name": "Илина",
+                "citizenship": "РФ",
+                "citizenship_url": "http://flags.ehf.eu/2/RUS.gif",
+                "score_in_current_season": 43,
+                "birthday": "1991.03.07",
+                "season_club": "Rostov-Don"
+            },
+            {
+                "member_photo_url": "http://res.ehf.eu/picture/players/2016/6514/529701/.jpg",
+                "first_name": "Юлия",
+                "second_name": "Манагарова",
+                "citizenship": "Украина",
+                "citizenship_url": "http://flags.ehf.eu/2/UKR.gif",
+                "score_in_current_season": 72,
+                "birthday": "1988.09.27",
+                "season_club": "Rostov-Don"
+            },
+            {
+                "member_photo_url": "http://res.ehf.eu/picture/players/2016/6514/520626/.jpg",
+                "first_name": "Регина",
+                "second_name": "Шумкуте",
+                "citizenship": "РФ",
+                "citizenship_url": "http://flags.ehf.eu/2/RUS.gif",
+                "score_in_current_season": 48,
+                "birthday": "1985.12.21",
+                "season_club": "Rostov-Don"
+            },
+            {
+                "member_photo_url": "http://res.ehf.eu/picture/players/2016/6514/538968/.jpg",
+                "first_name": "Екатерина",
+                "second_name": "Илина",
+                "citizenship": "РФ",
+                "citizenship_url": "http://flags.ehf.eu/2/RUS.gif",
+                "score_in_current_season": 43,
+                "birthday": "1991.03.07",
+                "season_club": "Rostov-Don"
+            },
+            {
+                "member_photo_url": "http://res.ehf.eu/picture/players/2016/6514/529701/.jpg",
+                "first_name": "Юлия",
+                "second_name": "Манагарова",
+                "citizenship": "Украина",
+                "citizenship_url": "http://flags.ehf.eu/2/UKR.gif",
+                "score_in_current_season": 72,
+                "birthday": "1988.09.27",
+                "season_club": "Rostov-Don"
+            },
+            {
+                "member_photo_url": "http://res.ehf.eu/picture/players/2016/6514/520626/.jpg",
+                "first_name": "Регина",
+                "second_name": "Шумкуте",
+                "citizenship": "РФ",
+                "citizenship_url": "http://flags.ehf.eu/2/RUS.gif",
+                "score_in_current_season": 48,
+                "birthday": "1985.12.21",
+                "season_club": "Rostov-Don"
             }
         ]
     }';

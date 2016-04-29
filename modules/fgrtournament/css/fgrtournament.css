@@ -161,16 +161,16 @@ li.active a, li.active a:hover {
     /*font-size: 20px;*/
     /*background:#7DA2EC;*/
 /*}*/
-/*.table-tournament td {*/
-    /*border:1px solid #C0C0C0;*/
-    /*padding:10px;*/
-    /*text-align: center;*/
-/*}*/
+.table-tournament td {
+    border:1px solid #C0C0C0;
+    padding:10px;
+    text-align: center;
+}
 
-/*.table-tournament td:nth-child(2) {*/
-    /*text-align: left;*/
-    /*width: 500px;*/
-/*}*/
+.table-tournament td:nth-child(2) {
+    text-align: left;
+    width: 500px;
+}
 
 /* Sortable tables */
 table.sortable thead {
@@ -206,6 +206,11 @@ td .winner {
     text-align: center;
 }
 
+
+.table_games td{
+    border:1px solid #C0C0C0;
+}
+
 .table_games td.right img{
     float: right;
 }
@@ -215,7 +220,7 @@ td .winner {
 }
 
 .table_games td:nth-child(2),.table_games td:nth-child(4) {
-    width: 260px;
+    width: 250px;
 }
 
 td span.game_score_table {
@@ -229,6 +234,16 @@ td span.game_score_table:hover {
 
 td span.game_score_table a{
     text-decoration: none;
+    color: black;
+}
+
+a.blank_link {
+    color: black;
+    text-decoration: none;
+}
+
+a.blank_link:hover {
+    text-decoration: underline;
     color: black;
 }
 

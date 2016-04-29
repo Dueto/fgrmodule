@@ -29,7 +29,7 @@
 <!--            <td><a href="--><?php //print './' . $game_node_id . '?game_id=' . $game['id'] ?><!--">--><?php //print $game['score_a'] ?><!-- : --><?php //print $game['score_b'] ?><!--</a></td>-->
             <td>
                 <span class="game_score_table">
-                    <a href=""><?php print $game['score_a'] ?> : <?php print $game['score_b'] ?>
+                    <a href="<?php print './' . $game_node_id . '?game_id=' . $game['game_id']?>"><?php print $game['score_a'] ?> : <?php print $game['score_b'] ?>
                     </a>
                 </span>
             </td>

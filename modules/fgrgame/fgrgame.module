@@ -4,11 +4,10 @@
  * @file
  * A block module that displays recent blog and forum posts.
  */
-
-function fgrtournament_help($path, $arg) {
+function fgrgame_help($path, $arg) {
   switch ($path) {
-    case "admin/help#fgrtournament":
-      return '' . t("Displays tournament bracket") . '';
+    case "admin/help#fgrgame":
+      return '' . t("Displays fgr games") . '';
       break;
   }
 }
@@ -16,65 +15,72 @@ function fgrtournament_help($path, $arg) {
 /**
  * Implements hook_node_info().
  */
-function fgrtournament_node_info() {
+function fgrgame_node_info() {
   $items = array(
-      'fgrtournament' => array(
-          'name' => t('FGR tournament bracket'),
+      'fgrgame' => array(
+          'name' => t('FGR game'),
           'base' => 'node_content',
-          'description' => t('Displays tournament bracket.'),
-          'help' => 'Displays tournament bracket.',
+          'description' => t('Displays FGR game.'),
+          'help' => 'Displays FGR game.',
       ),
   );
   return $items;
 }
 
 /**
- * Implements hook_load().
- */
-function fgrtournament_load($nodes)
-{
-    $result = db_query('SELECT * FROM {fgrtournament} WHERE nid IN (:nids)', array(':nids' => array_keys($nodes)));
-    foreach ($result as $fields) {
-        $nid = $fields->nid;
-        foreach ($fields as $key => $value) {
-            if (!isset($nodes[$nid]->$key)) {
-                $nodes[$nid]->$key = $value;
-                if($key == 'id') {
-                    fill_tournament_node($nodes[$nid], $value);
-                }
-            }
-        }
-    }
-}
-
-function fill_tournament_node($node, $id) {
-    module_load_include('inc', 'fgrtournament', 'fgrtournament.api');
-    $additional_tournament_data = get_tournament_by_id_playoff($id);
-
-}
-
-/**
- * Implements hook_block_view().
- *
- * Prepares the contents of the block.
- */
-/**
  * Implements hook_node_view().
  */
-function fgrtournament_node_view($node, $view_mode, $langcode)
+function fgrgame_node_view($node, $view_mode, $langcode)
 {
+    module_load_include('inc', 'fgrgame', 'fgrgame.api');
     switch ($node->type) {
-        case 'fgrtournament':
-            $node->content['extra_link'] = array(
-                '#weight' => 10,
-                '#theme' => 'link',
-                '#path' => 'path',
-                '#text' => t('An extra link'),
-                '#options' => array(
-                    'attributes' => array(),
-                    'html' => FALSE
-                ),
-            );
+        case 'fgrgame':
+            if(isset($_GET['game_id'])) {
+                $game_id = $_GET['game_id'];
+                $game_data = get_game_by_id($game_id);
+                $team_node_id = get_fgrteam_node_id();
+                switch ($game_data['status']) {
+                    case 'scheduled':
+                        $node->content['fgrgame_before'] = array(
+                            "#markup" => theme('fgrgame_before', array('game' => $game_data, 'node' => $node, 'team_node_id' => $team_node_id['nid']))
+                        );
+                        break;
+                    case 'online':
+                        $node->content['fgrgame_current'] = array(
+                            "#markup" => theme('fgrgame_current', array('game' => $game_data, 'node' => $node, 'team_node_id' => $team_node_id['nid']))
+                        );
+                        break;
+                    case 'result':
+                        drupal_add_js(drupal_get_path('module', 'fgrteam') . '/js/jquery-ui.min.js');
+                        $node->content['fgrgame_ended'] = array(
+                            "#markup" => theme('fgrgame_ended', array('game' => $game_data, 'node' => $node, 'team_node_id' => $team_node_id['nid']))
+                        );
+                        break;
+                }
+            }
             break;
     }
+}
+
+/**
+ * Implements hook_theme();
+*/
+function fgrgame_theme() {
+    return array(
+        'fgrgame_before' => array(
+            'variables' => array('game' => NULL, 'node' => NULL, 'team_node_id' => NULL),
+            'template' => 'templates/fgrgame-before',
+            'file' => 'fgrgame.pages.inc',
+        ),
+        'fgrgame_current' => array(
+            'variables' => array('game' => NULL, 'node' => NULL, 'team_node_id' => NULL),
+            'template' => 'templates/fgrgame-current',
+            'file' => 'fgrgame.pages.inc',
+        ),
+        'fgrgame_ended' => array(
+            'variables' => array('game' => NULL, 'node' => NULL, 'team_node_id' => NULL),
+            'template' => 'templates/fgrgame-ended',
+            'file' => 'fgrgame.pages.inc',
+        )
+    );
 }
