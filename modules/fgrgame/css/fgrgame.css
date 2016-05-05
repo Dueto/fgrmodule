@@ -132,13 +132,17 @@ td img {
     cursor: pointer;
 }
 
+.table_game_head td img{
+    width: 50px;
+}
+
 .table_game_head td{
     padding: 0px;
     font-size: 18px;
     font-weight: bold;
 }
 
-.table_game_head td:nth-child(2) {
+.table_game_head td:nth-child(3) {
     /*width: 20px;*/
     padding-left: 10px;
     padding-right: 10px;
@@ -263,7 +267,7 @@ a.blank_link:hover {
 }
 
 .gamers_table_game td img{
-    width: 25px;
+    width: 18px;
 }
 
 .gamers_table_game tr td{
@@ -276,4 +280,8 @@ table.right {
 
 .penalty {
     width: 12px !important;
+}
+
+.gamer_score {
+    font-size: 12px;
 }

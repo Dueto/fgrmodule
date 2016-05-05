@@ -8,6 +8,10 @@
     <tr>
         <td class="right">
             <a href="<?php print './' . $team_node_id . '?team_id=' . $game['team_a']['id'] ?>">
+                <img src="<?php print $game['team_a']['icon_url'] ?>">
+            </a>
+        </td><td class="right">
+            <a href="<?php print './' . $team_node_id . '?team_id=' . $game['team_a']['id'] ?>">
                 <span><?php print $game['team_a']['title']?></span>
             </a>
         </td>
@@ -15,6 +19,11 @@
         <td class="left">
             <a href="<?php print './' . $team_node_id . '?team_id=' . $game['team_b']['id'] ?>">
                 <span><?php print $game['team_b']['title']?> </span>
+            </a>
+        </td>
+        <td class="left">
+            <a href="<?php print './' . $team_node_id . '?team_id=' . $game['team_b']['id'] ?>">
+                <img src="<?php print $game['team_b']['icon_url'] ?>">
             </a>
         </td>
     </tr>
@@ -41,7 +50,7 @@
                                 <?php endif;?>
                             </td>
                             <td>
-                                <span class="bold"><?php print $gamer['score_in_current_match']?></span>
+                                <span class="bold gamer_score"><?php print $gamer['score_in_current_match']?></span>
                             </td>
                         </tr>
                     <?php endforeach;?>
@@ -82,7 +91,7 @@
                 <?php foreach ($game['team_b']['gamers'] as $key => $gamer): ?>
                     <tr>
                         <td>
-                            <span class="bold"><?php print $gamer['score_in_current_match']?></span>
+                            <span class="bold gamer_score"><?php print $gamer['score_in_current_match']?></span>
                         </td>
                         <td id="dialogb<?php print $key + 1?>">
                             <?php if($gamer['penalties']['yellow']): ?>

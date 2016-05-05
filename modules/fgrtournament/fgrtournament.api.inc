@@ -1,8 +1,4 @@
 <?php
-/**
- * Returns a tournament participant status.
- * @return Tournament by id.
- */
 function get_tournament_by_id_playoff($id) {
     $url = 'predefined url';
     $tournament_json = '{
@@ -182,10 +178,6 @@ function get_tournament_by_id_playoff($id) {
     return drupal_json_decode($tournament_json);
 }
 
-/**
- * Returns a tournament participant status.
- * @return Tournament by id mini view.
- */
 function get_tournament_by_id_mini($id) {
     $url = 'predefined url';
     $tournament_json = '';
@@ -195,10 +187,6 @@ function get_tournament_by_id_mini($id) {
     return drupal_json_decode($tournament_json);
 }
 
-/**
- * Returns a tournament participant status.
- * @return Tournament by id mini view.
- */
 function get_tournament_by_id_chess_mates($id) {
     $url = 'predefined url';
     $tournament_json = '';
@@ -208,10 +196,6 @@ function get_tournament_by_id_chess_mates($id) {
     return drupal_json_decode($tournament_json);
 }
 
-/**
- * Returns a tournament participant status.
- * @return Tournament by id without results.
- */
 function get_tournament_by_id_without_result($id) {
     $url = 'predefined url';
     $tournament_json = '{
@@ -326,28 +310,34 @@ function get_tournament_by_id_without_result($id) {
 }
 
 function get_last_tournaments() {
-    $url = 'predefined url';
-    $tournaments_json = '[
-      {
-        "title": "Чемпионат РФ, Лето, Суперлига, Мужчины",
-        "id": 2
-      },
-      {
-        "title": "Кубок РФ, Лето, Высшая лига, Женщины",
-        "id": 3
-      },
-      {
-        "title": "Лига чемпионов ЕГФ, Лето, Высшая лига, Женщины",
-        "id": 1
-      }
-    ]';
-
-//    $response = drupal_http_request($url, array(), 'GET', NULL, 3);
-//    return drupal_json_decode($response['data']);
-    return drupal_json_decode($tournaments_json);
+    $url = variable_get('fgrtournament_system_url', 'http://fgr.ntrlab.ru:81/api');
+    $tournament_with_childs_method = '/Competitions/%s?withChilds=true';
+    $method = '/Competitions/CurrentSeasonCompetitions?gameDiscipline=Handball';
+    $response = drupal_http_request($url . $method, array(
+        'method' => 'GET',
+        'data' => NULL,
+        'timeout' => 15));
+    $tournaments_data = array();
+    if($response->code == 200) {
+        $current_tournaments = drupal_json_decode($response->data)['Data'];
+        foreach($current_tournaments as $current_tournament) {
+            $tournament_response = drupal_http_request($url . sprintf($tournament_with_childs_method, $current_tournament['CompId']), array(
+                'method' => 'GET',
+                'data' => NULL,
+                'timeout' => 15));
+            if($tournament_response->code == 200) {
+                array_push($tournaments_data, drupal_json_decode($tournament_response->data)['Data']);
+            } else {
+                return null;
+            }
+        }
+        return $tournaments_data;
+    } else {
+        return null;
+    }
 }
 
-function get_tournament_games_by_id($tournament_id, $page, $count) {
+function get_tournament_games_by_id($tournament_id, $type) {
     $games_json = '{
     "id": 1,
 	"title": "Чемпионат РФ",

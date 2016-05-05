@@ -2,7 +2,7 @@
         . $tournament_data['league'] . ', ' . $tournament_data['gender'] . ' - ' . $tournament_data['stage']?></h2>
 <div class="tabs">
     <ul class="tab-links">
-        <li><a href="<?php print './' . $node->nid . '?tournament_id=' . $tournament_data['id'] . '&type=games' ?>">Матчи</a></li>
+        <li><a href="<?php print './' . $node->nid . '?tournament_id=' . $tournament_data['id'] . '&type=games&game_type=result' ?>">Матчи</a></li>
         <li><a href="<?php print './' . $node->nid . '?tournament_id=' . $tournament_data['id'] . '&type=competition&view=chess_mates'?>">Статистика команд</a></li>
         <li class="active"><a href="<?php print './' . $node->nid . '?tournament_id=' . $tournament_data['id'] . '&type=playoff' ?>">Плейофф</a></li>
     </ul>

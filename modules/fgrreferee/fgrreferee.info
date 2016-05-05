@@ -1,0 +1,6 @@
+name = FGR Referees module
+description = Module to show FGR referees.
+core = 7.x
+
+;dependencies[] = fgrtournaments:fgrgames
+;dependencies[] = fgrtournaments:fgrteams

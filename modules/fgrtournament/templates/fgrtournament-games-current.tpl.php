@@ -7,6 +7,13 @@
         <li><a href="<?php print './' . $node->nid . '?tournament_id=' . $tournament_data['id'] . '&type=playoff' ?>">Плейофф</a></li>
     </ul>
 </div>
+<div class="tabs">
+    <ul class="tab-links">
+        <li class="active"><a href="<?php print './' . $node->nid . '?tournament_id=' . $tournament_data['id'] . '&type=games&game_type=online' ?>">Текущие</a></li>
+        <li><a href="<?php print './' . $node->nid . '?tournament_id=' . $tournament_data['id'] . '&type=games&game_type=result' ?>">Завершенные</a></li>
+        <li><a href="<?php print './' . $node->nid . '?tournament_id=' . $tournament_data['id'] . '&type=games&game_type=scheduled' ?>">Запланированные</a></li>
+    </ul>
+</div>
 <table class="table_games sortable">
     <thead>
     <tr>
