@@ -2,28 +2,297 @@
 function get_referee_by_id($id) {
     $url = variable_get('fgrtournament_system_url', 'http://fgr.ntrlab.ru:81/api');
     $seasons = '/Competitions/%s?withChilds=true';
+    $referee_json = '{
+        "id": 1,
+		"icon_id": 2,
+		"photo_url": "http://res.ehf.eu/picture/players/2016/6514/538968/.jpg",
+        "name": "Алексей",
+        "sername": "Алешин",
+        "type": "inspector",
+        "second_name": "Павлович",
+        "birthday": "12.01.1973",
+        "age": 43,
+        "referee_category": "Высшая",
+        "city": "Москва",
+        "partner": {
+          "id": 32,
+          "name": "Максим",
+          "sername": "Комалов"
+        }
+    }';
+    return drupal_json_decode($referee_json);
 }
 
-function get_fgr_referees($search_query) {
-    $url = 'predefined url';
-    $team_json = '[
+function get_fgr_referees($params) {
+    $url = variable_get('fgrtournament_system_url', 'http://fgr.ntrlab.ru:81/api');
+//    $seasons = '/Referees';
+    $referees_json = '[
       {
         "id": 1,
-        "icon_url": "http://localhost:8181/fgr/rushandball.ru/files/styles/team_logo/public/skif_krasnodar.png?itok=0Y8X8_sK",
-        "title": "СКИФ"
+		"icon_id": 2,
+        "name": "Алексей",
+        "sername": "Алешин",
+        "second_name": "Павлович",
+        "birthday": "12.01.1973",
+        "age": 43,
+        "referee_category": "Высшая",
+        "city": "Москва"
       },
       {
         "id": 1,
-        "icon_url": "http://localhost:8181/fgr/rushandball.ru/files/styles/team_logo/public/univer_lesgafta.png?itok=kAlhSuZb",
-        "title": "Университет-Нева"
+		"icon_id": 2,
+        "name": "Алексей",
+        "sername": "Алешин",
+        "second_name": "Павлович",
+        "birthday": "12.01.1973",
+        "age": 43,
+        "referee_category": "Высшая",
+        "city": "Москва"
       },
       {
         "id": 1,
-        "icon_url": "http://localhost:8181/fgr/rushandball.ru/files/styles/team_logo/public/energiya_voronej.png?itok=v7yZyYPQ",
-        "title": "Энергия"
+		"icon_id": 2,
+        "name": "Алексей",
+        "sername": "Алешин",
+        "second_name": "Павлович",
+        "birthday": "12.01.1973",
+        "age": 43,
+        "referee_category": "Высшая",
+        "city": "Москва"
+      },
+      {
+        "id": 1,
+		"icon_id": 2,
+        "name": "Алексей",
+        "sername": "Алешин",
+        "second_name": "Павлович",
+        "birthday": "12.01.1973",
+        "age": 43,
+        "referee_category": "Высшая",
+        "city": "Москва"
+      },
+      {
+        "id": 1,
+		"icon_id": 2,
+        "name": "Алексей",
+        "sername": "Алешин",
+        "second_name": "Павлович",
+        "birthday": "12.01.1973",
+        "age": 43,
+        "referee_category": "Высшая",
+        "city": "Москва"
+      },
+      {
+        "id": 1,
+		"icon_id": 2,
+        "name": "Алексей",
+        "sername": "Алешин",
+        "second_name": "Павлович",
+        "birthday": "12.01.1973",
+        "age": 43,
+        "referee_category": "Высшая",
+        "city": "Москва"
+      },
+      {
+        "id": 1,
+		"icon_id": 2,
+        "name": "Алексей",
+        "sername": "Алешин",
+        "second_name": "Павлович",
+        "birthday": "12.01.1973",
+        "age": 43,
+        "referee_category": "Высшая",
+        "city": "Москва"
+      },
+      {
+        "id": 1,
+		"icon_id": 2,
+        "name": "Алексей",
+        "sername": "Алешин",
+        "second_name": "Павлович",
+        "birthday": "12.01.1973",
+        "age": 43,
+        "referee_category": "Высшая",
+        "city": "Москва"
+      },
+      {
+        "id": 1,
+		"icon_id": 2,
+        "name": "Алексей",
+        "sername": "Алешин",
+        "second_name": "Павлович",
+        "birthday": "12.01.1973",
+        "age": 43,
+        "referee_category": "Высшая",
+        "city": "Москва"
+      },
+      {
+        "id": 1,
+		"icon_id": 2,
+        "name": "Алексей",
+        "sername": "Алешин",
+        "second_name": "Павлович",
+        "birthday": "12.01.1973",
+        "age": 43,
+        "referee_category": "Высшая",
+        "city": "Москва"
+      },
+      {
+        "id": 1,
+		"icon_id": 2,
+        "name": "Алексей",
+        "sername": "Алешин",
+        "second_name": "Павлович",
+        "birthday": "12.01.1973",
+        "age": 43,
+        "referee_category": "Высшая",
+        "city": "Москва"
+      },
+      {
+        "id": 1,
+		"icon_id": 2,
+        "name": "Алексей",
+        "sername": "Алешин",
+        "second_name": "Павлович",
+        "birthday": "12.01.1973",
+        "age": 43,
+        "referee_category": "Высшая",
+        "city": "Москва"
+      },
+      {
+        "id": 1,
+		"icon_id": 2,
+        "name": "Алексей",
+        "sername": "Алешин",
+        "second_name": "Павлович",
+        "birthday": "12.01.1973",
+        "age": 43,
+        "referee_category": "Высшая",
+        "city": "Москва"
+      },
+      {
+        "id": 1,
+		"icon_id": 2,
+        "name": "Алексей",
+        "sername": "Алешин",
+        "second_name": "Павлович",
+        "birthday": "12.01.1973",
+        "age": 43,
+        "referee_category": "Высшая",
+        "city": "Москва"
+      },
+      {
+        "id": 1,
+		"icon_id": 2,
+        "name": "Алексей",
+        "sername": "Алешин",
+        "second_name": "Павлович",
+        "birthday": "12.01.1973",
+        "age": 43,
+        "referee_category": "Высшая",
+        "city": "Москва"
+      },
+      {
+        "id": 1,
+		"icon_id": 2,
+        "name": "Алексей",
+        "sername": "Алешин",
+        "second_name": "Павлович",
+        "birthday": "12.01.1973",
+        "age": 43,
+        "referee_category": "Высшая",
+        "city": "Москва"
+      },
+      {
+        "id": 1,
+		"icon_id": 2,
+        "name": "Алексей",
+        "sername": "Алешин",
+        "second_name": "Павлович",
+        "birthday": "12.01.1973",
+        "age": 43,
+        "referee_category": "Высшая",
+        "city": "Москва"
+      },
+      {
+        "id": 1,
+		"icon_id": 2,
+        "name": "Алексей",
+        "sername": "Алешин",
+        "second_name": "Павлович",
+        "birthday": "12.01.1973",
+        "age": 43,
+        "referee_category": "Высшая",
+        "city": "Москва"
+      },
+      {
+        "id": 1,
+		"icon_id": 2,
+        "name": "Алексей",
+        "sername": "Алешин",
+        "second_name": "Павлович",
+        "birthday": "12.01.1973",
+        "age": 43,
+        "referee_category": "Высшая",
+        "city": "Москва"
+      },
+      {
+        "id": 1,
+		"icon_id": 2,
+        "name": "Алексей",
+        "sername": "Алешин",
+        "second_name": "Павлович",
+        "birthday": "12.01.1973",
+        "age": 43,
+        "referee_category": "Высшая",
+        "city": "Москва"
+      },
+      {
+        "id": 1,
+		"icon_id": 2,
+        "name": "Алексей",
+        "sername": "Алешин",
+        "second_name": "Павлович",
+        "birthday": "12.01.1973",
+        "age": 43,
+        "referee_category": "Высшая",
+        "city": "Москва"
+      },
+      {
+        "id": 1,
+		"icon_id": 2,
+        "name": "Алексей",
+        "sername": "Алешин",
+        "second_name": "Павлович",
+        "birthday": "12.01.1973",
+        "age": 43,
+        "referee_category": "Высшая",
+        "city": "Москва"
+      },
+      {
+        "id": 1,
+		"icon_id": 2,
+        "name": "Алексей",
+        "sername": "Алешин",
+        "second_name": "Павлович",
+        "birthday": "12.01.1973",
+        "age": 43,
+        "referee_category": "Высшая",
+        "city": "Москва"
+      },
+      {
+        "id": 1,
+		"icon_id": 2,
+        "name": "Алексей",
+        "sername": "Алешин",
+        "second_name": "Павлович",
+        "birthday": "12.01.1973",
+        "age": 43,
+        "referee_category": "Высшая",
+        "city": "Москва"
       }
     ]';
-    return drupal_json_decode($team_json);
+    return drupal_json_decode($referees_json);
 }
 
 function get_all_seasons() {

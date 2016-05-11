@@ -38,16 +38,47 @@ function fgrreferee_node_view($node, $view_mode, $langcode)
             if(isset($_GET['referee_id'])) {
                 $referee_id = $_GET['referee_id'];
                 $referee_data = get_referee_by_id($referee_id);
-                $node->content['fgrreferee'] = array(
-                    "#markup" => theme('fgrreferee', array('fgrreferee' => $referee_data, 'node' => $node))
-                );
-            } else {
-                $search_query = '';
-                if(isset($GET['search_query'])) {
-                    $search_query = $GET['search_query'];
+                $view_type = 'competitions';
+                if(isset($_GET['type'])) {
+                    $view_type = $_GET['type'];
                 }
+                switch($view_type) {
+                    case 'competitions':
+                        if($referee_data['type'] == 'inspector') {
+                            $node->content['fgrreferee_inspector_competitions'] = array(
+                                "#markup" => theme('fgrreferee_inspector_competitions', array('fgrreferee' => $referee_data, 'node' => $node))
+                            );
+                            break;
+                        } else {
+                            $node->content['fgrreferee_competitions'] = array(
+                                "#markup" => theme('fgrreferee_competitions', array('fgrreferee' => $referee_data, 'node' => $node))
+                            );
+                            break;
+                        }
+                    case 'games':
+                        if($referee_data['type'] == 'inspector') {
+                            $node->content['fgrreferee_inspector_games'] = array(
+                                "#markup" => theme('fgrreferee_inspector_games', array('fgrreferee' => $referee_data, 'node' => $node))
+                            );
+                            break;
+                        } else {
+                            $node->content['fgrreferee_games'] = array(
+                                "#markup" => theme('fgrreferee_games', array('fgrreferee' => $referee_data, 'node' => $node))
+                            );
+                            break;
+                        }
+                }
+            } else {
                 $seasons = get_all_seasons();
-                $result = get_fgr_referees($search_query);
+                $result = get_fgr_referees(array(
+                    'name' => (isset($_GET['name'])) ? $_GET['name'] : NULL,
+                    'sername' => (isset($_GET['sername'])) ? $_GET['sername'] : NULL,
+                    'second_name' => (isset($_GET['second_name'])) ? $_GET['second_name'] : NULL,
+                    'show_all' => (isset($_GET['show_all'])) ? $_GET['show_all'] : NULL,
+                    'competition_id' => (isset($_GET['competition_id'])) ? $_GET['competition_id'] : NULL,
+                    'top' => (isset($_GET['top'])) ? $_GET['top'] : NULL,
+                    'skip' => (isset($_GET['skip'])) ? $_GET['skip'] : NULL
+                ));
                 $node->content['fgrreferee_list'] = array(
                     "#markup" => theme('fgrreferee_list', array('fgrreferee_list' => $result, 'node' => $node, 'seasons' => $seasons))
                 );
@@ -62,13 +93,28 @@ function fgrreferee_node_view($node, $view_mode, $langcode)
 function fgrreferee_theme() {
     return array(
         'fgrreferee_list' => array(
-            'variables' => array('fgrreferee_list' => NULL, 'node' => NULL, 'game_node_id' => NULL, 'seasons' => NULL),
+            'variables' => array('fgrreferee_list' => NULL, 'node' => NULL, 'game_node_id' => NULL, 'seasons' => NULL, 'top' => 20, 'skip' => 0),
             'template' => 'templates/fgrreferee-list',
             'file' => 'fgrreferee.pages.inc',
         ),
-        'fgrreferee' => array(
+        'fgrreferee_competitions' => array(
             'variables' => array('fgrreferee' => NULL, 'node' => NULL, 'game_node_id' => NULL),
-            'template' => 'templates/fgrreferee',
+            'template' => 'templates/fgrreferee-competitions',
+            'file' => 'fgrreferee.pages.inc',
+        ),
+        'fgrreferee_games' => array(
+            'variables' => array('fgrreferee' => NULL, 'node' => NULL, 'game_node_id' => NULL),
+            'template' => 'templates/fgrreferee-games',
+            'file' => 'fgrreferee.pages.inc',
+        ),
+        'fgrreferee_inspector_competitions' => array(
+            'variables' => array('fgrreferee' => NULL, 'node' => NULL, 'game_node_id' => NULL),
+            'template' => 'templates/fgrreferee-inspector-competitions',
+            'file' => 'fgrreferee.pages.inc',
+        ),
+        'fgrreferee_inspector_games' => array(
+            'variables' => array('fgrreferee' => NULL, 'node' => NULL, 'game_node_id' => NULL),
+            'template' => 'templates/fgrreferee-inspector-games',
             'file' => 'fgrreferee.pages.inc',
         )
     );

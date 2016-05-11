@@ -107,4 +107,21 @@ td img {
 
 .ui-dialog { z-index: 1000 !important ;}
 
+.club_photo {
+    width: 150px;
+}
 
+.team_info_table td:nth-child(2){
+    text-align: left;
+    vertical-align: middle;
+}
+
+.team_photo {
+    width: 400px;
+}
+
+.team_photo_container img {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}

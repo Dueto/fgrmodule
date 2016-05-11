@@ -1,59 +1,26 @@
-<h1 style="text-align: center"><?php print $fgrteam['title']?></h1>
-<div class="profile">
-    <div class="group-wrapper field-group-div">
-        <div class="field field-name-field-team-logo field-type-image field-label-hidden">
-            <div class="field-items">
-                <div class="field-item even">
-                    <img src="<?php print $fgrteam['logo_photo_url']?>" width="100" height="100" alt="<?php print $fgrteam['title']?>">
-                </div>
-            </div>
-        </div>
-        <div class="group-info field-group-div">
-            <div class="field field-name-field-team-adress field-type-text field-label-inline clearfix">
-                <div class="field-label">Адрес:&nbsp;</div>
-                <div class="field-items">
-                    <div class="field-item even"><?php print $fgrteam['address']?>
-                    </div>
-                </div>
-            </div>
-            <div class="field field-name-field-team-phone field-type-text field-label-inline clearfix">
-                <div class="field-label">Телефон:&nbsp; </div>
-                <div class="field-items">
-                    <div class="field-item even"><?php print $fgrteam['telephone']?>
-                    </div>
-                </div>
-            </div>
-            <div class="field field-name-field-team-email field-type-text field-label-inline clearfix">
-                <div class="field-label">E-mail:&nbsp;</div>
-                <div class="field-items">
-                    <div class="field-item even">
-                        <a href="mailto:<?php print $fgrteam['email']?>"><?php print $fgrteam['email']?></a>
-                    </div>
-                </div>
-            </div>
-            <div class="field field-name-field-team-site field-type-link-field field-label-inline clearfix">
-                <div class="field-label">Сайт:&nbsp;</div>
-                <div class="field-items">
-                    <div class="field-item even">
-                        <a href="<?php print $fgrteam['site']?>" target="_blank"><?php print $fgrteam['site']?></a>
-                    </div>
-                </div>
-            </div>
-        </div>
+<h1 style="text-align: center"><?php print $fgrteam['Name']?></h1>
+
+<table class="team_info_table">
+    <tbody>
+    <tr>
+        <td class="club_photo"><img src="<?php print variable_get('fgrtournament_system_url', 'http://fgr.ntrlab.ru:81/api') . '/Media/Image/' . $fgrteam['Club']['LogoId'] ?>"></td>
+        <td class="">
+            <b>Клуб: </b><?php print $fgrteam['Club']['Name']?><br/>
+            <b>Домашняя арена: </b><?php print $fgrteam['HomeArena']['Name'] . ' - ' . $fgrteam['HomeArena']['City']['Name'] ?><br/>
+            <b>Адрес: </b><?php print $fgrteam['Address']?><br/>
+            <b>Почтовый индекс: </b><?php print $fgrteam['ZipCode'] ?><br/>
+            <b>Сайт: </b><?php print $fgrteam['InternetAddress'] ?><br/>
+            <b>Email: </b><?php print $fgrteam['Email'] ?><br/>
+            <b>Телефон: </b><?php print $fgrteam['Phone'] ?><br/>
+        </td>
+    </tr>
+    </tbody>
+</table>
+<?php if(count($fgrteam['Photos']) != 0): ?>
+    <div class="team_photo_container">
+        <img class="team_photo" src="<?php print variable_get('fgrtournament_system_url', 'http://fgr.ntrlab.ru:81/api') . '/Media/LegalEntityImage/' . $fgrteam['Photos'][0]['LegalEntityId'] ?>">
     </div>
-<!--    <div class="group-history field-group-div">-->
-<!--        <div class="group-history-wrapper field-group-div">-->
-<!--            <div class="field field-name-field-team-photo field-type-image field-label-hidden">-->
-<!--                <div class="field-items">-->
-<!--                    <div class="field-item even">-->
-<!--                        <a href="--><?php //print $fgrteam['team_photo_url']?><!--" title="--><?php //print $fgrteam['title']?><!--" class="colorbox init-colorbox-processed cboxElement" rel="gallery-user-88-CAY7NVwOxRI">-->
-<!--                            <img src="--><?php //print $fgrteam['team_photo_url']?><!--" width="480" height="280" alt="" title=""></a>-->
-<!--                    </div>-->
-<!--                </div>-->
-<!--            </div>-->
-<!--        </div>-->
-<!--    </div>-->
-</div>
+<?php endif; ?>
 <h2 style="text-align: center">Игроки</h2>
 <table class="member_table sortable">
     <thead>
@@ -62,34 +29,44 @@
         <th>Фото</th>
         <th>Имя</th>
         <th>Голы в сезоне</th>
+        <th>Гражданство</th>
     </tr>
     </thead>
     <tbody>
-    <?php foreach ($fgrteam['team_members'] as $key => $member): ?>
+    <?php foreach ($fgrteam['Players'] as $key => $member): ?>
         <tr>
-            <td><?php print $key + 1 . "."?></td>
-            <td><img class="member_icon" src="<?php print $member['member_photo_url'] ?>"></td>
+            <td><?php print $member['Number']?></td>
+            <td><img class="member_icon" src="<?php if($member['Player']['Photo'] != null) {
+                                                        print variable_get('fgrtournament_system_url', 'http://fgr.ntrlab.ru:81/api') . '/Media/PersonImage/' . $member['Player']['PersonId'];
+                                                    } else {
+                                                        print '../files/manual/avatar.png';
+                                                    }?>"></td>
             <td id="dialog_link<?php print $key + 1?>">
-                <b><?php print $member['second_name'] ?></b> <?php print ' ' . $member['first_name'] ?>
+                <b><?php print $member['Player']['LastName'] ?></b> <?php print ' ' . $member['Player']['FirstName'] . ' ' . $member['Player']['MiddleName']?>
             </td>
-            <td><?php print $member['score_in_current_season'] ?></td>
+            <td><?php print '1' ?></td>
+            <td><img src="../files/country/<?php print strtolower($member['Player']['Citizenship']['CountryId'])?>.png"></td>
         </tr>
     <?php endforeach; ?>
     </tbody>
 </table>
 
-<?php foreach ($fgrteam['team_members'] as $key => $member): ?>
-    <div id="dialog<?php print $key + 1?>" title="<?php print $member['second_name'] ?> <?php print ' ' . $member['first_name'] ?>">
+<?php foreach ($fgrteam['Players'] as $key => $member): ?>
+    <div id="dialog<?php print $key + 1?>" title="<?php print $member['Player']['LastName'] . ' ' . $member['Player']['FirstName'] . ' ' . $member['Player']['MiddleName']?> ">
         <table>
             <tbody>
                 <tr>
-                    <td><img class="member_icon_info" src="<?php print $member['member_photo_url'] ?>"></td>
+                    <td><img class="member_icon_info" src="<?php if($member['Player']['Photo'] != null) {
+                                                                    print variable_get('fgrtournament_system_url', 'http://fgr.ntrlab.ru:81/api') . '/Media/PersonImage/' . $member['Player']['PersonId'];
+                                                                } else {
+                                                                    print '../files/manual/avatar.png';
+                                                                }?>"></td>
                     <td>
-                        <b><?php print $member['second_name'] ?> <?php print $member['first_name'] ?></b><br/><br/>
-                        <b>Гражданство: </b><?php print $member['citizenship'] ?><br/><br/>
-                        <b>Голов в сезоне: </b><?php print $member['score_in_current_season'] ?><br/><br/>
-                        <b>Дата рождения: </b><?php print $member['birthday'] ?><br/><br/>
-                        <b>Клуб в этом сезоне: </b><?php print $member['season_club'] ?><br/><br/>
+                        <b><?php print $member['Player']['LastName'] . ' ' . $member['Player']['FirstName'] . ' ' . $member['Player']['MiddleName'] ?></b><br/><br/>
+                        <b>Гражданство: </b><img src="../files/country/<?php print strtolower($member['Player']['Citizenship']['CountryId'])?>.png">  <?php print $member['Player']['Citizenship']['Name'] ?><br/><br/>
+                        <b>Голов в сезоне: </b><?php print '1' ?><br/><br/>
+                        <b>Дата рождения: </b><?php print date('Y.m.d', strtotime($member['Player']['Birthday'])) ?><br/><br/>
+                        <b>Клуб в этом сезоне: </b><?php print $fgrteam['Club']['Name'] ?><br/><br/>
                     </td>
                 </tr>
             </tbody>
