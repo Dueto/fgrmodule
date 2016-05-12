@@ -36,7 +36,7 @@
     <?php foreach ($fgrteam['Players'] as $key => $member): ?>
         <tr>
             <td><?php print $member['Number']?></td>
-            <td><img class="member_icon" src="<?php if($member['Player']['Photo'] != null) {
+            <td><img class="member_icon" src="<?php if($member['Player']['PhotoId'] != null) {
                                                         print variable_get('fgrtournament_system_url', 'http://fgr.ntrlab.ru:81/api') . '/Media/PersonImage/' . $member['Player']['PersonId'];
                                                     } else {
                                                         print '../files/manual/avatar.png';
@@ -56,7 +56,7 @@
         <table>
             <tbody>
                 <tr>
-                    <td><img class="member_icon_info" src="<?php if($member['Player']['Photo'] != null) {
+                    <td><img class="member_icon_info" src="<?php if($member['Player']['PhotoId'] != null) {
                                                                     print variable_get('fgrtournament_system_url', 'http://fgr.ntrlab.ru:81/api') . '/Media/PersonImage/' . $member['Player']['PersonId'];
                                                                 } else {
                                                                     print '../files/manual/avatar.png';

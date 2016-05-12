@@ -35,6 +35,17 @@ function fgrgame_node_view($node, $view_mode, $langcode)
     module_load_include('inc', 'fgrgame', 'fgrgame.api');
     switch ($node->type) {
         case 'fgrgame':
+            $crumbs = array();
+            if(isset($_GET['crumbs'])) {
+                $crumbs_buff = explode(';', $_GET['crumbs']);
+                foreach($crumbs_buff as $crumb) {
+                    $buff = explode(':', $crumb);
+                    array_push($crumbs, array(
+                        'title' => $buff[0],
+                        'ref' => $buff[1]
+                    ));
+                }
+            }
             if(isset($_GET['game_id'])) {
                 $game_id = $_GET['game_id'];
                 $game_data = get_game_by_id($game_id);
@@ -42,18 +53,18 @@ function fgrgame_node_view($node, $view_mode, $langcode)
                 switch ($game_data['status']) {
                     case 'scheduled':
                         $node->content['fgrgame_before'] = array(
-                            "#markup" => theme('fgrgame_before', array('game' => $game_data, 'node' => $node, 'team_node_id' => $team_node_id['nid']))
+                            "#markup" => theme('fgrgame_before', array('game' => $game_data, 'node' => $node, 'team_node_id' => $team_node_id['nid'], 'crumbs' => $crumbs))
                         );
                         break;
                     case 'online':
                         $node->content['fgrgame_current'] = array(
-                            "#markup" => theme('fgrgame_current', array('game' => $game_data, 'node' => $node, 'team_node_id' => $team_node_id['nid']))
+                            "#markup" => theme('fgrgame_current', array('game' => $game_data, 'node' => $node, 'team_node_id' => $team_node_id['nid'], 'crumbs' => $crumbs))
                         );
                         break;
                     case 'result':
                         drupal_add_js(drupal_get_path('module', 'fgrteam') . '/js/jquery-ui.min.js');
                         $node->content['fgrgame_ended'] = array(
-                            "#markup" => theme('fgrgame_ended', array('game' => $game_data, 'node' => $node, 'team_node_id' => $team_node_id['nid']))
+                            "#markup" => theme('fgrgame_ended', array('game' => $game_data, 'node' => $node, 'team_node_id' => $team_node_id['nid'], 'crumbs' => $crumbs))
                         );
                         break;
                 }
@@ -68,17 +79,17 @@ function fgrgame_node_view($node, $view_mode, $langcode)
 function fgrgame_theme() {
     return array(
         'fgrgame_before' => array(
-            'variables' => array('game' => NULL, 'node' => NULL, 'team_node_id' => NULL),
+            'variables' => array('game' => NULL, 'node' => NULL, 'team_node_id' => NULL, 'crumbs' => NULL),
             'template' => 'templates/fgrgame-before',
             'file' => 'fgrgame.pages.inc',
         ),
         'fgrgame_current' => array(
-            'variables' => array('game' => NULL, 'node' => NULL, 'team_node_id' => NULL),
+            'variables' => array('game' => NULL, 'node' => NULL, 'team_node_id' => NULL, 'crumbs' => NULL),
             'template' => 'templates/fgrgame-current',
             'file' => 'fgrgame.pages.inc',
         ),
         'fgrgame_ended' => array(
-            'variables' => array('game' => NULL, 'node' => NULL, 'team_node_id' => NULL),
+            'variables' => array('game' => NULL, 'node' => NULL, 'team_node_id' => NULL, 'crumbs' => NULL),
             'template' => 'templates/fgrgame-ended',
             'file' => 'fgrgame.pages.inc',
         )

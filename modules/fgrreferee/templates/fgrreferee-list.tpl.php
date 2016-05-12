@@ -25,6 +25,18 @@
             </fieldset>
         </form>
     </div>
+    <br/>
+    <div class="center">
+        <div style="display: none" id="skip_left"><?php if($skip != 0) { print $skip - $top; } else { print $skip;}?></div>
+        <div style="display: none" id="skip_right"><?php if($skip + $top <= $fgrreferee_list['all_count']) { print $skip + $top; } else { print $skip;}?></div>
+        <?php if($skip != 0): ?>
+            <span id="skip_left_link" href=""><</span>&nbsp;
+        <?php endif; ?>
+        <?php if($skip + 20 <= $fgrreferee_list['all_count']): ?>
+            <span id="skip_right_link" href="">></span>
+        <?php endif; ?>
+
+    </div>
     <table class="referee_table">
         <thead>
         <tr>
@@ -37,7 +49,7 @@
         </tr>
         </thead>
         <tbody>
-        <?php foreach ($fgrreferee_list as $key => $referee): ?>
+        <?php foreach ($fgrreferee_list['data'] as $key => $referee): ?>
             <tr>
                 <td><?php print $key + 1 ?></td>
                 <td>
@@ -72,4 +84,39 @@
         window.location = './<?php print $node->nid ?>?sername=' + sername + '&name=' + name + '&second_name=' + second_name +
         '&show_all=' + jQuery('#show_all').is(':checked') + '&seasons=' + jQuery('#seasons option:selected').val();
     });
+    jQuery('#skip_right_link').click(function(){
+        var name = jQuery('#name').val();
+        var sername = jQuery('#sername').val();
+        var second_name = jQuery('#second_name').val();
+        var skip = jQuery('#skip_right').text();
+        if(name == 'Введите имя судьи') {
+            name = null;
+        }
+        if(sername == 'Введите фамилию судьи') {
+            sername = null;
+        }
+        if(second_name == 'Введите отчество судьи') {
+            second_name = null;
+        }
+        window.location = './<?php print $node->nid ?>?sername=' + sername + '&name=' + name + '&second_name=' + second_name +
+        '&show_all=' + jQuery('#show_all').is(':checked') + '&seasons=' + jQuery('#seasons option:selected').val() + '&skip=' + skip + '&top=' + <?php print $top?>;
+    });
+    jQuery('#skip_left_link').click(function(){
+        var name = jQuery('#name').val();
+        var sername = jQuery('#sername').val();
+        var second_name = jQuery('#second_name').val();
+        var skip = jQuery('#skip_left').text();
+        if(name == 'Введите имя судьи') {
+            name = null;
+        }
+        if(sername == 'Введите фамилию судьи') {
+            sername = null;
+        }
+        if(second_name == 'Введите отчество судьи') {
+            second_name = null;
+        }
+        window.location = './<?php print $node->nid ?>?sername=' + sername + '&name=' + name + '&second_name=' + second_name +
+        '&show_all=' + jQuery('#show_all').is(':checked') + '&seasons=' + jQuery('#seasons option:selected').val() + '&skip=' + skip + '&top=' + <?php print $top?>;
+    });
+
 </script>

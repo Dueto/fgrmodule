@@ -254,3 +254,18 @@ table.referee_competitions_stats {
 .referee_inspector_games_stats tbody > tr:nth-child(odd) {
     text-align: left;
 }
+
+.center {
+    text-align: center
+}
+
+div.center span {
+    display: inline-block;
+    font-size: 21px;
+    font-weight: bold;
+}
+
+div.center span:hover {
+    text-decoration: underline;
+    cursor: pointer;
+}

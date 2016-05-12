@@ -26,7 +26,9 @@ function get_referee_by_id($id) {
 function get_fgr_referees($params) {
     $url = variable_get('fgrtournament_system_url', 'http://fgr.ntrlab.ru:81/api');
 //    $seasons = '/Referees';
-    $referees_json = '[
+    $referees_json = '{
+    "all_count": 15,
+    "data": [
       {
         "id": 1,
 		"icon_id": 2,
@@ -291,7 +293,7 @@ function get_fgr_referees($params) {
         "referee_category": "Высшая",
         "city": "Москва"
       }
-    ]';
+    ]}';
     return drupal_json_decode($referees_json);
 }
 

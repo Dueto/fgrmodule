@@ -1,10 +1,20 @@
+<?php if($crumbs != NULL): ?>
+    <span> > </span>
+    <?php $crumb_string = null;?>
+    <?php foreach($crumbs as $key => $crumb) {
+        $crumb_string = $crumb_string . ';' . $crumb['title'] . ':' . $crumb['ref'];
+        print '<a href="' . $crumb['ref'] . '">' . $crumb['title'] . '</a>';
+    }?>
+    <span> > <?php print $tournament_data['title'] . ', ' . $tournament_data['season'] . ', '
+            . $tournament_data['league'] . ', ' . $tournament_data['gender'] . ' - ' . $tournament_data['stage']?></span>
+<?php endif ?>
 <h2><?php print $tournament_data['title'] . ', ' . $tournament_data['season'] . ', '
         . $tournament_data['league'] . ', ' . $tournament_data['gender'] . ' - ' . $tournament_data['stage']?></h2>
 <div class="tabs">
     <ul class="tab-links">
-        <li><a href="<?php print './' . $node->nid . '?tournament_id=' . $tournament_data['id'] . '&type=games&game_type=result' ?>">Матчи</a></li>
-        <li><a href="<?php print './' . $node->nid . '?tournament_id=' . $tournament_data['id'] . '&type=competition&view=chess_mates'?>">Статистика команд</a></li>
-        <li class="active"><a href="<?php print './' . $node->nid . '?tournament_id=' . $tournament_data['id'] . '&type=playoff' ?>">Плейофф</a></li>
+        <li><a href="<?php print './' . $node->nid . '?tournament_id=' . $tournament_data['id'] . '&type=games&game_type=result&crumbs=' . $crumb_string ?>">Матчи</a></li>
+        <li><a href="<?php print './' . $node->nid . '?tournament_id=' . $tournament_data['id'] . '&type=competition&view=chess_mates&crumbs=' . $crumb_string?>">Статистика команд</a></li>
+        <li class="active"><a href="<?php print './' . $node->nid . '?tournament_id=' . $tournament_data['id'] . '&type=playoff&crumbs=' . $crumb_string ?>">Плейофф</a></li>
     </ul>
 </div>
 <main id="tournament-head">

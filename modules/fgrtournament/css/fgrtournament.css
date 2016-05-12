@@ -223,6 +223,10 @@ td .winner {
     width: 250px;
 }
 
+.table_games td:nth-child(3){
+    width: 50px;
+}
+
 td span.game_score_table {
     vertical-align: middle;
     cursor: pointer;
