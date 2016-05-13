@@ -1,6 +1,6 @@
+<?php $crumb_string = null;?>
 <?php if($crumbs != NULL): ?>
     <span> > </span>
-    <?php $crumb_string = null;?>
     <?php foreach($crumbs as $key => $crumb) {
         $crumb_string = $crumb_string . ';' . $crumb['title'] . ':' . $crumb['ref'];
         print '<a href="' . $crumb['ref'] . '">' . $crumb['title'] . '</a>';
@@ -22,6 +22,7 @@
         <li><a href="<?php print './' . $node->nid . '?tournament_id=' . $tournament_data['TournamentMetaData']['TournamentId'] . '&type=competition&view=mini&crumbs=' . $crumb_string ?>">Минимальный вид</a></li>
     </ul>
 </div>
+<?php if(array_key_exists('Data', $tournament_data) && count($tournament_data['Data']) != 0):?>
 <table class="table-tournament sortable">
     <thead>
     <tr>
@@ -58,3 +59,6 @@
     <?php endforeach; ?>
     </tbody>
 </table>
+<?php else:?>
+    <h2>Нет статистики</h2>
+<?php endif?>

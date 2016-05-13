@@ -300,4 +300,22 @@ a.blank_link:hover {
     height:auto;
 }
 
+.red {
+    color: red;
+}
+
+.chess_mates_table td, th {
+    padding: 2px;
+    font-size: 12px;
+    text-align: center;
+}
+.chess_mates_table td:nth-child(2) {
+    text-align: left;
+}
+
+.chess_mates_table img {
+    width: 15px;
+}
+
+
 

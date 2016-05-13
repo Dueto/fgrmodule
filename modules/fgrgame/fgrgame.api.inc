@@ -3,7 +3,7 @@
  * Returns a tournament participant status.
  * @return Пфьу by id.
  */
-function get_game_by_id($id) {
+function get_game_by_id2($id) {
     $url = 'predefined url';
     $team_json = '{
             "game_id": 111,
@@ -633,5 +633,21 @@ function get_game_by_id($id) {
         case 2:
             return drupal_json_decode($team_json1);
             break;
+    }
+}
+
+function get_game_by_id($id) {
+    $id = '103';
+    $url = variable_get('fgrtournament_system_url', 'http://fgr.ntrlab.ru:81/api');
+    $method = '/CompetitionGames/%s';
+    $response = drupal_http_request($url . sprintf($method, $id), array(
+        'method' => 'GET',
+        'data' => NULL,
+        'timeout' => 15));
+    if($response->code == 200) {
+        $tournaments_data = drupal_json_decode($response->data);
+        return form_tournament_name($tournaments_data);
+    } else {
+        return null;
     }
 }

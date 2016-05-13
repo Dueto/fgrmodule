@@ -1,6 +1,6 @@
-<?php if($crumbs != NULL): ?>
-<span> > </span>
 <?php $crumb_string = null;?>
+<?php if($crumbs != NULL): ?>
+    <span> > </span>
 <?php foreach($crumbs as $key => $crumb) {
     $crumb_string = $crumb_string . ';' . $crumb['title'] . ':' . $crumb['ref'];
     print '<a href="' . $crumb['ref'] . '">' . $crumb['title'] . '</a>';
