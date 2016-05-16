@@ -83,7 +83,7 @@ function fgrreferee_node_view($node, $view_mode, $langcode)
                 $top = (isset($_GET['top'])) ? $_GET['top'] : 20;
                 $skip = (isset($_GET['skip'])) ? $_GET['skip'] : 0;
                 $seasons = get_all_seasons();
-                $result = get_fgr_referees(array(
+                $params = array(
                     'name' => (isset($_GET['name'])) ? $_GET['name'] : NULL,
                     'sername' => (isset($_GET['sername'])) ? $_GET['sername'] : NULL,
                     'second_name' => (isset($_GET['second_name'])) ? $_GET['second_name'] : NULL,
@@ -91,7 +91,9 @@ function fgrreferee_node_view($node, $view_mode, $langcode)
                     'competition_id' => (isset($_GET['competition_id'])) ? $_GET['competition_id'] : NULL,
                     'top' => $top,
                     'skip' => $skip
-                ));
+                );
+                $result = get_fgr_referees($params);
+                $result['params'] = $params;
                 $node->content['fgrreferee_list'] = array(
                     "#markup" => theme('fgrreferee_list', array('fgrreferee_list' => $result, 'node' => $node, 'seasons' => $seasons, 'top' => $top, 'skip' => $skip))
                 );

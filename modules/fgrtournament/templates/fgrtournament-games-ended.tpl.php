@@ -22,7 +22,7 @@
         <li><a href="<?php print './' . $node->nid . '?tournament_id=' . $tournament_data['TournamentMetaData']['TournamentId'] . '&type=games&game_type=scheduled&crumbs=' . $crumb_string ?>">Запланированные</a></li>
     </ul>
 </div>
-<?php if(count($tournament_data['Data']) != 0): ?>
+<?php if(array_key_exists('Data', $tournament_data) && count($tournament_data['Data']) != 0):?>
     <table class="table_games sortable">
         <thead>
         <tr>
