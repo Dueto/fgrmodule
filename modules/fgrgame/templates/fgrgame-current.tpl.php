@@ -1,3 +1,4 @@
+<h2><?php print $game['TournamentMetaData']['TournamentFullName']?></h2>
 <div class="text-middle bold display_inline game_icons">
     <a class="blank_link" href="<?php print './' . $team_node_id . '?team_id=' . $game['team_a']['id'] ?>">
         <img alt="Онлайн ход матча" style="width: 25px !important; vertical-align: middle;" src="../files/online_icon.png">

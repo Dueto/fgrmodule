@@ -196,6 +196,10 @@ input[type="search"]::-webkit-search-decoration {
     text-align: center;
 }
 
+.referee_table td:nth-child(2){
+    text-align: left;
+}
+
 .inline_block {
     display: inline-block;
 }
@@ -207,6 +211,7 @@ input[type="search"]::-webkit-search-decoration {
 .referee_info{
     vertical-align: middle;
 }
+
 
 table.referee_competitions_stats {
     table-layout: fixed;

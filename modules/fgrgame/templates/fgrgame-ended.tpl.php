@@ -1,5 +1,6 @@
+<h2><?php print $game['TournamentMetaData']['TournamentFullName']?></h2>
 <div class="text-middle bold display_inline game_icons">
-    <a class="blank_link" href="<?php print './' . $team_node_id . '?team_id=' . $game['team_a']['id'] ?>">
+    <a class="blank_link" href="<?php print './' . $team_node_id . '?team_id=' . $game['Game']['GameTeam1']['CompTeam']['TeamId'] ?>">
         <img alt="Статистика матча" style="width: 25px !important; vertical-align: middle;" src="../files/statistic_icon.png">
     </a>
     <!--    <a class="blank_link" href="">Статистика матча</a>-->
@@ -7,61 +8,60 @@
 <table class="table_game_head">
     <tr>
         <td class="right">
-            <a href="<?php print './' . $team_node_id . '?team_id=' . $game['team_a']['id'] ?>">
-                <img src="<?php print $game['team_a']['icon_url'] ?>">
+            <a href="<?php print './' . $team_node_id . '?team_id=' . $game['Game']['GameTeam1']['CompTeam']['TeamId'] ?>">
+                <img src="<?php print variable_get('fgrtournament_system_url', 'http://fgr.ntrlab.ru:81/api') . '/Media/Image/' . $game['Game']['GameTeam1']['CompTeam']['Team']['ClubLogoId'] ?>">
             </a>
         </td><td class="right">
-            <a href="<?php print './' . $team_node_id . '?team_id=' . $game['team_a']['id'] ?>">
-                <span><?php print $game['team_a']['title']?></span>
+            <a href="<?php print './' . $team_node_id . '?team_id=' . $game['Game']['GameTeam1']['CompTeam']['TeamId'] ?>">
+                <span><?php print $game['Game']['GameTeam1']['CompTeam']['Name']?></span>
             </a>
         </td>
         <td>:</td>
         <td class="left">
-            <a href="<?php print './' . $team_node_id . '?team_id=' . $game['team_b']['id'] ?>">
-                <span><?php print $game['team_b']['title']?> </span>
+            <a href="<?php print './' . $team_node_id . '?team_id=' . $game['Game']['GameTeam2']['CompTeam']['TeamId'] ?>">
+                <span><?php print $game['Game']['GameTeam2']['CompTeam']['Name']?> </span>
             </a>
         </td>
         <td class="left">
-            <a href="<?php print './' . $team_node_id . '?team_id=' . $game['team_b']['id'] ?>">
-                <img src="<?php print $game['team_b']['icon_url'] ?>">
+            <a href="<?php print './' . $team_node_id . '?team_id=' . $game['Game']['GameTeam2']['CompTeam']['TeamId'] ?>">
+                <img src="<?php print variable_get('fgrtournament_system_url', 'http://fgr.ntrlab.ru:81/api') . '/Media/Image/' . $game['Game']['GameTeam2']['CompTeam']['Team']['ClubLogoId'] ?>">
             </a>
         </td>
     </tr>
 </table>
-<h4 class="game_stage"><?php print $game['stage']?></h4>
 <table class="table_game">
     <tr>
         <td valign="top">
             <table class="gamers_table_game">
                 <tbody>
-                    <?php foreach ($game['team_a']['gamers'] as $key => $gamer): ?>
-                        <tr>
-                            <td>
-                                <img src="<?php print $gamer['member_photo_url'] ?>">
-                            </td>
-                            <td id="dialoga<?php print $key + 1?>">
-                                <span class="tiny"><?php print $gamer['member_number']?>&nbsp;</span>
-                                <span><?php print $gamer['second_name']?></span>
-                                <?php if($gamer['penalties']['red']): ?>
-                                    <img class="penalty" src="../files/red.png">
-                                <?php endif;?>
-                                <?php if($gamer['penalties']['yellow']): ?>
-                                    <img class="penalty" src="../files/yellow.png">
-                                <?php endif;?>
-                            </td>
-                            <td>
-                                <span class="bold gamer_score"><?php print $gamer['score_in_current_match']?></span>
-                            </td>
-                        </tr>
-                    <?php endforeach;?>
+                <?php foreach ($game['Game']['GameTeam1']['gamers'] as $key => $gamer): ?>
+                    <tr>
+                        <td>
+                            <img src="<?php print $gamer['member_photo_url'] ?>">
+                        </td>
+                        <td id="dialoga<?php print $key + 1?>">
+                            <span class="tiny"><?php print $gamer['member_number']?>&nbsp;</span>
+                            <span><?php print $gamer['second_name']?></span>
+                            <?php if($gamer['penalties']['red']): ?>
+                                <img class="penalty" src="../files/red.png">
+                            <?php endif;?>
+                            <?php if($gamer['penalties']['yellow']): ?>
+                                <img class="penalty" src="../files/yellow.png">
+                            <?php endif;?>
+                        </td>
+                        <td>
+                            <span class="bold gamer_score"><?php print $gamer['score_in_current_match']?></span>
+                        </td>
+                    </tr>
+                <?php endforeach;?>
                 </tbody>
             </table>
         </td>
         <td valign="middle" align="center">
             <div class="text-middle display_inline score_game_ended">
-                <span class="<?php if($game['winner'] == $game['team_a']['id']){print 'bold';}; ?>"><?php print $game['score_a']?></span>
+                <span class="<?php if($game['Game']['WinnerTeam'] == $game['Game']['GameTeam1']['GameTeamId']){print 'bold';}; ?>"><?php print explode(':', $game['Game']['Score'])[0]?></span>
                 :
-                <span class="<?php if($game['winner'] == $game['team_b']['id']){print 'bold';}; ?>"><?php print $game['score_b']?></span>
+                <span class="<?php if($game['Game']['WinnerTeam'] == $game['Game']['GameTeam2']['GameTeamId']){print 'bold';}; ?>"><?php print explode(':', $game['Game']['Score'])[1]?></span>
             </div>
 
             <div class="tiny text-middle">Первая половина</div>
@@ -88,7 +88,7 @@
         <td valign="top">
             <table class="gamers_table_game right">
                 <tbody>
-                <?php foreach ($game['team_b']['gamers'] as $key => $gamer): ?>
+                <?php foreach ($game['Game']['GameTeam2']['gamers'] as $key => $gamer): ?>
                     <tr>
                         <td>
                             <span class="bold gamer_score"><?php print $gamer['score_in_current_match']?></span>
@@ -158,7 +158,7 @@
     <a class="blank_link" href="">Новостная лента</a>
 </div>
 
-<?php foreach ($game['team_a']['gamers'] as $key => $member): ?>
+<?php foreach ($game['Game']['GameTeam1']['gamers'] as $key => $member): ?>
     <div id="dialog1<?php print $key + 1?>" title="<?php print $member['second_name'] ?> <?php print ' ' . $member['first_name'] ?>">
         <table>
             <tbody>
@@ -188,7 +188,7 @@
     </script>
 <?php endforeach; ?>
 
-<?php foreach ($game['team_b']['gamers'] as $key => $member): ?>
+<?php foreach ($game['Game']['GameTeam2']['gamers'] as $key => $member): ?>
     <div id="dialog2<?php print $key + 1?>" title="<?php print $member['second_name'] ?> <?php print ' ' . $member['first_name'] ?>">
         <table>
             <tbody>

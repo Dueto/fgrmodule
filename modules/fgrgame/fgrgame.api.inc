@@ -637,7 +637,6 @@ function get_game_by_id2($id) {
 }
 
 function get_game_by_id($id) {
-    $id = '103';
     $url = variable_get('fgrtournament_system_url', 'http://fgr.ntrlab.ru:81/api');
     $method = '/CompetitionGames/%s';
     $response = drupal_http_request($url . sprintf($method, $id), array(
@@ -645,9 +644,38 @@ function get_game_by_id($id) {
         'data' => NULL,
         'timeout' => 15));
     if($response->code == 200) {
-        $tournaments_data = drupal_json_decode($response->data);
-        return form_tournament_name($tournaments_data);
+        $game_data = drupal_json_decode($response->data)['Data'];
+        return $game_data;
     } else {
         return null;
     }
 }
+
+//function get_tournament_full_name($id) {
+//    $id = '103';
+//    $url = variable_get('fgrtournament_system_url', 'http://fgr.ntrlab.ru:81/api');
+//    $method = '/Competitions/withParents/%s';
+//    $response = drupal_http_request($url . sprintf($method, $id), array(
+//        'method' => 'GET',
+//        'data' => NULL,
+//        'timeout' => 15));
+//    if($response->code == 200) {
+//        $tournaments_data = drupal_json_decode($response->data)['Data'];
+//        return form_tournament_name($tournaments_data);
+//    } else {
+//        return null;
+//    }
+//}
+//
+//function form_tournament_name($tournament_obj) {
+//    $tournament_buff = $tournament_obj;
+//    $full_tournament_name = '';
+//    while($tournament_buff['Parent'] != null) {
+//        $full_tournament_name = $tournament_buff['Name'] . $full_tournament_name;
+//        if($tournament_buff['Parent']['Parent'] != null) {
+//            $full_tournament_name = ', ' . $full_tournament_name;
+//        }
+//        $tournament_buff = $tournament_buff['Parent'];
+//    }
+//    return $full_tournament_name;
+//}

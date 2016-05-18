@@ -46,7 +46,7 @@
             <th>Дата рождения</th>
             <th>Возраст</th>
             <th>Судейская категория</th>
-            <th>Город</th>
+            <th>Страна</th>
         </tr>
         </thead>
         <tbody>
@@ -58,10 +58,10 @@
                     <a href="<?php print './' . $node->nid . '?referee_id=' . $referee['PersonId'] ?>"><?php print $referee['LastName'] . ' ' . $referee['FirstName'] ?></a>
                 </span>
                 </td>
-                <td><?php print date('Y.m.d', strtotime($referee['Birthday'])) ?></td>
-                <td><?php $today = new DateTime(); $birthday = new DateTime($referee['Birthday']); print $today->diff($birthday)->format('Y')?></td>
-                <td><?php print 'Заглушка' ?></td>
-                <td><?php print 'Заглушка' ?></td>
+                <td><?php $birthday = new DateTime($referee['Birthday']); print $birthday->format('Y.m.d') ?></td>
+                <td><?php $today = new DateTime(); $birthday = new DateTime($referee['Birthday']); print $today->diff($birthday)->format('%Y')?></td>
+                <td><?php if(count($referee['RefereeRanks']) != 0) { print $referee['RefereeRanks']['RefereeRank']; } else { print 'Нет категории'; } ?></td>
+                <td><?php print $referee['Citizenship']['Name'] ?></td>
             </tr>
         <?php endforeach; ?>
         </tbody>

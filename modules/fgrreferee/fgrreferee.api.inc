@@ -1,26 +1,17 @@
 <?php
 function get_referee_by_id($id) {
     $url = variable_get('fgrtournament_system_url', 'http://fgr.ntrlab.ru:81/api');
-    $seasons = '/Competitions/%s?withChilds=true';
-    $referee_json = '{
-        "id": 1,
-		"icon_id": 2,
-		"photo_url": "http://res.ehf.eu/picture/players/2016/6514/538968/.jpg",
-        "name": "Алексей",
-        "sername": "Алешин",
-        "type": "inspector",
-        "second_name": "Павлович",
-        "birthday": "12.01.1973",
-        "age": 43,
-        "referee_category": "Высшая",
-        "city": "Москва",
-        "partner": {
-          "id": 32,
-          "name": "Максим",
-          "sername": "Комалов"
-        }
-    }';
-    return drupal_json_decode($referee_json);
+    $method = '/Referees/%s';
+    $response = drupal_http_request($url . sprintf($method, $id), array(
+        'method' => 'GET',
+        'data' => NULL,
+        'timeout' => 15));
+    if($response->code == 200) {
+        $referee = drupal_json_decode($response->data)['Data'];
+        return $referee;
+    } else {
+        return null;
+    }
 }
 
 function get_fgr_referees($params) {
@@ -99,6 +90,9 @@ function get_method_string_with_filters($params) {
             $method_string .= '?$skip=' . $params['skip'];
             $filter_added = true;
         }
+    }
+    if($filter_added) {
+        $method_string .= '&$orderby=LastName%20asc';
     }
     return $method_string;
 }

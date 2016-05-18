@@ -1,3 +1,4 @@
+<h2><?php print $game['TournamentMetaData']['TournamentFullName']?></h2>
 <table class="table_game_head">
     <tr>
         <td class="right">
