@@ -64,6 +64,7 @@ function get_game_by_id2($id) {
                     "name":"Денис Рязанов"
                 }
             ],
+            "CompId": 103,
             "technical_delegate": {
                 "id": 23,
                 "name":"Андрей Треугубов"
@@ -93,6 +94,8 @@ function get_game_by_id2($id) {
                         "score_in_current_season": 72,
                         "birthday": "1988.09.27",
                         "season_club": "Rostov-Don",
+				"position": "Вратарь",
+				"rank": "МС",
                         "score_in_current_match":21,
                         "penalties": {
                             "red" : true,
@@ -109,6 +112,8 @@ function get_game_by_id2($id) {
                         "score_in_current_season": 72,
                         "birthday": "1988.09.27",
                         "season_club": "Rostov-Don",
+				"position": "Вратарь",
+				"rank": "МС",
                         "score_in_current_match":21,
                         "penalties": {
                             "red" : true,
@@ -125,6 +130,8 @@ function get_game_by_id2($id) {
                         "score_in_current_season": 72,
                         "birthday": "1988.09.27",
                         "season_club": "Rostov-Don",
+				"position": "Вратарь",
+				"rank": "МС",
                         "score_in_current_match":21,
                         "penalties": {
                             "red" : true,
@@ -141,6 +148,8 @@ function get_game_by_id2($id) {
                         "score_in_current_season": 72,
                         "birthday": "1988.09.27",
                         "season_club": "Rostov-Don",
+				"position": "Вратарь",
+				"rank": "МС",
                         "score_in_current_match":21,
                         "penalties": {
                             "red" : true,
@@ -157,6 +166,8 @@ function get_game_by_id2($id) {
                         "score_in_current_season": 72,
                         "birthday": "1988.09.27",
                         "season_club": "Rostov-Don",
+				"position": "Вратарь",
+				"rank": "МС",
                         "score_in_current_match":21,
                         "penalties": {
                             "red" : true,
@@ -173,6 +184,8 @@ function get_game_by_id2($id) {
                         "score_in_current_season": 72,
                         "birthday": "1988.09.27",
                         "season_club": "Rostov-Don",
+				"position": "Вратарь",
+				"rank": "МС",
                         "score_in_current_match":21,
                         "penalties": {
                             "red" : true,
@@ -189,6 +202,8 @@ function get_game_by_id2($id) {
                         "score_in_current_season": 72,
                         "birthday": "1988.09.27",
                         "season_club": "Rostov-Don",
+				"position": "Вратарь",
+				"rank": "МС",
                         "score_in_current_match":21,
                         "penalties": {
                             "red" : true,
@@ -205,6 +220,8 @@ function get_game_by_id2($id) {
                         "score_in_current_season": 72,
                         "birthday": "1988.09.27",
                         "season_club": "Rostov-Don",
+				"position": "Вратарь",
+				"rank": "МС",
                         "score_in_current_match":21,
                         "penalties": {
                             "red" : true,
@@ -221,6 +238,8 @@ function get_game_by_id2($id) {
                         "score_in_current_season": 72,
                         "birthday": "1988.09.27",
                         "season_club": "Rostov-Don",
+				"position": "Вратарь",
+				"rank": "МС",
                         "score_in_current_match":21,
                         "penalties": {
                             "red" : true,
@@ -237,6 +256,8 @@ function get_game_by_id2($id) {
                         "score_in_current_season": 72,
                         "birthday": "1988.09.27",
                         "season_club": "Rostov-Don",
+				"position": "Вратарь",
+				"rank": "МС",
                         "score_in_current_match":21,
                         "penalties": {
                             "red" : true,
@@ -253,6 +274,8 @@ function get_game_by_id2($id) {
                         "score_in_current_season": 72,
                         "birthday": "1988.09.27",
                         "season_club": "Rostov-Don",
+				"position": "Вратарь",
+				"rank": "МС",
                         "score_in_current_match":21,
                         "penalties": {
                             "red" : true,
@@ -269,6 +292,8 @@ function get_game_by_id2($id) {
                         "score_in_current_season": 72,
                         "birthday": "1988.09.27",
                         "season_club": "Rostov-Don",
+				"position": "Вратарь",
+				"rank": "МС",
                         "score_in_current_match":21,
                         "penalties": {
                             "red" : true,
@@ -285,6 +310,8 @@ function get_game_by_id2($id) {
                         "score_in_current_season": 72,
                         "birthday": "1988.09.27",
                         "season_club": "Rostov-Don",
+				"position": "Вратарь",
+				"rank": "МС",
                         "score_in_current_match":21,
                         "penalties": {
                             "red" : true,
@@ -301,6 +328,8 @@ function get_game_by_id2($id) {
                         "score_in_current_season": 72,
                         "birthday": "1988.09.27",
                         "season_club": "Rostov-Don",
+				"position": "Вратарь",
+				"rank": "МС",
                         "score_in_current_match":21,
                         "penalties": {
                             "red" : true,
@@ -324,6 +353,8 @@ function get_game_by_id2($id) {
                         "score_in_current_season": 72,
                         "birthday": "1988.09.27",
                         "season_club": "Rostov-Don",
+				"position": "Вратарь",
+				"rank": "МС",
                         "score_in_current_match":21,
                         "penalties": {
                             "red" : true,
@@ -340,6 +371,8 @@ function get_game_by_id2($id) {
                         "score_in_current_season": 72,
                         "birthday": "1988.09.27",
                         "season_club": "Rostov-Don",
+				"position": "Вратарь",
+				"rank": "МС",
                         "score_in_current_match":21,
                         "penalties": {
                             "red" : true,
@@ -356,6 +389,8 @@ function get_game_by_id2($id) {
                         "score_in_current_season": 72,
                         "birthday": "1988.09.27",
                         "season_club": "Rostov-Don",
+				"position": "Вратарь",
+				"rank": "МС",
                         "score_in_current_match":21,
                         "penalties": {
                             "red" : true,
@@ -372,6 +407,8 @@ function get_game_by_id2($id) {
                         "score_in_current_season": 72,
                         "birthday": "1988.09.27",
                         "season_club": "Rostov-Don",
+				"position": "Вратарь",
+				"rank": "МС",
                         "score_in_current_match":21,
                         "penalties": {
                             "red" : true,
@@ -388,6 +425,8 @@ function get_game_by_id2($id) {
                         "score_in_current_season": 72,
                         "birthday": "1988.09.27",
                         "season_club": "Rostov-Don",
+				"position": "Вратарь",
+				"rank": "МС",
                         "score_in_current_match":21,
                         "penalties": {
                             "red" : true,
@@ -404,6 +443,8 @@ function get_game_by_id2($id) {
                         "score_in_current_season": 72,
                         "birthday": "1988.09.27",
                         "season_club": "Rostov-Don",
+				"position": "Вратарь",
+				"rank": "МС",
                         "score_in_current_match":21,
                         "penalties": {
                             "red" : true,
@@ -420,6 +461,8 @@ function get_game_by_id2($id) {
                         "score_in_current_season": 72,
                         "birthday": "1988.09.27",
                         "season_club": "Rostov-Don",
+				"position": "Вратарь",
+				"rank": "МС",
                         "score_in_current_match":21,
                         "penalties": {
                             "red" : true,
@@ -436,6 +479,8 @@ function get_game_by_id2($id) {
                         "score_in_current_season": 72,
                         "birthday": "1988.09.27",
                         "season_club": "Rostov-Don",
+				"position": "Вратарь",
+				"rank": "МС",
                         "score_in_current_match":21,
                         "penalties": {
                             "red" : true,
@@ -452,6 +497,8 @@ function get_game_by_id2($id) {
                         "score_in_current_season": 72,
                         "birthday": "1988.09.27",
                         "season_club": "Rostov-Don",
+				"position": "Вратарь",
+				"rank": "МС",
                         "score_in_current_match":21,
                         "penalties": {
                             "red" : true,
@@ -468,6 +515,8 @@ function get_game_by_id2($id) {
                         "score_in_current_season": 72,
                         "birthday": "1988.09.27",
                         "season_club": "Rostov-Don",
+				"position": "Вратарь",
+				"rank": "МС",
                         "score_in_current_match":21,
                         "penalties": {
                             "red" : true,
@@ -484,6 +533,8 @@ function get_game_by_id2($id) {
                         "score_in_current_season": 72,
                         "birthday": "1988.09.27",
                         "season_club": "Rostov-Don",
+				"position": "Вратарь",
+				"rank": "МС",
                         "score_in_current_match":21,
                         "penalties": {
                             "red" : true,
@@ -500,6 +551,8 @@ function get_game_by_id2($id) {
                         "score_in_current_season": 72,
                         "birthday": "1988.09.27",
                         "season_club": "Rostov-Don",
+				"position": "Вратарь",
+				"rank": "МС",
                         "score_in_current_match":21,
                         "penalties": {
                             "red" : true,
@@ -516,6 +569,8 @@ function get_game_by_id2($id) {
                         "score_in_current_season": 72,
                         "birthday": "1988.09.27",
                         "season_club": "Rostov-Don",
+				"position": "Вратарь",
+				"rank": "МС",
                         "score_in_current_match":21,
                         "penalties": {
                             "red" : true,
@@ -532,6 +587,8 @@ function get_game_by_id2($id) {
                         "score_in_current_season": 72,
                         "birthday": "1988.09.27",
                         "season_club": "Rostov-Don",
+				"position": "Вратарь",
+				"rank": "МС",
                         "score_in_current_match":21,
                         "penalties": {
                             "red" : true,
@@ -548,6 +605,8 @@ function get_game_by_id2($id) {
                         "score_in_current_season": 72,
                         "birthday": "1988.09.27",
                         "season_club": "Rostov-Don",
+				"position": "Вратарь",
+				"rank": "МС",
                         "score_in_current_match":21,
                         "penalties": {
                             "red" : true,
@@ -564,6 +623,8 @@ function get_game_by_id2($id) {
                         "score_in_current_season": 72,
                         "birthday": "1988.09.27",
                         "season_club": "Rostov-Don",
+				"position": "Вратарь",
+				"rank": "МС",
                         "score_in_current_match":21,
                         "penalties": {
                             "red" : true,
@@ -649,6 +710,655 @@ function get_game_by_id($id) {
     } else {
         return null;
     }
+}
+
+function get_game_info_by_id($id) {
+//    $url = variable_get('fgrtournament_system_url', 'http://fgr.ntrlab.ru:81/api');
+//    $method = '/CompetitionGames/%s';
+//    $response = drupal_http_request($url . sprintf($method, $id), array(
+//        'method' => 'GET',
+//        'data' => NULL,
+//        'timeout' => 15));
+//    if($response->code == 200) {
+//        $game_data = drupal_json_decode($response->data)['Data'];
+//        return $game_data;
+//    } else {
+//        return array();
+//    }
+    $json = '{
+    "team_a": {
+    "name": "Каустик",
+    "players": [
+                    {
+                        "member_photo_url": "http://res.ehf.eu/picture/players/2016/6514/529701/.jpg",
+                        "member_number": 17,
+                        "first_name": "Юлия",
+                        "second_name": "Манагарова",
+                        "citizenship": "Украина",
+                        "citizenship_url": "http://flags.ehf.eu/2/UKR.gif",
+                        "score_in_current_season": 72,
+                        "birthday": "1988.09.27",
+                        "season_club": "Rostov-Don",
+				"position": "Вратарь",
+				"rank": "МС",
+                        "score_in_current_match":21,
+                        "penalties": {
+                            "red" : true,
+                            "yellow": true
+			}
+                    },
+                    {
+                        "member_photo_url": "http://res.ehf.eu/picture/players/2016/6514/529701/.jpg",
+                        "member_number": 17,
+                        "first_name": "Юлия",
+                        "second_name": "Манагарова",
+                        "citizenship": "Украина",
+                        "citizenship_url": "http://flags.ehf.eu/2/UKR.gif",
+                        "score_in_current_season": 72,
+                        "birthday": "1988.09.27",
+                        "season_club": "Rostov-Don",
+				"position": "Вратарь",
+				"rank": "МС",
+                        "score_in_current_match":21,
+                        "penalties": {
+                            "red" : true,
+                            "yellow": true
+			}
+                    },
+                    {
+                        "member_photo_url": "http://res.ehf.eu/picture/players/2016/6514/529701/.jpg",
+                        "member_number": 17,
+                        "first_name": "Юлия",
+                        "second_name": "Манагарова",
+                        "citizenship": "Украина",
+                        "citizenship_url": "http://flags.ehf.eu/2/UKR.gif",
+                        "score_in_current_season": 72,
+                        "birthday": "1988.09.27",
+                        "season_club": "Rostov-Don",
+				"position": "Вратарь",
+				"rank": "МС",
+                        "score_in_current_match":21,
+                        "penalties": {
+                            "red" : true,
+                            "yellow": true
+			}
+                    },
+                    {
+                        "member_photo_url": "http://res.ehf.eu/picture/players/2016/6514/529701/.jpg",
+                        "member_number": 17,
+                        "first_name": "Юлия",
+                        "second_name": "Манагарова",
+                        "citizenship": "Украина",
+                        "citizenship_url": "http://flags.ehf.eu/2/UKR.gif",
+                        "score_in_current_season": 72,
+                        "birthday": "1988.09.27",
+                        "season_club": "Rostov-Don",
+				"position": "Вратарь",
+				"rank": "МС",
+                        "score_in_current_match":21,
+                        "penalties": {
+                            "red" : true,
+                            "yellow": true
+			}
+                    },
+                    {
+                        "member_photo_url": "http://res.ehf.eu/picture/players/2016/6514/529701/.jpg",
+                        "member_number": 17,
+                        "first_name": "Юлия",
+                        "second_name": "Манагарова",
+                        "citizenship": "Украина",
+                        "citizenship_url": "http://flags.ehf.eu/2/UKR.gif",
+                        "score_in_current_season": 72,
+                        "birthday": "1988.09.27",
+                        "season_club": "Rostov-Don",
+				"position": "Вратарь",
+				"rank": "МС",
+                        "score_in_current_match":21,
+                        "penalties": {
+                            "red" : true,
+                            "yellow": true
+			}
+                    },
+                    {
+                        "member_photo_url": "http://res.ehf.eu/picture/players/2016/6514/529701/.jpg",
+                        "member_number": 17,
+                        "first_name": "Юлия",
+                        "second_name": "Манагарова",
+                        "citizenship": "Украина",
+                        "citizenship_url": "http://flags.ehf.eu/2/UKR.gif",
+                        "score_in_current_season": 72,
+                        "birthday": "1988.09.27",
+                        "season_club": "Rostov-Don",
+				"position": "Вратарь",
+				"rank": "МС",
+                        "score_in_current_match":21,
+                        "penalties": {
+                            "red" : true,
+                            "yellow": true
+			}
+                    },
+                    {
+                        "member_photo_url": "http://res.ehf.eu/picture/players/2016/6514/529701/.jpg",
+                        "member_number": 17,
+                        "first_name": "Юлия",
+                        "second_name": "Манагарова",
+                        "citizenship": "Украина",
+                        "citizenship_url": "http://flags.ehf.eu/2/UKR.gif",
+                        "score_in_current_season": 72,
+                        "birthday": "1988.09.27",
+                        "season_club": "Rostov-Don",
+				"position": "Вратарь",
+				"rank": "МС",
+                        "score_in_current_match":21,
+                        "penalties": {
+                            "red" : true,
+                            "yellow": true
+			}
+                    },
+                    {
+                        "member_photo_url": "http://res.ehf.eu/picture/players/2016/6514/529701/.jpg",
+                        "member_number": 17,
+                        "first_name": "Юлия",
+                        "second_name": "Манагарова",
+                        "citizenship": "Украина",
+                        "citizenship_url": "http://flags.ehf.eu/2/UKR.gif",
+                        "score_in_current_season": 72,
+                        "birthday": "1988.09.27",
+                        "season_club": "Rostov-Don",
+				"position": "Вратарь",
+				"rank": "МС",
+                        "score_in_current_match":21,
+                        "penalties": {
+                            "red" : true,
+                            "yellow": true
+			}
+                    },
+                    {
+                        "member_photo_url": "http://res.ehf.eu/picture/players/2016/6514/529701/.jpg",
+                        "member_number": 17,
+                        "first_name": "Юлия",
+                        "second_name": "Манагарова",
+                        "citizenship": "Украина",
+                        "citizenship_url": "http://flags.ehf.eu/2/UKR.gif",
+                        "score_in_current_season": 72,
+                        "birthday": "1988.09.27",
+                        "season_club": "Rostov-Don",
+				"position": "Вратарь",
+				"rank": "МС",
+                        "score_in_current_match":21,
+                        "penalties": {
+                            "red" : true,
+                            "yellow": true
+			}
+                    },
+                    {
+                        "member_photo_url": "http://res.ehf.eu/picture/players/2016/6514/529701/.jpg",
+                        "member_number": 17,
+                        "first_name": "Юлия",
+                        "second_name": "Манагарова",
+                        "citizenship": "Украина",
+                        "citizenship_url": "http://flags.ehf.eu/2/UKR.gif",
+                        "score_in_current_season": 72,
+                        "birthday": "1988.09.27",
+                        "season_club": "Rostov-Don",
+				"position": "Вратарь",
+				"rank": "МС",
+                        "score_in_current_match":21,
+                        "penalties": {
+                            "red" : true,
+                            "yellow": true
+			}
+                    },
+                    {
+                        "member_photo_url": "http://res.ehf.eu/picture/players/2016/6514/529701/.jpg",
+                        "member_number": 17,
+                        "first_name": "Юлия",
+                        "second_name": "Манагарова",
+                        "citizenship": "Украина",
+                        "citizenship_url": "http://flags.ehf.eu/2/UKR.gif",
+                        "score_in_current_season": 72,
+                        "birthday": "1988.09.27",
+                        "season_club": "Rostov-Don",
+				"position": "Вратарь",
+				"rank": "МС",
+                        "score_in_current_match":21,
+                        "penalties": {
+                            "red" : true,
+                            "yellow": true
+			}
+                    },
+                    {
+                        "member_photo_url": "http://res.ehf.eu/picture/players/2016/6514/529701/.jpg",
+                        "member_number": 17,
+                        "first_name": "Юлия",
+                        "second_name": "Манагарова",
+                        "citizenship": "Украина",
+                        "citizenship_url": "http://flags.ehf.eu/2/UKR.gif",
+                        "score_in_current_season": 72,
+                        "birthday": "1988.09.27",
+                        "season_club": "Rostov-Don",
+				"position": "Вратарь",
+				"rank": "МС",
+                        "score_in_current_match":21,
+                        "penalties": {
+                            "red" : true,
+                            "yellow": true
+			}
+                    },
+                    {
+                        "member_photo_url": "http://res.ehf.eu/picture/players/2016/6514/529701/.jpg",
+                        "member_number": 17,
+                        "first_name": "Юлия",
+                        "second_name": "Манагарова",
+                        "citizenship": "Украина",
+                        "citizenship_url": "http://flags.ehf.eu/2/UKR.gif",
+                        "score_in_current_season": 72,
+                        "birthday": "1988.09.27",
+                        "season_club": "Rostov-Don",
+				"position": "Вратарь",
+				"rank": "МС",
+                        "score_in_current_match":21,
+                        "penalties": {
+                            "red" : true,
+                            "yellow": true
+			}
+                    },
+                    {
+                        "member_photo_url": "http://res.ehf.eu/picture/players/2016/6514/529701/.jpg",
+                        "member_number": 17,
+                        "first_name": "Юлия",
+                        "second_name": "Манагарова",
+                        "citizenship": "Украина",
+                        "citizenship_url": "http://flags.ehf.eu/2/UKR.gif",
+                        "score_in_current_season": 72,
+                        "birthday": "1988.09.27",
+                        "season_club": "Rostov-Don",
+				"position": "Вратарь",
+				"rank": "МС",
+                        "score_in_current_match":21,
+                        "penalties": {
+                            "red" : true,
+                            "yellow": true
+			}
+                    },
+                    {
+                        "member_photo_url": "http://res.ehf.eu/picture/players/2016/6514/529701/.jpg",
+                        "member_number": 17,
+                        "first_name": "Юлия",
+                        "second_name": "Манагарова",
+                        "citizenship": "Украина",
+                        "citizenship_url": "http://flags.ehf.eu/2/UKR.gif",
+                        "score_in_current_season": 72,
+                        "birthday": "1988.09.27",
+                        "season_club": "Rostov-Don",
+				"position": "Вратарь",
+				"rank": "МС",
+                        "score_in_current_match":21,
+                        "penalties": {
+                            "red" : true,
+                            "yellow": true
+			}
+                    },
+                    {
+                        "member_photo_url": "http://res.ehf.eu/picture/players/2016/6514/529701/.jpg",
+                        "member_number": 17,
+                        "first_name": "Юлия",
+                        "second_name": "Манагарова",
+                        "citizenship": "Украина",
+                        "citizenship_url": "http://flags.ehf.eu/2/UKR.gif",
+                        "score_in_current_season": 72,
+                        "birthday": "1988.09.27",
+                        "season_club": "Rostov-Don",
+				"position": "Вратарь",
+				"rank": "МС",
+                        "score_in_current_match":21,
+                        "penalties": {
+                            "red" : true,
+                            "yellow": true
+                        }
+                    }
+                ]},
+                "team_b": {
+    "name": "Медведи",
+    "players": [
+                    {
+                        "member_photo_url": "http://res.ehf.eu/picture/players/2016/6514/529701/.jpg",
+                        "member_number": 17,
+                        "first_name": "Юлия",
+                        "second_name": "Манагарова",
+                        "citizenship": "Украина",
+                        "citizenship_url": "http://flags.ehf.eu/2/UKR.gif",
+                        "score_in_current_season": 72,
+                        "birthday": "1988.09.27",
+                        "season_club": "Rostov-Don",
+				"position": "Вратарь",
+				"rank": "МС",
+                        "score_in_current_match":21,
+                        "penalties": {
+                            "red" : true,
+                            "yellow": true
+			}
+                    },
+                    {
+                        "member_photo_url": "http://res.ehf.eu/picture/players/2016/6514/529701/.jpg",
+                        "member_number": 17,
+                        "first_name": "Юлия",
+                        "second_name": "Манагарова",
+                        "citizenship": "Украина",
+                        "citizenship_url": "http://flags.ehf.eu/2/UKR.gif",
+                        "score_in_current_season": 72,
+                        "birthday": "1988.09.27",
+                        "season_club": "Rostov-Don",
+				"position": "Вратарь",
+				"rank": "МС",
+                        "score_in_current_match":21,
+                        "penalties": {
+                            "red" : true,
+                            "yellow": true
+			}
+                    },
+                    {
+                        "member_photo_url": "http://res.ehf.eu/picture/players/2016/6514/529701/.jpg",
+                        "member_number": 17,
+                        "first_name": "Юлия",
+                        "second_name": "Манагарова",
+                        "citizenship": "Украина",
+                        "citizenship_url": "http://flags.ehf.eu/2/UKR.gif",
+                        "score_in_current_season": 72,
+                        "birthday": "1988.09.27",
+                        "season_club": "Rostov-Don",
+				"position": "Вратарь",
+				"rank": "МС",
+                        "score_in_current_match":21,
+                        "penalties": {
+                            "red" : true,
+                            "yellow": true
+			}
+                    },
+                    {
+                        "member_photo_url": "http://res.ehf.eu/picture/players/2016/6514/529701/.jpg",
+                        "member_number": 17,
+                        "first_name": "Юлия",
+                        "second_name": "Манагарова",
+                        "citizenship": "Украина",
+                        "citizenship_url": "http://flags.ehf.eu/2/UKR.gif",
+                        "score_in_current_season": 72,
+                        "birthday": "1988.09.27",
+                        "season_club": "Rostov-Don",
+				"position": "Вратарь",
+				"rank": "МС",
+                        "score_in_current_match":21,
+                        "penalties": {
+                            "red" : true,
+                            "yellow": true
+			}
+                    },
+                    {
+                        "member_photo_url": "http://res.ehf.eu/picture/players/2016/6514/529701/.jpg",
+                        "member_number": 17,
+                        "first_name": "Юлия",
+                        "second_name": "Манагарова",
+                        "citizenship": "Украина",
+                        "citizenship_url": "http://flags.ehf.eu/2/UKR.gif",
+                        "score_in_current_season": 72,
+                        "birthday": "1988.09.27",
+                        "season_club": "Rostov-Don",
+				"position": "Вратарь",
+				"rank": "МС",
+                        "score_in_current_match":21,
+                        "penalties": {
+                            "red" : true,
+                            "yellow": true
+			}
+                    },
+                    {
+                        "member_photo_url": "http://res.ehf.eu/picture/players/2016/6514/529701/.jpg",
+                        "member_number": 17,
+                        "first_name": "Юлия",
+                        "second_name": "Манагарова",
+                        "citizenship": "Украина",
+                        "citizenship_url": "http://flags.ehf.eu/2/UKR.gif",
+                        "score_in_current_season": 72,
+                        "birthday": "1988.09.27",
+                        "season_club": "Rostov-Don",
+				"position": "Вратарь",
+				"rank": "МС",
+                        "score_in_current_match":21,
+                        "penalties": {
+                            "red" : true,
+                            "yellow": true
+			}
+                    },
+                    {
+                        "member_photo_url": "http://res.ehf.eu/picture/players/2016/6514/529701/.jpg",
+                        "member_number": 17,
+                        "first_name": "Юлия",
+                        "second_name": "Манагарова",
+                        "citizenship": "Украина",
+                        "citizenship_url": "http://flags.ehf.eu/2/UKR.gif",
+                        "score_in_current_season": 72,
+                        "birthday": "1988.09.27",
+                        "season_club": "Rostov-Don",
+				"position": "Вратарь",
+				"rank": "МС",
+                        "score_in_current_match":21,
+                        "penalties": {
+                            "red" : true,
+                            "yellow": true
+			}
+                    },
+                    {
+                        "member_photo_url": "http://res.ehf.eu/picture/players/2016/6514/529701/.jpg",
+                        "member_number": 17,
+                        "first_name": "Юлия",
+                        "second_name": "Манагарова",
+                        "citizenship": "Украина",
+                        "citizenship_url": "http://flags.ehf.eu/2/UKR.gif",
+                        "score_in_current_season": 72,
+                        "birthday": "1988.09.27",
+                        "season_club": "Rostov-Don",
+				"position": "Вратарь",
+				"rank": "МС",
+                        "score_in_current_match":21,
+                        "penalties": {
+                            "red" : true,
+                            "yellow": true
+			}
+                    },
+                    {
+                        "member_photo_url": "http://res.ehf.eu/picture/players/2016/6514/529701/.jpg",
+                        "member_number": 17,
+                        "first_name": "Юлия",
+                        "second_name": "Манагарова",
+                        "citizenship": "Украина",
+                        "citizenship_url": "http://flags.ehf.eu/2/UKR.gif",
+                        "score_in_current_season": 72,
+                        "birthday": "1988.09.27",
+                        "season_club": "Rostov-Don",
+				"position": "Вратарь",
+				"rank": "МС",
+                        "score_in_current_match":21,
+                        "penalties": {
+                            "red" : true,
+                            "yellow": true
+			}
+                    },
+                    {
+                        "member_photo_url": "http://res.ehf.eu/picture/players/2016/6514/529701/.jpg",
+                        "member_number": 17,
+                        "first_name": "Юлия",
+                        "second_name": "Манагарова",
+                        "citizenship": "Украина",
+                        "citizenship_url": "http://flags.ehf.eu/2/UKR.gif",
+                        "score_in_current_season": 72,
+                        "birthday": "1988.09.27",
+                        "season_club": "Rostov-Don",
+				"position": "Вратарь",
+				"rank": "МС",
+                        "score_in_current_match":21,
+                        "penalties": {
+                            "red" : true,
+                            "yellow": true
+			}
+                    },
+                    {
+                        "member_photo_url": "http://res.ehf.eu/picture/players/2016/6514/529701/.jpg",
+                        "member_number": 17,
+                        "first_name": "Юлия",
+                        "second_name": "Манагарова",
+                        "citizenship": "Украина",
+                        "citizenship_url": "http://flags.ehf.eu/2/UKR.gif",
+                        "score_in_current_season": 72,
+                        "birthday": "1988.09.27",
+                        "season_club": "Rostov-Don",
+				"position": "Вратарь",
+				"rank": "МС",
+                        "score_in_current_match":21,
+                        "penalties": {
+                            "red" : true,
+                            "yellow": true
+			}
+                    },
+                    {
+                        "member_photo_url": "http://res.ehf.eu/picture/players/2016/6514/529701/.jpg",
+                        "member_number": 17,
+                        "first_name": "Юлия",
+                        "second_name": "Манагарова",
+                        "citizenship": "Украина",
+                        "citizenship_url": "http://flags.ehf.eu/2/UKR.gif",
+                        "score_in_current_season": 72,
+                        "birthday": "1988.09.27",
+                        "season_club": "Rostov-Don",
+				"position": "Вратарь",
+				"rank": "МС",
+                        "score_in_current_match":21,
+                        "penalties": {
+                            "red" : true,
+                            "yellow": true
+			}
+                    },
+                    {
+                        "member_photo_url": "http://res.ehf.eu/picture/players/2016/6514/529701/.jpg",
+                        "member_number": 17,
+                        "first_name": "Юлия",
+                        "second_name": "Манагарова",
+                        "citizenship": "Украина",
+                        "citizenship_url": "http://flags.ehf.eu/2/UKR.gif",
+                        "score_in_current_season": 72,
+                        "birthday": "1988.09.27",
+                        "season_club": "Rostov-Don",
+				"position": "Вратарь",
+				"rank": "МС",
+                        "score_in_current_match":21,
+                        "penalties": {
+                            "red" : true,
+                            "yellow": true
+			}
+                    },
+                    {
+                        "member_photo_url": "http://res.ehf.eu/picture/players/2016/6514/529701/.jpg",
+                        "member_number": 17,
+                        "first_name": "Юлия",
+                        "second_name": "Манагарова",
+                        "citizenship": "Украина",
+                        "citizenship_url": "http://flags.ehf.eu/2/UKR.gif",
+                        "score_in_current_season": 72,
+                        "birthday": "1988.09.27",
+                        "season_club": "Rostov-Don",
+				"position": "Вратарь",
+				"rank": "МС",
+                        "score_in_current_match":21,
+                        "penalties": {
+                            "red" : true,
+                            "yellow": true
+			}
+                    },
+                    {
+                        "member_photo_url": "http://res.ehf.eu/picture/players/2016/6514/529701/.jpg",
+                        "member_number": 17,
+                        "first_name": "Юлия",
+                        "second_name": "Манагарова",
+                        "citizenship": "Украина",
+                        "citizenship_url": "http://flags.ehf.eu/2/UKR.gif",
+                        "score_in_current_season": 72,
+                        "birthday": "1988.09.27",
+                        "season_club": "Rostov-Don",
+				"position": "Вратарь",
+				"rank": "МС",
+                        "score_in_current_match":21,
+                        "penalties": {
+                            "red" : true,
+                            "yellow": true
+			}
+                    },
+                    {
+                        "member_photo_url": "http://res.ehf.eu/picture/players/2016/6514/529701/.jpg",
+                        "member_number": 17,
+                        "first_name": "Юлия",
+                        "second_name": "Манагарова",
+                        "citizenship": "Украина",
+                        "citizenship_url": "http://flags.ehf.eu/2/UKR.gif",
+                        "score_in_current_season": 72,
+                        "birthday": "1988.09.27",
+                        "season_club": "Rostov-Don",
+				"position": "Вратарь",
+				"rank": "МС",
+                        "score_in_current_match":21,
+                        "penalties": {
+                            "red" : true,
+                            "yellow": true
+                        }
+                    }
+                ]}}';
+    return drupal_json_decode($json);
+}
+
+function get_game_statistics_by_id($id) {
+//    $url = variable_get('fgrtournament_system_url', 'http://fgr.ntrlab.ru:81/api');
+//    $method = '/CompetitionGames/%s';
+//    $response = drupal_http_request($url . sprintf($method, $id), array(
+//        'method' => 'GET',
+//        'data' => NULL,
+//        'timeout' => 15));
+//    if($response->code == 200) {
+//        $game_data = drupal_json_decode($response->data)['Data'];
+//        return $game_data;
+//    } else {
+//        return array();
+//    }
+    return array();
+}
+
+function get_game_throws_by_id($id) {
+//    $url = variable_get('fgrtournament_system_url', 'http://fgr.ntrlab.ru:81/api');
+//    $method = '/CompetitionGames/%s';
+//    $response = drupal_http_request($url . sprintf($method, $id), array(
+//        'method' => 'GET',
+//        'data' => NULL,
+//        'timeout' => 15));
+//    if($response->code == 200) {
+//        $game_data = drupal_json_decode($response->data)['Data'];
+//        return $game_data;
+//    } else {
+//        return array();
+//    }
+    return array();
+}
+
+function get_game_video_by_id($id) {
+//    $url = variable_get('fgrtournament_system_url', 'http://fgr.ntrlab.ru:81/api');
+//    $method = '/CompetitionGames/%s';
+//    $response = drupal_http_request($url . sprintf($method, $id), array(
+//        'method' => 'GET',
+//        'data' => NULL,
+//        'timeout' => 15));
+//    if($response->code == 200) {
+//        $game_data = drupal_json_decode($response->data)['Data'];
+//        return $game_data;
+//    } else {
+//        return array();
+//    }
+    return array();
 }
 
 //function get_tournament_full_name($id) {

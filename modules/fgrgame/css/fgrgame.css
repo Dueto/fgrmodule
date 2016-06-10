@@ -1,9 +1,8 @@
-
 /*----- Tabs -----*/
 .tabs {
     width:100%;
     display:inline-block;
-    margin-bottom: 21px;
+    margin-bottom: 5px;
 }
 
 div.tabs ul {
@@ -19,7 +18,7 @@ div.tabs ul {
 }
 
 .tab-links li {
-    margin:0px 5px;
+    margin:0px 1px;
     float:left;
     list-style:none; !important;
 }
@@ -27,24 +26,29 @@ div.tabs ul {
 .tab-links a {
     padding:9px 15px;
     display:inline-block;
-    border-radius:3px 3px 3px 3px;
-    background:#7DA2EC;
-    font-size:16px;
+    border-radius:3px 3px 0px 0px;
+    background: linear-gradient(to bottom, #52a9e5 0%,#227fbf 100%);;
+    font-size:14px;
     font-weight:600;
     color:white;
     transition:all linear 0.15s;
     text-decoration:none;
-    border: 2px solid #7DA2EC;
+    /*border: 2px solid #227fbf;*/
 }
 
 .tab-links a:hover {
-    background:#a7cce5;
+    color:#fff;
+    background:#52a9e5;
 }
 
 li.active a, li.active a:hover {
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
     background:#fff;
-    border-radius:3px 3px 3px 3px;
-    border: 2px solid #7DA2EC;
+    border-radius:3px 3px 0px 0px;
+    box-shadow:0px 0px 0px 1px #227fbf inset;
+    /*border: 2px solid #227fbf;*/
     color:#4c4c4c;
 }
 .table {
@@ -216,6 +220,11 @@ a.blank_link:hover {
     display: inline-block;
     width: 100%;
     margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.inline {
+    display: table;
 }
 
 .score {
@@ -284,4 +293,142 @@ table.right {
 
 .gamer_score {
     font-size: 12px;
+}
+
+.table_info {
+    text-align: center;
+    /*width: 50% !important;*/
+}
+
+.table_info td{
+    border:1px solid #C0C0C0;
+    height: 25px;
+    padding: 0px;
+}
+
+.table_info td:nth-child(2){
+    width: 400px;
+}
+
+.table_container {
+    display: table-cell;
+    width: 50% !important;
+    padding: 5px;
+}
+
+.table_diagram {
+    text-align: center;
+    width: 710px;
+    overflow-x: scroll;
+}
+
+.table_diagram tr:nth-child(2n) {
+    background-color: white;
+}
+
+.table_diagram td {
+    /*border:1px solid #C0C0C0;*/
+    height: 40px !important;
+}
+
+.no_padding {
+    padding: 0px;
+}
+
+.player_number_diagram {
+    border-radius: 40px;
+    height: 40px;
+    width: 40px;
+}
+
+.team_a_number {
+    background-color: #227fbf;
+    color: white;
+}
+
+.team_b_number {
+    background-color: #f1a899;
+}
+
+.team_yellow {
+    background-color: yellow;
+}
+
+.team_delete {
+    background-color: gray;
+    color: white;
+}
+
+.team_disqualified {
+    background-color: red;
+    color: white;
+}
+
+.team_timeout {
+    background-color: green;
+    color: white;
+}
+
+.diagram div {
+    display: table;
+}
+
+.diagram span {
+    display: table-cell;
+    vertical-align: middle;
+}
+
+
+.diagram img {
+    height: 50px;
+    width: 50px;
+}
+
+.diagram tr:nth-child(4n + 4) {
+    border-bottom: 1px solid black;
+}
+
+.additional_rows {
+    height: 30px;
+    width: 30px;
+    padding: 0px;
+}
+
+.point_difference_chart {
+    width: 710px;
+    height: 550px;
+}
+
+.statistic_button {
+    background: linear-gradient(to bottom, #52a9e5 0%,#227fbf 100%);
+    border-radius: 3px;
+    font-size:14px;
+    font-weight:600;
+    color:white;
+    display:inline-block;
+    padding:9px 15px;
+}
+
+.statistic_button:hover {
+    background:#fff;
+    color:#4c4c4c;
+    border: 1px solid #4c4c4c;
+    cursor: pointer;
+}
+
+.statistic_table td {
+    border: 1px solid #C0C0C0;
+}
+
+.throws_statistics {
+    text-align: center;
+}
+
+.throws_statistics td {
+    border: 1px solid #C0C0C0;
+}
+
+.first_column_throws_statistics {
+    color: white;
+    background: linear-gradient(to bottom, #52a9e5 0%,#227fbf 100%);
 }
