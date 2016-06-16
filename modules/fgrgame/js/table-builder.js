@@ -13,76 +13,77 @@ TableBuilder = function(divId) {
     self.teamALogo = null;
     self.teamBLogo = null;
 
-    self.getGameOnlineInfo = function(gameId) {
+    self.getGameOnlineInfo = function(gameId, callback) {
         //$.ajax("")
         obj = [
-            {team: 1, logo: "http://localhost:8181/fgr/rushandball.ru/files/styles/team_logo/public/logotip_kaustik.png?itok=fWzzBqBF",event: "goal", player_number: 13, dateTime: "2016.06.18", score: "2:3"},
-            {team: 2, logo: "http://localhost:8181/fgr/rushandball.ru/files/styles/team_logo/public/logo.png?itok=1TFMmFpI",event: "goal", player_number: 23, dateTime: "2016.06.18", score: "2:3"},
-            {team: 1, logo: "http://localhost:8181/fgr/rushandball.ru/files/styles/team_logo/public/logotip_kaustik.png?itok=fWzzBqBF",event: "goal", player_number: 6, dateTime: "2016.06.18", score: "2:3"},
-            {team: 1, logo: "http://localhost:8181/fgr/rushandball.ru/files/styles/team_logo/public/logotip_kaustik.png?itok=fWzzBqBF",event: "goal", player_number: 78, dateTime: "2016.06.18", score: "2:3"},
-            {team: 1, logo: "http://localhost:8181/fgr/rushandball.ru/files/styles/team_logo/public/logotip_kaustik.png?itok=fWzzBqBF",event: "goal", player_number: 87, dateTime: "2016.06.18", score: "2:3"},
-            {team: 2, logo: "http://localhost:8181/fgr/rushandball.ru/files/styles/team_logo/public/logo.png?itok=1TFMmFpI",event: "goal", player_number: 12, dateTime: "2016.06.18", score: "2:3"},
-            {team: 2, logo: "http://localhost:8181/fgr/rushandball.ru/files/styles/team_logo/public/logo.png?itok=1TFMmFpI",event: "goal", player_number: 65, dateTime: "2016.06.18", score: "2:3"},
-            {team: 1, logo: "http://localhost:8181/fgr/rushandball.ru/files/styles/team_logo/public/logotip_kaustik.png?itok=fWzzBqBF",event: "team_delete", player_number: 12, dateTime: "2016.06.18", score: "2:3"},
-            {team: 1, logo: "http://localhost:8181/fgr/rushandball.ru/files/styles/team_logo/public/logotip_kaustik.png?itok=fWzzBqBF",event: "goal", player_number: 78, dateTime: "2016.06.18", score: "2:3"},
-            {team: 2, logo: "http://localhost:8181/fgr/rushandball.ru/files/styles/team_logo/public/logo.png?itok=1TFMmFpI",event: "team_disqualified", player_number: 11, dateTime: "2016.06.18", score: "2:3"},
-            {team: 1, logo: "http://localhost:8181/fgr/rushandball.ru/files/styles/team_logo/public/logotip_kaustik.png?itok=fWzzBqBF",event: "goal", player_number: 11, dateTime: "2016.06.18", score: "2:3"},
-            {team: 1, logo: "http://localhost:8181/fgr/rushandball.ru/files/styles/team_logo/public/logotip_kaustik.png?itok=fWzzBqBF",event: "goal", player_number: 43, dateTime: "2016.06.18", score: "2:3"},
-            {team: 1, logo: "http://localhost:8181/fgr/rushandball.ru/files/styles/team_logo/public/logotip_kaustik.png?itok=fWzzBqBF",event: "goal", player_number: 32, dateTime: "2016.06.18", score: "2:3"},
-            {team: 1, logo: "http://localhost:8181/fgr/rushandball.ru/files/styles/team_logo/public/logotip_kaustik.png?itok=fWzzBqBF",event: "goal", player_number: 11, dateTime: "2016.06.18", score: "2:3"},
-            {team: 2, logo: "http://localhost:8181/fgr/rushandball.ru/files/styles/team_logo/public/logo.png?itok=1TFMmFpI",event: "goal", player_number: 54, dateTime: "2016.06.18", score: "2:3"},
-            {team: 2, logo: "http://localhost:8181/fgr/rushandball.ru/files/styles/team_logo/public/logo.png?itok=1TFMmFpI",event: "team_yellow", player_number: 11, dateTime: "2016.06.18", score: "2:3"},
-            {team: 1, logo: "http://localhost:8181/fgr/rushandball.ru/files/styles/team_logo/public/logotip_kaustik.png?itok=fWzzBqBF",event: "goal", player_number: 67, dateTime: "2016.06.18", score: "2:3"},
-            {team: 1, logo: "http://localhost:8181/fgr/rushandball.ru/files/styles/team_logo/public/logotip_kaustik.png?itok=fWzzBqBF",event: "goal", player_number: 67, dateTime: "2016.06.18", score: "2:3"},
-            {team: 2, logo: "http://localhost:8181/fgr/rushandball.ru/files/styles/team_logo/public/logo.png?itok=1TFMmFpI",event: "goal", player_number: 67, dateTime: "2016.06.18", score: "2:3"},
-            {team: 1, logo: "http://localhost:8181/fgr/rushandball.ru/files/styles/team_logo/public/logotip_kaustik.png?itok=fWzzBqBF",event: "team_disqualified", player_number: 67, dateTime: "2016.06.18", score: "2:3"},
-            {team: 1, logo: "http://localhost:8181/fgr/rushandball.ru/files/styles/team_logo/public/logotip_kaustik.png?itok=fWzzBqBF",event: "goal", player_number: 13, dateTime: "2016.06.18", score: "2:3"},
-            {team: 2, logo: "http://localhost:8181/fgr/rushandball.ru/files/styles/team_logo/public/logo.png?itok=1TFMmFpI",event: "goal", player_number: 23, dateTime: "2016.06.18", score: "2:3"},
-            {team: 1, logo: "http://localhost:8181/fgr/rushandball.ru/files/styles/team_logo/public/logotip_kaustik.png?itok=fWzzBqBF",event: "team_delete", player_number: 6, dateTime: "2016.06.18", score: "2:3"},
-            {team: 1, logo: "http://localhost:8181/fgr/rushandball.ru/files/styles/team_logo/public/logotip_kaustik.png?itok=fWzzBqBF",event: "goal", player_number: 78, dateTime: "2016.06.18", score: "2:3"},
-            {team: 1, logo: "http://localhost:8181/fgr/rushandball.ru/files/styles/team_logo/public/logotip_kaustik.png?itok=fWzzBqBF",event: "team_yellow", player_number: 87, dateTime: "2016.06.18", score: "2:3"},
-            {team: 2, logo: "http://localhost:8181/fgr/rushandball.ru/files/styles/team_logo/public/logo.png?itok=1TFMmFpI",event: "goal", player_number: 12, dateTime: "2016.06.18", score: "2:3"},
-            {team: 2, logo: "http://localhost:8181/fgr/rushandball.ru/files/styles/team_logo/public/logo.png?itok=1TFMmFpI",event: "goal", player_number: 65, dateTime: "2016.06.18", score: "2:3"},
-            {team: 1, logo: "http://localhost:8181/fgr/rushandball.ru/files/styles/team_logo/public/logotip_kaustik.png?itok=fWzzBqBF",event: "team_disqualified", player_number: 12, dateTime: "2016.06.18", score: "2:3"},
-            {team: 1, logo: "http://localhost:8181/fgr/rushandball.ru/files/styles/team_logo/public/logotip_kaustik.png?itok=fWzzBqBF",event: "goal", player_number: 78, dateTime: "2016.06.18", score: "2:3"},
-            {team: 2, logo: "http://localhost:8181/fgr/rushandball.ru/files/styles/team_logo/public/logo.png?itok=1TFMmFpI",event: "goal", player_number: 11, dateTime: "2016.06.18", score: "2:3"},
-            {team: 1, logo: "http://localhost:8181/fgr/rushandball.ru/files/styles/team_logo/public/logotip_kaustik.png?itok=fWzzBqBF",event: "goal", player_number: 11, dateTime: "2016.06.18", score: "2:3"},
-            {team: 1, logo: "http://localhost:8181/fgr/rushandball.ru/files/styles/team_logo/public/logotip_kaustik.png?itok=fWzzBqBF",event: "team_delete", player_number: 43, dateTime: "2016.06.18", score: "2:3"},
-            {team: 1, logo: "http://localhost:8181/fgr/rushandball.ru/files/styles/team_logo/public/logotip_kaustik.png?itok=fWzzBqBF",event: "goal", player_number: 32, dateTime: "2016.06.18", score: "2:3"},
-            {team: 1, logo: "http://localhost:8181/fgr/rushandball.ru/files/styles/team_logo/public/logotip_kaustik.png?itok=fWzzBqBF",event: "goal", player_number: 11, dateTime: "2016.06.18", score: "2:3"},
-            {team: 2, logo: "http://localhost:8181/fgr/rushandball.ru/files/styles/team_logo/public/logo.png?itok=1TFMmFpI",event: "goal", player_number: 54, dateTime: "2016.06.18", score: "2:3"},
-            {team: 2, logo: "http://localhost:8181/fgr/rushandball.ru/files/styles/team_logo/public/logo.png?itok=1TFMmFpI",event: "goal", player_number: 11, dateTime: "2016.06.18", score: "2:3"},
-            {team: 1, logo: "http://localhost:8181/fgr/rushandball.ru/files/styles/team_logo/public/logotip_kaustik.png?itok=fWzzBqBF",event: "goal", player_number: 67, dateTime: "2016.06.18", score: "2:3"},
-            {team: 1, logo: "http://localhost:8181/fgr/rushandball.ru/files/styles/team_logo/public/logotip_kaustik.png?itok=fWzzBqBF",event: "goal", player_number: 67, dateTime: "2016.06.18", score: "2:3"},
-            {team: 2, logo: "http://localhost:8181/fgr/rushandball.ru/files/styles/team_logo/public/logo.png?itok=1TFMmFpI",event: "goal", player_number: 67, dateTime: "2016.06.18", score: "2:3"},
-            {team: 1, logo: "http://localhost:8181/fgr/rushandball.ru/files/styles/team_logo/public/logotip_kaustik.png?itok=fWzzBqBF",event: "team_timeout", player_number: 67, dateTime: "2016.06.18", score: "2:3"},
-            {team: 2, logo: "http://localhost:8181/fgr/rushandball.ru/files/styles/team_logo/public/logo.png?itok=1TFMmFpI",event: "team_yellow", player_number: 11, dateTime: "2016.06.18", score: "2:3"},
-            {team: 1, logo: "http://localhost:8181/fgr/rushandball.ru/files/styles/team_logo/public/logotip_kaustik.png?itok=fWzzBqBF",event: "goal", player_number: 67, dateTime: "2016.06.18", score: "2:3"},
-            {team: 1, logo: "http://localhost:8181/fgr/rushandball.ru/files/styles/team_logo/public/logotip_kaustik.png?itok=fWzzBqBF",event: "goal", player_number: 67, dateTime: "2016.06.18", score: "2:3"},
-            {team: 2, logo: "http://localhost:8181/fgr/rushandball.ru/files/styles/team_logo/public/logo.png?itok=1TFMmFpI",event: "goal", player_number: 67, dateTime: "2016.06.18", score: "2:3"},
-            {team: 1, logo: "http://localhost:8181/fgr/rushandball.ru/files/styles/team_logo/public/logotip_kaustik.png?itok=fWzzBqBF",event: "team_disqualified", player_number: 67, dateTime: "2016.06.18", score: "2:3"},
-            {team: 1, logo: "http://localhost:8181/fgr/rushandball.ru/files/styles/team_logo/public/logotip_kaustik.png?itok=fWzzBqBF",event: "goal", player_number: 13, dateTime: "2016.06.18", score: "2:3"},
-            {team: 2, logo: "http://localhost:8181/fgr/rushandball.ru/files/styles/team_logo/public/logo.png?itok=1TFMmFpI",event: "goal", player_number: 23, dateTime: "2016.06.18", score: "2:3"},
-            {team: 1, logo: "http://localhost:8181/fgr/rushandball.ru/files/styles/team_logo/public/logotip_kaustik.png?itok=fWzzBqBF",event: "team_delete", player_number: 6, dateTime: "2016.06.18", score: "2:3"},
-            {team: 1, logo: "http://localhost:8181/fgr/rushandball.ru/files/styles/team_logo/public/logotip_kaustik.png?itok=fWzzBqBF",event: "goal", player_number: 78, dateTime: "2016.06.18", score: "2:3"},
-            {team: 1, logo: "http://localhost:8181/fgr/rushandball.ru/files/styles/team_logo/public/logotip_kaustik.png?itok=fWzzBqBF",event: "team_yellow", player_number: 87, dateTime: "2016.06.18", score: "2:3"},
-            {team: 2, logo: "http://localhost:8181/fgr/rushandball.ru/files/styles/team_logo/public/logo.png?itok=1TFMmFpI",event: "goal", player_number: 12, dateTime: "2016.06.18", score: "2:3"},
-            {team: 2, logo: "http://localhost:8181/fgr/rushandball.ru/files/styles/team_logo/public/logo.png?itok=1TFMmFpI",event: "goal", player_number: 65, dateTime: "2016.06.18", score: "2:3"},
-            {team: 1, logo: "http://localhost:8181/fgr/rushandball.ru/files/styles/team_logo/public/logotip_kaustik.png?itok=fWzzBqBF",event: "team_disqualified", player_number: 12, dateTime: "2016.06.18", score: "2:3"},
-            {team: 1, logo: "http://localhost:8181/fgr/rushandball.ru/files/styles/team_logo/public/logotip_kaustik.png?itok=fWzzBqBF",event: "goal", player_number: 78, dateTime: "2016.06.18", score: "2:3"},
-            {team: 2, logo: "http://localhost:8181/fgr/rushandball.ru/files/styles/team_logo/public/logo.png?itok=1TFMmFpI",event: "goal", player_number: 11, dateTime: "2016.06.18", score: "2:3"},
-            {team: 1, logo: "http://localhost:8181/fgr/rushandball.ru/files/styles/team_logo/public/logotip_kaustik.png?itok=fWzzBqBF",event: "goal", player_number: 11, dateTime: "2016.06.18", score: "2:3"},
-            {team: 1, logo: "http://localhost:8181/fgr/rushandball.ru/files/styles/team_logo/public/logotip_kaustik.png?itok=fWzzBqBF",event: "team_delete", player_number: 43, dateTime: "2016.06.18", score: "2:3"},
-            {team: 1, logo: "http://localhost:8181/fgr/rushandball.ru/files/styles/team_logo/public/logotip_kaustik.png?itok=fWzzBqBF",event: "goal", player_number: 32, dateTime: "2016.06.18", score: "2:3"},
-            {team: 1, logo: "http://localhost:8181/fgr/rushandball.ru/files/styles/team_logo/public/logotip_kaustik.png?itok=fWzzBqBF",event: "goal", player_number: 11, dateTime: "2016.06.18", score: "2:3"},
-            {team: 2, logo: "http://localhost:8181/fgr/rushandball.ru/files/styles/team_logo/public/logo.png?itok=1TFMmFpI",event: "goal", player_number: 54, dateTime: "2016.06.18", score: "2:3"},
-            {team: 2, logo: "http://localhost:8181/fgr/rushandball.ru/files/styles/team_logo/public/logo.png?itok=1TFMmFpI",event: "goal", player_number: 11, dateTime: "2016.06.18", score: "2:3"},
-            {team: 1, logo: "http://localhost:8181/fgr/rushandball.ru/files/styles/team_logo/public/logotip_kaustik.png?itok=fWzzBqBF",event: "goal", player_number: 67, dateTime: "2016.06.18", score: "2:3"},
-            {team: 1, logo: "http://localhost:8181/fgr/rushandball.ru/files/styles/team_logo/public/logotip_kaustik.png?itok=fWzzBqBF",event: "goal", player_number: 67, dateTime: "2016.06.18", score: "2:3"},
-            {team: 2, logo: "http://localhost:8181/fgr/rushandball.ru/files/styles/team_logo/public/logo.png?itok=1TFMmFpI",event: "goal", player_number: 67, dateTime: "2016.06.18", score: "2:3"},
-            {team: 1, logo: "http://localhost:8181/fgr/rushandball.ru/files/styles/team_logo/public/logotip_kaustik.png?itok=fWzzBqBF",event: "team_timeout", player_number: 67, dateTime: "2016.06.18", score: "2:3"}
+            {team: 1, logo: "http://localhost:8181/fgr/rushandball.ru/files/styles/team_logo/public/logotip_kaustik.png?itok=fWzzBqBF",event: "goal", playerNumber: 13, dateTime: "2016.06.18", score: "2:3"},
+            {team: 2, logo: "http://localhost:8181/fgr/rushandball.ru/files/styles/team_logo/public/logo.png?itok=1TFMmFpI",event: "goal", playerNumber: 23, dateTime: "2016.06.18", score: "2:3"},
+            {team: 1, logo: "http://localhost:8181/fgr/rushandball.ru/files/styles/team_logo/public/logotip_kaustik.png?itok=fWzzBqBF",event: "goal", playerNumber: 6, dateTime: "2016.06.18", score: "2:3"},
+            {team: 1, logo: "http://localhost:8181/fgr/rushandball.ru/files/styles/team_logo/public/logotip_kaustik.png?itok=fWzzBqBF",event: "goal", playerNumber: 78, dateTime: "2016.06.18", score: "2:3"},
+            {team: 1, logo: "http://localhost:8181/fgr/rushandball.ru/files/styles/team_logo/public/logotip_kaustik.png?itok=fWzzBqBF",event: "goal", playerNumber: 87, dateTime: "2016.06.18", score: "2:3"},
+            {team: 2, logo: "http://localhost:8181/fgr/rushandball.ru/files/styles/team_logo/public/logo.png?itok=1TFMmFpI",event: "goal", playerNumber: 12, dateTime: "2016.06.18", score: "2:3"},
+            {team: 2, logo: "http://localhost:8181/fgr/rushandball.ru/files/styles/team_logo/public/logo.png?itok=1TFMmFpI",event: "goal", playerNumber: 65, dateTime: "2016.06.18", score: "2:3"},
+            {team: 1, logo: "http://localhost:8181/fgr/rushandball.ru/files/styles/team_logo/public/logotip_kaustik.png?itok=fWzzBqBF",event: "team_delete", playerNumber: 12, dateTime: "2016.06.18", score: "2:3"},
+            {team: 1, logo: "http://localhost:8181/fgr/rushandball.ru/files/styles/team_logo/public/logotip_kaustik.png?itok=fWzzBqBF",event: "goal", playerNumber: 78, dateTime: "2016.06.18", score: "2:3"},
+            {team: 2, logo: "http://localhost:8181/fgr/rushandball.ru/files/styles/team_logo/public/logo.png?itok=1TFMmFpI",event: "team_disqualified", playerNumber: 11, dateTime: "2016.06.18", score: "2:3"},
+            {team: 1, logo: "http://localhost:8181/fgr/rushandball.ru/files/styles/team_logo/public/logotip_kaustik.png?itok=fWzzBqBF",event: "goal", playerNumber: 11, dateTime: "2016.06.18", score: "2:3"},
+            {team: 1, logo: "http://localhost:8181/fgr/rushandball.ru/files/styles/team_logo/public/logotip_kaustik.png?itok=fWzzBqBF",event: "goal", playerNumber: 43, dateTime: "2016.06.18", score: "2:3"},
+            {team: 1, logo: "http://localhost:8181/fgr/rushandball.ru/files/styles/team_logo/public/logotip_kaustik.png?itok=fWzzBqBF",event: "goal", playerNumber: 32, dateTime: "2016.06.18", score: "2:3"},
+            {team: 1, logo: "http://localhost:8181/fgr/rushandball.ru/files/styles/team_logo/public/logotip_kaustik.png?itok=fWzzBqBF",event: "goal", playerNumber: 11, dateTime: "2016.06.18", score: "2:3"},
+            {team: 2, logo: "http://localhost:8181/fgr/rushandball.ru/files/styles/team_logo/public/logo.png?itok=1TFMmFpI",event: "goal", playerNumber: 54, dateTime: "2016.06.18", score: "2:3"},
+            {team: 2, logo: "http://localhost:8181/fgr/rushandball.ru/files/styles/team_logo/public/logo.png?itok=1TFMmFpI",event: "team_yellow", playerNumber: 11, dateTime: "2016.06.18", score: "2:3"},
+            {team: 1, logo: "http://localhost:8181/fgr/rushandball.ru/files/styles/team_logo/public/logotip_kaustik.png?itok=fWzzBqBF",event: "goal", playerNumber: 67, dateTime: "2016.06.18", score: "2:3"},
+            {team: 1, logo: "http://localhost:8181/fgr/rushandball.ru/files/styles/team_logo/public/logotip_kaustik.png?itok=fWzzBqBF",event: "goal", playerNumber: 67, dateTime: "2016.06.18", score: "2:3"},
+            {team: 2, logo: "http://localhost:8181/fgr/rushandball.ru/files/styles/team_logo/public/logo.png?itok=1TFMmFpI",event: "goal", playerNumber: 67, dateTime: "2016.06.18", score: "2:3"},
+            {team: 1, logo: "http://localhost:8181/fgr/rushandball.ru/files/styles/team_logo/public/logotip_kaustik.png?itok=fWzzBqBF",event: "team_disqualified", playerNumber: 67, dateTime: "2016.06.18", score: "2:3"},
+            {team: 1, logo: "http://localhost:8181/fgr/rushandball.ru/files/styles/team_logo/public/logotip_kaustik.png?itok=fWzzBqBF",event: "goal", playerNumber: 13, dateTime: "2016.06.18", score: "2:3"},
+            {team: 2, logo: "http://localhost:8181/fgr/rushandball.ru/files/styles/team_logo/public/logo.png?itok=1TFMmFpI",event: "goal", playerNumber: 23, dateTime: "2016.06.18", score: "2:3"},
+            {team: 1, logo: "http://localhost:8181/fgr/rushandball.ru/files/styles/team_logo/public/logotip_kaustik.png?itok=fWzzBqBF",event: "team_delete", playerNumber: 6, dateTime: "2016.06.18", score: "2:3"},
+            {team: 1, logo: "http://localhost:8181/fgr/rushandball.ru/files/styles/team_logo/public/logotip_kaustik.png?itok=fWzzBqBF",event: "goal", playerNumber: 78, dateTime: "2016.06.18", score: "2:3"},
+            {team: 1, logo: "http://localhost:8181/fgr/rushandball.ru/files/styles/team_logo/public/logotip_kaustik.png?itok=fWzzBqBF",event: "team_yellow", playerNumber: 87, dateTime: "2016.06.18", score: "2:3"},
+            {team: 2, logo: "http://localhost:8181/fgr/rushandball.ru/files/styles/team_logo/public/logo.png?itok=1TFMmFpI",event: "goal", playerNumber: 12, dateTime: "2016.06.18", score: "2:3"},
+            {team: 2, logo: "http://localhost:8181/fgr/rushandball.ru/files/styles/team_logo/public/logo.png?itok=1TFMmFpI",event: "goal", playerNumber: 65, dateTime: "2016.06.18", score: "2:3"},
+            {team: 1, logo: "http://localhost:8181/fgr/rushandball.ru/files/styles/team_logo/public/logotip_kaustik.png?itok=fWzzBqBF",event: "team_disqualified", playerNumber: 12, dateTime: "2016.06.18", score: "2:3"},
+            {team: 1, logo: "http://localhost:8181/fgr/rushandball.ru/files/styles/team_logo/public/logotip_kaustik.png?itok=fWzzBqBF",event: "goal", playerNumber: 78, dateTime: "2016.06.18", score: "2:3"},
+            {team: 2, logo: "http://localhost:8181/fgr/rushandball.ru/files/styles/team_logo/public/logo.png?itok=1TFMmFpI",event: "goal", playerNumber: 11, dateTime: "2016.06.18", score: "2:3"},
+            {team: 1, logo: "http://localhost:8181/fgr/rushandball.ru/files/styles/team_logo/public/logotip_kaustik.png?itok=fWzzBqBF",event: "goal", playerNumber: 11, dateTime: "2016.06.18", score: "2:3"},
+            {team: 1, logo: "http://localhost:8181/fgr/rushandball.ru/files/styles/team_logo/public/logotip_kaustik.png?itok=fWzzBqBF",event: "team_delete", playerNumber: 43, dateTime: "2016.06.18", score: "2:3"},
+            {team: 1, logo: "http://localhost:8181/fgr/rushandball.ru/files/styles/team_logo/public/logotip_kaustik.png?itok=fWzzBqBF",event: "goal", playerNumber: 32, dateTime: "2016.06.18", score: "2:3"},
+            {team: 1, logo: "http://localhost:8181/fgr/rushandball.ru/files/styles/team_logo/public/logotip_kaustik.png?itok=fWzzBqBF",event: "goal", playerNumber: 11, dateTime: "2016.06.18", score: "2:3"},
+            {team: 2, logo: "http://localhost:8181/fgr/rushandball.ru/files/styles/team_logo/public/logo.png?itok=1TFMmFpI",event: "goal", playerNumber: 54, dateTime: "2016.06.18", score: "2:3"},
+            {team: 2, logo: "http://localhost:8181/fgr/rushandball.ru/files/styles/team_logo/public/logo.png?itok=1TFMmFpI",event: "goal", playerNumber: 11, dateTime: "2016.06.18", score: "2:3"},
+            {team: 1, logo: "http://localhost:8181/fgr/rushandball.ru/files/styles/team_logo/public/logotip_kaustik.png?itok=fWzzBqBF",event: "goal", playerNumber: 67, dateTime: "2016.06.18", score: "2:3"},
+            {team: 1, logo: "http://localhost:8181/fgr/rushandball.ru/files/styles/team_logo/public/logotip_kaustik.png?itok=fWzzBqBF",event: "goal", playerNumber: 67, dateTime: "2016.06.18", score: "2:3"},
+            {team: 2, logo: "http://localhost:8181/fgr/rushandball.ru/files/styles/team_logo/public/logo.png?itok=1TFMmFpI",event: "goal", playerNumber: 67, dateTime: "2016.06.18", score: "2:3"},
+            {team: 1, logo: "http://localhost:8181/fgr/rushandball.ru/files/styles/team_logo/public/logotip_kaustik.png?itok=fWzzBqBF",event: "team_timeout", playerNumber: 67, dateTime: "2016.06.18", score: "2:3"},
+            {team: 2, logo: "http://localhost:8181/fgr/rushandball.ru/files/styles/team_logo/public/logo.png?itok=1TFMmFpI",event: "team_yellow", playerNumber: 11, dateTime: "2016.06.18", score: "2:3"},
+            {team: 1, logo: "http://localhost:8181/fgr/rushandball.ru/files/styles/team_logo/public/logotip_kaustik.png?itok=fWzzBqBF",event: "goal", playerNumber: 67, dateTime: "2016.06.18", score: "2:3"},
+            {team: 1, logo: "http://localhost:8181/fgr/rushandball.ru/files/styles/team_logo/public/logotip_kaustik.png?itok=fWzzBqBF",event: "goal", playerNumber: 67, dateTime: "2016.06.18", score: "2:3"},
+            {team: 2, logo: "http://localhost:8181/fgr/rushandball.ru/files/styles/team_logo/public/logo.png?itok=1TFMmFpI",event: "goal", playerNumber: 67, dateTime: "2016.06.18", score: "2:3"},
+            {team: 1, logo: "http://localhost:8181/fgr/rushandball.ru/files/styles/team_logo/public/logotip_kaustik.png?itok=fWzzBqBF",event: "team_disqualified", playerNumber: 67, dateTime: "2016.06.18", score: "2:3"},
+            {team: 1, logo: "http://localhost:8181/fgr/rushandball.ru/files/styles/team_logo/public/logotip_kaustik.png?itok=fWzzBqBF",event: "goal", playerNumber: 13, dateTime: "2016.06.18", score: "2:3"},
+            {team: 2, logo: "http://localhost:8181/fgr/rushandball.ru/files/styles/team_logo/public/logo.png?itok=1TFMmFpI",event: "goal", playerNumber: 23, dateTime: "2016.06.18", score: "2:3"},
+            {team: 1, logo: "http://localhost:8181/fgr/rushandball.ru/files/styles/team_logo/public/logotip_kaustik.png?itok=fWzzBqBF",event: "team_delete", playerNumber: 6, dateTime: "2016.06.18", score: "2:3"},
+            {team: 1, logo: "http://localhost:8181/fgr/rushandball.ru/files/styles/team_logo/public/logotip_kaustik.png?itok=fWzzBqBF",event: "goal", playerNumber: 78, dateTime: "2016.06.18", score: "2:3"},
+            {team: 1, logo: "http://localhost:8181/fgr/rushandball.ru/files/styles/team_logo/public/logotip_kaustik.png?itok=fWzzBqBF",event: "team_yellow", playerNumber: 87, dateTime: "2016.06.18", score: "2:3"},
+            {team: 2, logo: "http://localhost:8181/fgr/rushandball.ru/files/styles/team_logo/public/logo.png?itok=1TFMmFpI",event: "goal", playerNumber: 12, dateTime: "2016.06.18", score: "2:3"},
+            {team: 2, logo: "http://localhost:8181/fgr/rushandball.ru/files/styles/team_logo/public/logo.png?itok=1TFMmFpI",event: "goal", playerNumber: 65, dateTime: "2016.06.18", score: "2:3"},
+            {team: 1, logo: "http://localhost:8181/fgr/rushandball.ru/files/styles/team_logo/public/logotip_kaustik.png?itok=fWzzBqBF",event: "team_disqualified", playerNumber: 12, dateTime: "2016.06.18", score: "2:3"},
+            {team: 1, logo: "http://localhost:8181/fgr/rushandball.ru/files/styles/team_logo/public/logotip_kaustik.png?itok=fWzzBqBF",event: "goal", playerNumber: 78, dateTime: "2016.06.18", score: "2:3"},
+            {team: 2, logo: "http://localhost:8181/fgr/rushandball.ru/files/styles/team_logo/public/logo.png?itok=1TFMmFpI",event: "goal", playerNumber: 11, dateTime: "2016.06.18", score: "2:3"},
+            {team: 1, logo: "http://localhost:8181/fgr/rushandball.ru/files/styles/team_logo/public/logotip_kaustik.png?itok=fWzzBqBF",event: "goal", playerNumber: 11, dateTime: "2016.06.18", score: "2:3"},
+            {team: 1, logo: "http://localhost:8181/fgr/rushandball.ru/files/styles/team_logo/public/logotip_kaustik.png?itok=fWzzBqBF",event: "team_delete", playerNumber: 43, dateTime: "2016.06.18", score: "2:3"},
+            {team: 1, logo: "http://localhost:8181/fgr/rushandball.ru/files/styles/team_logo/public/logotip_kaustik.png?itok=fWzzBqBF",event: "goal", playerNumber: 32, dateTime: "2016.06.18", score: "2:3"},
+            {team: 1, logo: "http://localhost:8181/fgr/rushandball.ru/files/styles/team_logo/public/logotip_kaustik.png?itok=fWzzBqBF",event: "goal", playerNumber: 11, dateTime: "2016.06.18", score: "2:3"},
+            {team: 2, logo: "http://localhost:8181/fgr/rushandball.ru/files/styles/team_logo/public/logo.png?itok=1TFMmFpI",event: "goal", playerNumber: 54, dateTime: "2016.06.18", score: "2:3"},
+            {team: 2, logo: "http://localhost:8181/fgr/rushandball.ru/files/styles/team_logo/public/logo.png?itok=1TFMmFpI",event: "goal", playerNumber: 11, dateTime: "2016.06.18", score: "2:3"},
+            {team: 1, logo: "http://localhost:8181/fgr/rushandball.ru/files/styles/team_logo/public/logotip_kaustik.png?itok=fWzzBqBF",event: "goal", playerNumber: 67, dateTime: "2016.06.18", score: "2:3"},
+            {team: 1, logo: "http://localhost:8181/fgr/rushandball.ru/files/styles/team_logo/public/logotip_kaustik.png?itok=fWzzBqBF",event: "goal", playerNumber: 67, dateTime: "2016.06.18", score: "2:3"},
+            {team: 2, logo: "http://localhost:8181/fgr/rushandball.ru/files/styles/team_logo/public/logo.png?itok=1TFMmFpI",event: "goal", playerNumber: 67, dateTime: "2016.06.18", score: "2:3"},
+            {team: 1, logo: "http://localhost:8181/fgr/rushandball.ru/files/styles/team_logo/public/logotip_kaustik.png?itok=fWzzBqBF",event: "team_timeout", playerNumber: 67, dateTime: "2016.06.18", score: "2:3"}
         ];
-        return obj;
+        self.data = obj;
+        if(callback) callback();
     };
 
     self.getMaxDepth = function(eventsArray) {
@@ -124,51 +125,53 @@ TableBuilder = function(divId) {
         return maxDepth;
     };
 
-    self.buildTable = function() {
-        self.data = self.getGameOnlineInfo(1);
-        self.maxDepth = self.getMaxDepth(self.data);
-        var rows = self.maxDepth.teamA + 1 + self.maxDepth.teamB + 1;
-        var additionalRows = 0;
-        if(self.maxDepth.teamA > self.maxDepth.teamB) {
-            additionalRows = self.maxDepth.teamA - self.maxDepth.teamB;
-        } else {
-            additionalRows = self.maxDepth.teamB - self.maxDepth.teamA;
-        }
-        var columns = self.maxDepth.differencesCount + 1;
-        self.matrix = new Array(rows);
-        var tableString = '<table class="diagram"><tbody>';
-        for(var i = 0; i < self.matrix.length; i++) {
-            tableString += '<tr>';
-
-            if(i === 0) tableString += self.getTeamsRepresentation().teamAHtml;
-            if(self.maxDepth.teamA + 1 === i) tableString += self.getTeamsRepresentation().teamBHtml;
-            self.matrix[i] = new Array(columns);
-            for(var j = 0; j < self.matrix[i].length; j++) {
-                tableString += '<td class="no_padding" id="' + i + 'a' + j +'"></td>';
+    self.buildTable = function(callback) {
+        self.getGameOnlineInfo(1, function(){
+            self.maxDepth = self.getMaxDepth(self.data);
+            var rows = self.maxDepth.teamA + 1 + self.maxDepth.teamB + 1;
+            var additionalRows = 0;
+            if(self.maxDepth.teamA > self.maxDepth.teamB) {
+                additionalRows = self.maxDepth.teamA - self.maxDepth.teamB;
+            } else {
+                additionalRows = self.maxDepth.teamB - self.maxDepth.teamA;
             }
-            tableString += '</tr>';
-        }
+            var columns = self.maxDepth.differencesCount + 1;
+            self.matrix = new Array(rows);
+            var tableString = '<table class="diagram"><tbody>';
+            for(var i = 0; i < self.matrix.length; i++) {
+                tableString += '<tr>';
 
-        for(var m = 0; m < additionalRows; m++) {
-            tableString += '<tr>'
-            if(i === 0) {
-                tableString += '<td class="additional_rows"></td>'
+                if(i === 0) tableString += self.getTeamsRepresentation().teamAHtml;
+                if(self.maxDepth.teamA + 1 === i) tableString += self.getTeamsRepresentation().teamBHtml;
+                self.matrix[i] = new Array(columns);
+                for(var j = 0; j < self.matrix[i].length; j++) {
+                    tableString += '<td class="no_padding" id="' + i + 'a' + j +'"></td>';
+                }
+                tableString += '</tr>';
             }
-            for(var n = 0; n < self.matrix[0].length; n++) {
-                tableString += '<td class="additional_rows"></td>';
+
+            for(var m = 0; m < additionalRows; m++) {
+                tableString += '<tr>'
+                if(i === 0) {
+                    tableString += '<td class="additional_rows"></td>'
+                }
+                for(var n = 0; n < self.matrix[0].length; n++) {
+                    tableString += '<td class="additional_rows"></td>';
+                }
+                tableString += '</tr>';
             }
-            tableString += '</tr>';
-        }
-        tableString += '</tbody>';
+            tableString += '</tbody>';
 
-        tableString += '<tfoot><tr><td></td><td><span>Счет</span></td>';
-        for(var i = 0; i < self.columnsScore.length; i++) {
-            tableString += '<td class="diagram_score">' + self.columnsScore[i] + '</td>';
-        }
-        tableString += '</tr></tfoot>';
+            tableString += '<tfoot><tr><td></td><td><span>Счет</span></td>';
+            for(var i = 0; i < self.columnsScore.length; i++) {
+                tableString += '<td class="diagram_score">' + self.columnsScore[i] + '</td>';
+            }
+            tableString += '</tr></tfoot>';
 
-        tableString += '</table>';
-        $(self.divId).append(tableString);
+            tableString += '</table>';
+            $('#' + self.divId).append(tableString);
+            if(callback) callback();
+        });
     };
 
     self.getTeamsRepresentation = function() {
@@ -192,19 +195,19 @@ TableBuilder = function(divId) {
         switch (event.event) {
             case 'goal':
                 if(event.team === self.teamA) {
-                    return '<div class="player_number_diagram team_a_number"><span>' + event.player_number + '</span></div>'
+                    return '<div class="player_number_diagram team_a_number"><span>' + event.playerNumber + '</span></div>'
                 } else {
-                    return '<div class="player_number_diagram team_b_number"><span>' + event.player_number + '</span></div>'
+                    return '<div class="player_number_diagram team_b_number"><span>' + event.playerNumber + '</span></div>'
                 }
                 break;
             case 'team_yellow':
-                return '<div class="player_number_diagram team_yellow"><span>' + event.player_number + '</span></div>'
+                return '<div class="player_number_diagram team_yellow"><span>' + event.playerNumber + '</span></div>'
                 break;
             case 'team_delete':
-                return '<div class="player_number_diagram team_delete"><span>' + event.player_number + '</span></div>'
+                return '<div class="player_number_diagram team_delete"><span>' + event.playerNumber + '</span></div>'
                 break;
             case 'team_disqualified':
-                return '<div class="player_number_diagram team_disqualified"><span>' + event.player_number + '</span></div>'
+                return '<div class="player_number_diagram team_disqualified"><span>' + event.playerNumber + '</span></div>'
                 break;
             case 'team_timeout':
                 return '<div class="player_number_diagram team_timeout"><span>' + 'TA' + '</span></div>'
@@ -251,7 +254,7 @@ TableBuilder = function(divId) {
     };
 
     self.clearDiv = function () {
-        $(self.divId).empty();
+        $('#' + self.divId).empty();
     };
 
     self.destroy = function() {
@@ -264,8 +267,9 @@ TableBuilder = function(divId) {
     self.updateTable = function() {
         self.destroy();
         self.clearDiv();
-        self.buildTable();
-        self.fillTable();
+        self.buildTable(function(){
+            self.fillTable();
+        });
     };
 
     return self;

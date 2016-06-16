@@ -257,6 +257,95 @@
             <td colspan="6"></td>
         </tr>
         </tbody>
+        <tfoot>
+        <tr>
+            <td colspan="6">Всего:</td>
+            <td colspan="6"></td>
+            <td colspan="6"></td>
+            <td colspan="6"></td>
+            <td colspan="6"></td>
+            <td colspan="6"></td>
+            <td colspan="6"></td>
+            <td colspan="6"></td>
+            <td colspan="6"></td>
+        </tr>
+        </tfoot>
+    </table>
+
+    //Command attacks
+    <table class="throws_statistics">
+        <thead>
+            <tr>
+                <th>Атаки команды</th>
+                <th>Голы</th>
+                <th>Сейвы</th>
+                <th>Мимо</th>
+                <th>Штанга</th>
+                <th>Блоки</th>
+                <th>Всего</th>
+                <th>%</th>
+                <th>% от общего количества</th>
+            </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td class="first_column_throws_statistics">Позиционное нападение</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td class="first_column_throws_statistics">КонтрАтака</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td class="first_column_throws_statistics">Индивидуальный отрыв (1х1)</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td class="first_column_throws_statistics">Быстрое начало</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        </tbody>
+        <tfoot>
+            <tr>
+                <td>Всего:</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+        </tfoot>
     </table>
 </div>
 
@@ -332,15 +421,16 @@
             <th rowspan="3">max ГП</th>
         </tr>
         <tr>
-            <th colspan="2"></th>
-            <th colspan="2"></th>
-            <th colspan="2"></th>
-            <th colspan="2"></th>
-            <th colspan="2"></th>
-            <th colspan="2"></th>
-            <th colspan="2"></th>
-            <th colspan="2"></th>
-            <th colspan="2"></th>
+            <th colspan="2">Всего</th>
+
+            <th colspan="2">В большинстве</th>
+            <th colspan="2">В меньшинстве</th>
+            <th colspan="2">ПН</th>
+            <th colspan="2">КА</th>
+            <th colspan="2">1Х1</th>
+            <th colspan="2">БН</th>
+            <th colspan="2">ВСЕГО В БП</th>
+            <th colspan="2">ПА</th>
         </tr>
         <tr>
             <th>ГА</th>
@@ -416,6 +506,219 @@
         </tr>
         </tbody>
     </table>
+</div>
+
+<div id="stats-holder">
+    <div id="stat_goals" class="stat-element-holder">
+        <div class="action-name" style="text-align:center; ">Голы</div>
+        <div class="fl stat-home">26</div>
+        <div class="fl main-stat-bar">
+            <div class="fl bar-holder">
+                <div class="bar-home home" style="width:130.72727272727px;"></div>
+            </div>
+            <div class="fr bar-holder">
+                <div class="bar-away away" style="width:180.27272727273px;"></div>
+            </div>
+            <div class="cl"></div>
+        </div>
+        <div class="fl stat-away">29</div>
+        <div class="cl"></div>
+    </div>
+    <div id="stat_efficiency" class="stat-element-holder">
+        <div class="action-name" style="text-align:center; ">Эффективность бросков</div>
+        <div class="fl stat-home">26</div>
+        <div class="fl main-stat-bar">
+            <div class="fl bar-holder">
+                <div class="bar-home home" style="width:110.72727272727px;"></div>
+            </div>
+            <div class="fr bar-holder">
+                <div class="bar-away away" style="width:190.27272727273px;"></div>
+            </div>
+            <div class="cl"></div>
+        </div>
+        <div class="fl stat-away">29</div>
+        <div class="cl"></div>
+    </div>
+    <div id="stat_efficiency_fast_move" class="stat-element-holder">
+        <div class="action-name" style="text-align:center; ">Эффективность быстрых переходов</div>
+        <div class="fl stat-home">26</div>
+        <div class="fl main-stat-bar">
+            <div class="fl bar-holder">
+                <div class="bar-home home" style="width:140.72727272727px;"></div>
+            </div>
+            <div class="fr bar-holder">
+                <div class="bar-away away" style="width:160.27272727273px;"></div>
+            </div>
+            <div class="cl"></div>
+        </div>
+        <div class="fl stat-away">29</div>
+        <div class="cl"></div>
+    </div>
+    <div id="stat_efficiency_not_in_goal" class="stat-element-holder">
+        <div class="action-name" style="text-align:center; ">Количество бросков не в створ ворот</div>
+        <div class="fl stat-home">26</div>
+        <div class="fl main-stat-bar">
+            <div class="fl bar-holder">
+                <div class="bar-home home" style="width:170.72727272727px;"></div>
+            </div>
+            <div class="fr bar-holder">
+                <div class="bar-away away" style="width:110.27272727273px;"></div>
+            </div>
+            <div class="cl"></div>
+        </div>
+        <div class="fl stat-away">29</div>
+        <div class="cl"></div>
+    </div>
+    <div id="stat_efficiency_goalkeepers" class="stat-element-holder">
+        <div class="action-name" style="text-align:center; ">Эффективность вратарей</div>
+        <div class="fl stat-home">26</div>
+        <div class="fl main-stat-bar">
+            <div class="fl bar-holder">
+                <div class="bar-home home" style="width:190.72727272727px;"></div>
+            </div>
+            <div class="fr bar-holder">
+                <div class="bar-away away" style="width:100.27272727273px;"></div>
+            </div>
+            <div class="cl"></div>
+        </div>
+        <div class="fl stat-away">29</div>
+        <div class="cl"></div>
+    </div>
+    <div id="stat_7m_fine_count" class="stat-element-holder">
+        <div class="action-name" style="text-align:center; ">Количество 7м штрафных бросков</div>
+        <div class="fl stat-home">26</div>
+        <div class="fl main-stat-bar">
+            <div class="fl bar-holder">
+                <div class="bar-home home" style="width:140.72727272727px;"></div>
+            </div>
+            <div class="fr bar-holder">
+                <div class="bar-away away" style="width:130.27272727273px;"></div>
+            </div>
+            <div class="cl"></div>
+        </div>
+        <div class="fl stat-away">29</div>
+        <div class="cl"></div>
+    </div>
+    <div id="stat_efficiency_7m_count" class="stat-element-holder">
+        <div class="action-name" style="text-align:center; ">Эффективность пробития 7м штрафных бросков</div>
+        <div class="fl stat-home">26</div>
+        <div class="fl main-stat-bar">
+            <div class="fl bar-holder">
+                <div class="bar-home home" style="width:180.72727272727px;"></div>
+            </div>
+            <div class="fr bar-holder">
+                <div class="bar-away away" style="width:180.27272727273px;"></div>
+            </div>
+            <div class="cl"></div>
+        </div>
+        <div class="fl stat-away">29</div>
+        <div class="cl"></div>
+    </div>
+    <div id="stat_lost_ball" class="stat-element-holder">
+        <div class="action-name" style="text-align:center; ">Потери всего</div>
+        <div class="fl stat-home">26</div>
+        <div class="fl main-stat-bar">
+            <div class="fl bar-holder">
+                <div class="bar-home home" style="width:120.72727272727px;"></div>
+            </div>
+            <div class="fr bar-holder">
+                <div class="bar-away away" style="width:130.27272727273px;"></div>
+            </div>
+            <div class="cl"></div>
+        </div>
+        <div class="fl stat-away">29</div>
+        <div class="cl"></div>
+    </div>
+    <div id="stat_ball_catches" class="stat-element-holder">
+        <div class="action-name" style="text-align:center; ">Перехваты</div>
+        <div class="fl stat-home">26</div>
+        <div class="fl main-stat-bar">
+            <div class="fl bar-holder">
+                <div class="bar-home home" style="width:110.72727272727px;"></div>
+            </div>
+            <div class="fr bar-holder">
+                <div class="bar-away away" style="width:170.27272727273px;"></div>
+            </div>
+            <div class="cl"></div>
+        </div>
+        <div class="fl stat-away">29</div>
+        <div class="cl"></div>
+    </div>
+    <div id="stat_2m_fine_count" class="stat-element-holder">
+        <div class="action-name" style="text-align:center; ">Количество двухминутных удалений</div>
+        <div class="fl stat-home">26</div>
+        <div class="fl main-stat-bar">
+            <div class="fl bar-holder">
+                <div class="bar-home home" style="width:130.72727272727px;"></div>
+            </div>
+            <div class="fr bar-holder">
+                <div class="bar-away away" style="width:170.27272727273px;"></div>
+            </div>
+            <div class="cl"></div>
+        </div>
+        <div class="fl stat-away">29</div>
+        <div class="cl"></div>
+    </div>
+    <div id="stat_fines" class="stat-element-holder">
+        <div class="action-name" style="text-align:center; ">Наказания = (Др) x 10 + (Д) x 5 + (2мин.) x 2 + (Пр.) x 1</div>
+        <div class="fl stat-home">26</div>
+        <div class="fl main-stat-bar">
+            <div class="fl bar-holder">
+                <div class="bar-home home" style="width:190.72727272727px;"></div>
+            </div>
+            <div class="fr bar-holder">
+                <div class="bar-away away" style="width:130.27272727273px;"></div>
+            </div>
+            <div class="cl"></div>
+        </div>
+        <div class="fl stat-away">29</div>
+        <div class="cl"></div>
+    </div>
+    <div id="stat_timeouts" class="stat-element-holder">
+        <div class="action-name" style="text-align:center; ">Командные тайм-ауты</div>
+        <div class="fl stat-home">26</div>
+        <div class="fl main-stat-bar">
+            <div class="fl bar-holder">
+                <div class="bar-home home" style="width:130.72727272727px;"></div>
+            </div>
+            <div class="fr bar-holder">
+                <div class="bar-away away" style="width:130.27272727273px;"></div>
+            </div>
+            <div class="cl"></div>
+        </div>
+        <div class="fl stat-away">29</div>
+        <div class="cl"></div>
+    </div>
+    <div id="stat_max_goals_in_a_row" class="stat-element-holder">
+        <div class="action-name" style="text-align:center; ">Максимально голов подряд</div>
+        <div class="fl stat-home">26</div>
+        <div class="fl main-stat-bar">
+            <div class="fl bar-holder">
+                <div class="bar-home home" style="width:120.72727272727px;"></div>
+            </div>
+            <div class="fr bar-holder">
+                <div class="bar-away away" style="width:120.27272727273px;"></div>
+            </div>
+            <div class="cl"></div>
+        </div>
+        <div class="fl stat-away">29</div>
+        <div class="cl"></div>
+    </div>
+    <div id="stat_ball_owning" class="stat-element-holder">
+        <div class="action-name" style="text-align:center; ">Время владения мячом</div>
+        <div class="fl stat-home">26</div>
+        <div class="fl main-stat-bar">
+            <div class="fl bar-holder">
+                <div class="bar-home home" style="width:180.72727272727px;"></div>
+            </div>
+            <div class="fr bar-holder">
+                <div class="bar-away away" style="width:180.27272727273px;"></div>
+            </div>
+            <div class="cl"></div>
+        </div>
+        <div class="fl stat-away">29</div>
+        <div class="cl"></div>
+    </div>
 </div>
 
 <script>

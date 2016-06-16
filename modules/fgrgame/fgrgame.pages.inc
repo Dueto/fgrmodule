@@ -18,6 +18,7 @@ function template_preprocess_fgrgame_ended(&$vars) {
     drupal_add_js(drupal_get_path('module', 'fgrgame') . '/js/lib/google-loader.js');
     drupal_add_js(drupal_get_path('module', 'fgrgame') . '/js/chart-builder.js');
     drupal_add_js(drupal_get_path('module', 'fgrgame') . '/js/table-builder.js');
+    drupal_add_js(drupal_get_path('module', 'fgrgame') . '/js/match-progress-builder.js');
     drupal_add_js(drupal_get_path('module', 'fgrgame') . '/js/fgrgame.js');
 }
 

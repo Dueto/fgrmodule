@@ -259,6 +259,11 @@ a.blank_link:hover {
     border-bottom: 1px solid black;
     height: 10px;
 }
+
+.gamers_table_game tr:nth-child(even) {
+    background: white;
+}
+
 .gamers_table_game tr:last-child {
     border-bottom: none;
 }
@@ -431,4 +436,170 @@ table.right {
 .first_column_throws_statistics {
     color: white;
     background: linear-gradient(to bottom, #52a9e5 0%,#227fbf 100%);
+}
+
+#stats-holder .action-name {
+    text-align: center;
+    margin: 4px 0 4px 0;
+}
+
+#stats-holder .stat-home {
+    width: 20px;
+    text-align: center;
+    line-height: 1;
+}
+
+#stats-holder .main-stat-bar {
+    width: 670px;
+    background: #e4e8ef;
+    height: 15px;
+}
+
+#stats-holder .stat-away {
+    width: 20px;
+    text-align: center;
+    line-height: 1;
+}
+
+#stats-holder .bar-holder {
+    width: 50%;
+    position: relative;
+}
+
+#stats-holder .bar-home {
+    right: 0px;
+    position: absolute;
+    height: 15px;
+    width: 40px;
+}
+
+#stats-holder .bar-away {
+    left: 0px;
+    position: absolute;
+    height: 15px;
+    width: 20px;
+}
+
+.away {
+    background: red !important;
+    color: #000000 !important;
+}
+
+.home {
+    background: #227fbf;!important;
+    color: #40e0d0 !important;
+}
+
+.fl {
+    float: left;
+}
+
+.fr {
+    float: right;
+}
+
+.cl {
+    clear: both;
+}
+
+#match_progress_container {
+    width: 710px;
+    height: 660px;
+    display: block;
+    overflow-y: scroll;
+}
+
+.team_a_tshirt {
+    background-image: url('./images/red-tshirt.jpg');
+    background-size: cover;
+    text-align: center;
+    color: white;
+    height: 30px;
+    width: 35px;
+    display: table-cell;
+    vertical-align: middle;
+}
+
+.team_b_tshirt {
+    background-image: url('./images/blue-tshirt.png');
+    background-size: cover;
+    text-align: center;
+    color: white;
+    height: 30px;
+    width: 35px;
+    display: table-cell;
+    vertical-align: middle;
+}
+
+
+.progress_table tr {
+    height: 60px;
+    border-bottom: solid 1px #eaeeef;
+}
+
+.progress_table td {
+    padding-bottom: 10px;
+    padding-top: 10px;
+    padding-left: 15px;
+}
+
+.progress_table td:nth-child(1) {
+    width: 30px;
+}
+
+.progress_table td:nth-child(2) {
+    width: 45px;
+    text-align: center;
+    font-size: 12px;
+}
+
+.progress_table td:nth-child(3) {
+    width: 15px;
+}
+
+.progress_table td:nth-child(4) {
+    width: 40px;
+    display: table;
+    margin-top: 14px;
+}
+
+.progress_table tr:nth-child(even) {
+    background: white;
+}
+
+.score_progress_table {
+    text-align: center;
+}
+
+.score_progress_table img {
+    height: 30px;
+    width: 30px;
+}
+
+.score_progress_table span {
+    font-size: 14px;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.table_container tr:nth-child(even) {
+    background: white;
+}
+
+.gate_table td {
+    border: 1px solid #C0C0C0;
+    text-align: center;
+}
+
+.gate_table tr:nth-child(even) {
+    background: white;
+}
+
+.no_margin {
+    margin: 0;
+}
+
+.throws_map {
+    width: 710px;
+    background: url('./images/field.png');
 }

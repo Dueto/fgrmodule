@@ -1330,6 +1330,477 @@ function get_game_statistics_by_id($id) {
 }
 
 function get_game_throws_by_id($id) {
+    $json = '
+{
+  "teamA": {
+    "name": "Каустик",
+    "playerStats": [
+      {
+        "name": "Олег Сидельников",
+        "number": 12,
+        "attackStats": {
+          "lu": 1,
+          "ru": 4,
+          "lc": 3,
+          "cc": 1,
+          "ld": 4,
+          "cd": 6,
+          "rd": 2
+        },
+        "blockStats": {
+          "lu": 5,
+          "cu": 8,
+          "ru": 6,
+          "lc": 3,
+          "cc": 5,
+          "ld": 9,
+          "rd": 7
+        }
+      },
+      {
+        "name": "Олег Епифанцев",
+        "number": 12,
+        "attackStats": {
+          "lu": 1,
+          "cu": 7,
+          "ru": 4,
+          "lc": 3,
+          "cc": 1,
+          "rc": 2,
+          "cd": 6,
+          "rd": 2
+        },
+        "blockStats": {
+          "lu": 5,
+          "cu": 8,
+          "ru": 6,
+          "lc": 3,
+          "cc": 5,
+          "cd": 1,
+          "rd": 7
+        }
+      },
+      {
+        "name": "Иван Олейников",
+        "number": 12,
+        "attackStats": {
+          "lu": 1,
+          "cu": 7,
+          "ru": 4,
+          "lc": 3,
+          "cc": 1,
+          "ld": 4,
+          "cd": 6,
+          "rd": 2
+        },
+        "blockStats": {
+          "lu": 5,
+          "cu": 8,
+          "ru": 6,
+          "lc": 3,
+          "cc": 5,
+          "ld": 9,
+          "cd": 1,
+          "rd": 7
+        }
+      },
+      {
+        "name": "Олег Сидельников",
+        "number": 12,
+        "attackStats": {
+          "lu": 1,
+          "ru": 4,
+          "lc": 3,
+          "cc": 1,
+          "ld": 4,
+          "cd": 6,
+          "rd": 2
+        },
+        "blockStats": {
+          "lu": 5,
+          "cu": 8,
+          "ru": 6,
+          "lc": 3,
+          "cc": 5,
+          "ld": 9,
+          "rd": 7
+        }
+      },
+      {
+        "name": "Олег Епифанцев",
+        "number": 12,
+        "attackStats": {
+          "lu": 1,
+          "cu": 7,
+          "ru": 4,
+          "lc": 3,
+          "cc": 1,
+          "rc": 2,
+          "cd": 6,
+          "rd": 2
+        },
+        "blockStats": {
+          "lu": 5,
+          "cu": 8,
+          "ru": 6,
+          "lc": 3,
+          "cc": 5,
+          "cd": 1,
+          "rd": 7
+        }
+      },
+      {
+        "name": "Олег Сидельников",
+        "number": 12,
+        "attackStats": {
+          "lu": 1,
+          "ru": 4,
+          "lc": 3,
+          "cc": 1,
+          "ld": 4,
+          "cd": 6,
+          "rd": 2
+        },
+        "blockStats": {
+          "lu": 5,
+          "cu": 8,
+          "ru": 6,
+          "lc": 3,
+          "cc": 5,
+          "ld": 9,
+          "rd": 7
+        }
+      },
+      {
+        "name": "Олег Епифанцев",
+        "number": 12,
+        "attackStats": {
+          "lu": 1,
+          "cu": 7,
+          "ru": 4,
+          "lc": 3,
+          "cc": 1,
+          "rc": 2,
+          "cd": 6,
+          "rd": 2
+        },
+        "blockStats": {
+          "lu": 5,
+          "cu": 8,
+          "ru": 6,
+          "lc": 3,
+          "cc": 5,
+          "cd": 1,
+          "rd": 7
+        }
+      },
+      {
+        "name": "Иван Олейников",
+        "number": 12,
+        "attackStats": {
+          "lu": 1,
+          "cu": 7,
+          "ru": 4,
+          "lc": 3,
+          "cc": 1,
+          "ld": 4,
+          "cd": 6,
+          "rd": 2
+        },
+        "blockStats": {
+          "lu": 5,
+          "cu": 8,
+          "ru": 6,
+          "lc": 3,
+          "cc": 5,
+          "ld": 9,
+          "cd": 1,
+          "rd": 7
+        }
+      },
+      {
+        "name": "Николай Подберезин",
+        "number": 12,
+        "attackStats": {
+          "lu": 1,
+          "cu": 7,
+          "ru": 4,
+          "lc": 3,
+          "cc": 1,
+          "rc": 2,
+          "ld": 4,
+          "cd": 6,
+          "rd": 2
+        },
+        "blockStats": {
+          "lu": 5,
+          "cu": 8,
+          "ru": 6,
+          "lc": 3,
+          "cc": 5,
+          "rc": 7,
+          "ld": 9,
+          "cd": 1,
+          "rd": 7
+        }
+      },
+      {
+        "name": "Иван Олейников",
+        "number": 12,
+        "attackStats": {
+          "lu": 1,
+          "cu": 7,
+          "ru": 4,
+          "lc": 3,
+          "cc": 1,
+          "ld": 4,
+          "cd": 6,
+          "rd": 2
+        },
+        "blockStats": {
+          "lu": 5,
+          "cu": 8,
+          "ru": 6,
+          "lc": 3,
+          "cc": 5,
+          "ld": 9,
+          "cd": 1,
+          "rd": 7
+        }
+      }
+    ],
+    "goalKeeperStats": [
+      {
+        "name": "Иван Олейников",
+        "number": 12,
+        "attackStats": {
+          "lu": 1,
+          "cu": 7,
+          "ru": 4,
+          "lc": 3,
+          "cc": 1,
+          "ld": 4,
+          "cd": 6,
+          "rd": 2
+        },
+        "blockStats": {
+          "lu": 5,
+          "cu": 8,
+          "ru": 6,
+          "lc": 3,
+          "cc": 5,
+          "ld": 9,
+          "cd": 1,
+          "rd": 7
+        }
+      },
+      {
+        "name": "Николай Подберезин",
+        "number": 12,
+        "attackStats": {
+          "lu": 1,
+          "cu": 7,
+          "ru": 4,
+          "lc": 3,
+          "cc": 1,
+          "rc": 2,
+          "ld": 4,
+          "cd": 6,
+          "rd": 2
+        },
+        "blockStats": {
+          "lu": 5,
+          "cu": 8,
+          "ru": 6,
+          "lc": 3,
+          "cc": 5,
+          "rc": 7,
+          "ld": 9,
+          "cd": 1,
+          "rd": 7
+        }
+      }
+    ]
+  },
+  "teamB": {
+    "name": "Чеховские медведи",
+    "playerStats": [
+      {
+        "name": "Олег Сидельников",
+        "number": 12,
+        "attackStats": {
+          "lu": 1,
+          "ru": 4,
+          "lc": 3,
+          "cc": 1,
+          "ld": 4,
+          "cd": 6,
+          "rd": 2
+        },
+        "blockStats": {
+          "lu": 5,
+          "cu": 8,
+          "ru": 6,
+          "lc": 3,
+          "cc": 5,
+          "ld": 9,
+          "rd": 7
+        }
+      },
+      {
+        "name": "Олег Епифанцев",
+        "number": 12,
+        "attackStats": {
+          "lu": 1,
+          "cu": 7,
+          "ru": 4,
+          "lc": 3,
+          "cc": 1,
+          "rc": 2,
+          "cd": 6,
+          "rd": 2
+        },
+        "blockStats": {
+          "lu": 5,
+          "cu": 8,
+          "ru": 6,
+          "lc": 3,
+          "cc": 5,
+          "cd": 1,
+          "rd": 7
+        }
+      },
+      {
+        "name": "Иван Олейников",
+        "number": 12,
+        "attackStats": {
+          "lu": 1,
+          "cu": 7,
+          "ru": 4,
+          "lc": 3,
+          "cc": 1,
+          "ld": 4,
+          "cd": 6,
+          "rd": 2
+        },
+        "blockStats": {
+          "lu": 5,
+          "cu": 8,
+          "ru": 6,
+          "lc": 3,
+          "cc": 5,
+          "ld": 9,
+          "cd": 1,
+          "rd": 7
+        }
+      },
+      {
+        "name": "Николай Подберезин",
+        "number": 12,
+        "attackStats": {
+          "lu": 1,
+          "cu": 7,
+          "ru": 4,
+          "lc": 3,
+          "cc": 1,
+          "rc": 2,
+          "ld": 4,
+          "cd": 6,
+          "rd": 2
+        },
+        "blockStats": {
+          "lu": 5,
+          "cu": 8,
+          "ru": 6,
+          "lc": 3,
+          "cc": 5,
+          "rc": 7,
+          "ld": 9,
+          "cd": 1,
+          "rd": 7
+        }
+      },
+      {
+        "name": "Иван Олейников",
+        "number": 12,
+        "attackStats": {
+          "lu": 1,
+          "cu": 7,
+          "ru": 4,
+          "lc": 3,
+          "cc": 1,
+          "ld": 4,
+          "cd": 6,
+          "rd": 2
+        },
+        "blockStats": {
+          "lu": 5,
+          "cu": 8,
+          "ru": 6,
+          "lc": 3,
+          "cc": 5,
+          "ld": 9,
+          "cd": 1,
+          "rd": 7
+        }
+      }
+    ],
+    "goalKeeperStats": [
+      {
+        "name": "Иван Олейников",
+        "number": 12,
+        "attackStats": {
+          "lu": 1,
+          "cu": 7,
+          "ru": 4,
+          "lc": 3,
+          "cc": 1,
+          "ld": 4,
+          "cd": 6,
+          "rd": 2
+        },
+        "blockStats": {
+          "lu": 5,
+          "cu": 8,
+          "ru": 6,
+          "lc": 3,
+          "cc": 5,
+          "ld": 9,
+          "cd": 1,
+          "rd": 7
+        }
+      },
+      {
+        "name": "Николай Подберезин",
+        "number": 12,
+        "attackStats": {
+          "lu": 1,
+          "cu": 7,
+          "ru": 4,
+          "lc": 3,
+          "cc": 1,
+          "rc": 2,
+          "ld": 4,
+          "cd": 6,
+          "rd": 2
+        },
+        "blockStats": {
+          "lu": 5,
+          "cu": 8,
+          "ru": 6,
+          "lc": 3,
+          "cc": 5,
+          "rc": 7,
+          "ld": 9,
+          "cd": 1,
+          "rd": 7
+        }
+      }
+    ]
+  }
+}
+    ';
+        return drupal_json_decode($json);
 //    $url = variable_get('fgrtournament_system_url', 'http://fgr.ntrlab.ru:81/api');
 //    $method = '/CompetitionGames/%s';
 //    $response = drupal_http_request($url . sprintf($method, $id), array(
@@ -1342,7 +1813,7 @@ function get_game_throws_by_id($id) {
 //    } else {
 //        return array();
 //    }
-    return array();
+//    return array();
 }
 
 function get_game_video_by_id($id) {
