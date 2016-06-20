@@ -16,7 +16,72 @@
 <?php $commandStat = array(); $commandStat['attackStats'] = array(); $commandStat['blockStats'] = array()?>
 <div id="team_a">
 
-    <div class="throws_map"></div>
+    <div class="throws_map">
+        <div style="display: inline-block; margin-top: 22px; margin-left: 45px;"><span class="goals">5</span>/<span class="blocks">6</span></div>
+        <div style="display: inline-block; margin-left: 100px;"><span class="goals">5</span>/<span class="blocks">6</span></div>
+        <div style="display: inline-block; margin-left: 330px;"><span class="goals">5</span>/<span class="blocks">6</span></div>
+        <div style="display: inline-block; margin-left: 100px;"><span class="goals">5</span>/<span class="blocks">6</span></div>
+        <div style="margin-left: 120px; margin-top: 40px; display: inline-block;"><span class="goals">5</span>/<span class="blocks">6</span></div>
+        <div style="display: inline-block; margin-left: 425px; margin-right: 100px;"><span class="goals">6</span>/<span class="blocks">5</span></div>
+        <div style="display: inline-block; margin-top: 47px; margin-left: 130px;"><span class="goals">5</span>/<span class="blocks">6</span></div>
+        <div style="display: inline-block; margin-left: 3px;"><span class="goals">5</span>/<span class="blocks">6</span></div>
+        <div style="display: inline-block; margin-left: 30px;"><span class="goals">5</span>/<span class="blocks">6</span></div>
+        <div style="display: inline-block; margin-left: 245px;"><span class="goals">5</span>/<span class="blocks">6</span></div>
+        <div style="display: inline-block; margin-left: 30px;"><span class="goals">5</span>/<span class="blocks">6</span></div>
+        <div style="display: inline-block; margin-left: 1px; margin-right: 110px;"><span class="goals">5</span>/<span class="blocks">6</span></div>
+        <div style="display: inline-block; margin-top: 40px; margin-left: 125px;"><span class="goals">5</span>/<span class="blocks">6</span></div>
+        <div style="display: inline-block; margin-left: 415px; margin-right: 110px;"><span class="goals">5</span>/<span class="blocks">6</span></div>
+        <div style="display: inline-block; margin-top: 45px; margin-left: 45px;"><span class="goals">5</span>/<span class="blocks">6</span></div>
+        <div style="display: inline-block; margin-left: 95px;"><span class="goals">5</span>/<span class="blocks">6</span></div>
+        <div style="display: inline-block; margin-left: 335px;"><span class="goals">5</span>/<span class="blocks">6</span></div>
+        <div style="display: inline-block; margin-left: 99px;"><span class="goals">5</span>/<span class="blocks">6</span></div>
+    </div>
+    
+    <h3 class="no_margin">Карта распределения бросков</h3>
+    <span>По бросковым позициям и типам атак</span>
+    <table class="throws_map_table">
+        <thead>
+        <tr>
+            <th rowspan="3">№</th>
+            <th rowspan="3">Игроки</th>
+            <th colspan="11">Голы/Броски</th>
+        </tr>
+        <tr>
+            <th rowspan="2">Всего</th>
+            <th rowspan="2">%</th>
+            <th rowspan="2">ПН</th>
+            <th rowspan="2">%</th>
+            <th rowspan="2">7м</th>
+            <th rowspan="2">%</th>
+            <th colspan="5">В быстром переходе</th>
+        </tr>
+        <tr>
+            <th>КА</th>
+            <th>1х1</th>
+            <th>БН</th>
+            <th>БП</th>
+            <th>%</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td>3</td>
+            <td>Воронков Эдуард</td>
+            <td>7/10</td>
+            <td>70</td>
+            <td>6,9</td>
+            <td>66</td>
+            <td></td>
+            <td></td>
+            <td>1/1</td>
+            <td></td>
+            <td></td>
+            <td>1/1</td>
+            <td>100</td>
+        </tr>
+        </tbody>
+    </table>
+
 
     <h3 class="no_margin">Игроки</h3>
     <span>Голы/Броски</span>
@@ -28,6 +93,9 @@
                     <thead>
                     <tr>
                         <th colspan="3"><?php print $playerStat['number'] . '. ' . $playerStat['name']?></th>
+                    </tr>
+                    <tr>
+                        <th colspan="3"><span class="small">Штанга - 1, Мимо - 0, Блок - 3</span></th>
                     </tr>
                     </thead>
                     <tbody>
@@ -85,7 +153,7 @@
                             } ?></td>
                     </tr>
                     </tbody>
-                </table>
+			</table>
             </td>
         <?php endforeach; ?>
     </table>
@@ -94,6 +162,11 @@
     <table class="table_container">
             <td>
                 <table class="gate_table">
+                    <thead>
+                    <tr>
+                        <th colspan="3"><span class="small">Штанга - 1, Мимо - 0, Блок - 3</span></th>
+                    </tr>
+                    </thead>
                     <tbody>
                     <tr>
                         <td>
@@ -145,7 +218,7 @@
                             } ?></td>
                     </tr>
                     </tbody>
-                </table>
+			</table>
             </td>
     </table>
 
@@ -160,6 +233,9 @@
                     <thead>
                     <tr>
                         <th colspan="3"><?php print $goalkeeperStat['number'] . '. ' . $goalkeeperStat['name']?></th>
+                    </tr>
+                    <tr>
+                        <th colspan="3"><span class="small">Штанга - 1, Мимо - 0, Блок - 3</span></th>
                     </tr>
                     </thead>
                     <tbody>
@@ -217,7 +293,7 @@
                             } ?></td>
                     </tr>
                     </tbody>
-                </table>
+			</table>
             </td>
         <?php endforeach; ?>
     </table>
@@ -228,6 +304,11 @@
     <table class="table_container">
         <td>
             <table class="gate_table">
+                <thead>
+                <tr>
+                    <th colspan="3"><span class="small">Штанга - 1, Мимо - 0, Блок - 3</span></th>
+                </tr>
+                </thead>
                 <tbody>
                 <tr>
                     <td>

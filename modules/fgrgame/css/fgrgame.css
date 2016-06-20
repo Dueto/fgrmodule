@@ -586,6 +586,14 @@ table.right {
     background: white;
 }
 
+.table_container td {
+    padding: 4px;
+}
+
+.gate_table th {
+    cursor: pointer;
+}
+
 .gate_table td {
     border: 1px solid #C0C0C0;
     text-align: center;
@@ -601,5 +609,29 @@ table.right {
 
 .throws_map {
     width: 710px;
+    height: 340px;
     background: url('./images/field.png');
+    background-size: cover;
 }
+
+.throws_map_table tr > th{
+    line-height: 8px;
+}
+
+.throws_map_table td{
+    border: 1px solid #C0C0C0;
+    text-align: center;
+}
+
+.goals {
+    color: blue;
+}
+
+.blocks {
+    color: red;
+}
+
+.small {
+    font-size: 12px;
+}
+

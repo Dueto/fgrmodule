@@ -55,11 +55,8 @@ function fgrtournament_node_view($node, $view_mode, $langcode)
                 }
                 $team_node_id = get_fgrteam_node_id();
                 $game_node_id = get_fgrgame_node_id();
-                $tournament_full_name = get_tournament_full_name($tournament_id);
-                $tournament_metadata = array(
-                    'TournamentFullName' => $tournament_full_name,
-                    'TournamentId' => $tournament_id
-                );
+                $tournament_metadata = get_tournament_metadata($tournament_id);
+                print_r($tournament_metadata);
                 switch ($tournament_type) {
                     case 'games':
                         $games_type = 'result';
@@ -263,7 +260,7 @@ function get_fgrgame_node_id() {
 function print_competition_node($competition) {
     print '<li>';
     if(count($competition['Children']) != 0) {
-        print $competition['Name'];
+        print '<input type="checkbox"/><label for="item-0" id="' . $competition['CompId'] . '">' . $competition['Name'] . '</label>';
         print '<ul>';
             foreach($competition['Children'] as $children) {
                 print_competition_node($children);

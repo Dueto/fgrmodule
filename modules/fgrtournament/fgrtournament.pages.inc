@@ -5,6 +5,7 @@
 */
 function template_preprocess_fgrtournament_list(&$vars) {
     drupal_add_css(drupal_get_path('module', 'fgrtournament') . '/css/fgrtournament.css', array('group' => CSS_DEFAULT, 'type' => 'file'));
+    drupal_add_js(drupal_get_path('module', 'fgrtournament') . '/js/lib/jquery-2.2.4.min.js');
 }
 
 /**

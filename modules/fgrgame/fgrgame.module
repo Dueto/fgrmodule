@@ -95,7 +95,7 @@ function fgrgame_node_view($node, $view_mode, $langcode)
 function form_tournament_metadata($game_data)
 {
     $tournament_id = $game_data['CompId'];
-    $tournament_full_name = get_tournament_full_name($tournament_id);
+    $tournament_full_name = get_tournament_metadata($tournament_id);
     $tournament_metadata = array(
         'TournamentFullName' => $tournament_full_name,
         'TournamentId' => $tournament_id
