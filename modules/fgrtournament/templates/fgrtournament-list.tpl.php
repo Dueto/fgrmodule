@@ -39,7 +39,6 @@
             eThis.innerHTML = '&#9658;';
             eThis.parentNode.parentNode.parentNode.className = 'cl';
         }
-        return false;
     }
 
     $('#seasons').change(function(){

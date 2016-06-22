@@ -1,20 +1,3 @@
-<?php $crumb_string = null;?>
-<?php if($crumbs != NULL): ?>
-    <span> > </span>
-    <?php foreach($crumbs as $key => $crumb) {
-        $crumb_string = $crumb_string . ';' . $crumb['title'] . ':' . $crumb['ref'];
-        print '<a href="' . $crumb['ref'] . '">' . $crumb['title'] . '</a>';
-    }?>
-    <span> > <?php print $tournament_data['TournamentMetaData']['TournamentFullName']?></span>
-<?php endif ?>
-<h2><?php print $tournament_data['TournamentMetaData']['TournamentFullName']?></h2>
-<div class="tabs">
-    <ul class="tab-links">
-        <li class="active"><a href="<?php print './' . $node->nid . '?tournament_id=' . $tournament_data['TournamentMetaData']['TournamentId'] . '&type=games&game_type=result&crumbs=' . $crumb_string ?>">Матчи</a></li>
-        <li><a href="<?php print './' . $node->nid . '?tournament_id=' . $tournament_data['TournamentMetaData']['TournamentId'] . '&type=competition&crumbs=' . $crumb_string ?>">Статистика команд</a></li>
-        <li><a href="<?php print './' . $node->nid . '?tournament_id=' . $tournament_data['TournamentMetaData']['TournamentId'] . '&type=playoff&crumbs=' . $crumb_string ?>">Плейофф</a></li>
-    </ul>
-</div>
 <div class="tabs">
     <ul class="tab-links">
         <li><a href="<?php print './' . $node->nid . '?tournament_id=' . $tournament_data['TournamentMetaData']['TournamentId'] . '&type=games&game_type=online&crumbs=' . $crumb_string ?>">Текущие</a></li>

@@ -243,8 +243,6 @@ function get_tournament_team_stats_by_id($id) {
 
 function get_last_tournaments() {
     $url = variable_get('fgrtournament_system_url', 'http://fgr.ntrlab.ru:81/api');
-//    $tournament_with_childs_method = '/Competitions?$filter=CompTypeId%20eq%20\'Championship\'%20and%20ParentId%20eq%20';
-    $tournament_with_childs_method = '/Competitions/withChilds/';
     $method = '/Competitions?$filter=CompTypeId%20eq%20\'Season\'&$orderby=CompSort%20asc';
     $response = drupal_http_request($url . $method, array(
         'method' => 'GET',
@@ -253,18 +251,28 @@ function get_last_tournaments() {
     if($response->code == 200) {
         $season_tournaments = drupal_json_decode($response->data)['Data'];
         for($i = 0; $i < count($season_tournaments); $i++) {
-            $tournament_response = drupal_http_request($url . $tournament_with_childs_method . $season_tournaments[$i]['CompId'], array(
-                'method' => 'GET',
-                'data' => NULL,
-                'timeout' => 15));
-            if($tournament_response->code == 200) {
-                $season_tournaments[$i]['Children'] = drupal_json_decode($tournament_response->data)['Data']['Children'];
-//                array_push($season_tournament['Children'], drupal_json_decode($tournament_response->data)['Data']);
+            $childs = get_tournament_childs($season_tournaments[$i]['CompId']);
+            if($childs != null) {
+                $season_tournaments[$i]['Children'] = $childs;
             } else {
                 return null;
             }
         }
         return $season_tournaments;
+    } else {
+        return null;
+    }
+}
+
+function get_tournament_childs($id) {
+    $url = variable_get('fgrtournament_system_url', 'http://fgr.ntrlab.ru:81/api');
+    $tournament_with_childs_method = '/Competitions/withChilds/';
+    $tournament_response = drupal_http_request($url . $tournament_with_childs_method . $id, array(
+        'method' => 'GET',
+        'data' => NULL,
+        'timeout' => 15));
+    if($tournament_response->code == 200) {
+        return drupal_json_decode($tournament_response->data)['Data']['Children'];
     } else {
         return null;
     }
@@ -299,7 +307,8 @@ function get_tournament_metadata($id) {
         return array(
             'TournamentFullName' => $full_name,
             'TournamentId' => $tournaments_data['CompId'],
-            'TournamentTypeId' => $tournaments_data['CompTypeId']
+            'TournamentTypeId' => $tournaments_data['CompTypeId'],
+            'TournamentName' => $tournaments_data['Name']
         );
     } else {
         return null;

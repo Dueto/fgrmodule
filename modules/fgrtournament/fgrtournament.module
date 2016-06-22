@@ -49,87 +49,22 @@ function fgrtournament_node_view($node, $view_mode, $langcode)
             }
             if(isset($_GET['tournament_id'])) {
                 $tournament_id = $_GET['tournament_id'];
-                $tournament_type = 'competition';
+                $tournament_type = 'info';
                 if(isset($_GET['type'])) {
                     $tournament_type = $_GET['type'];
                 }
                 $team_node_id = get_fgrteam_node_id();
                 $game_node_id = get_fgrgame_node_id();
                 $tournament_metadata = get_tournament_metadata($tournament_id);
-                print_r($tournament_metadata);
                 switch ($tournament_type) {
                     case 'games':
-                        $games_type = 'result';
-                        if(isset($_GET['game_type'])) {
-                            $games_type = $_GET['game_type'];
-                        }
-                        switch($games_type) {
-                            case 'result':
-                                $tournament_games = get_tournament_games_by_id($tournament_id, $games_type);
-                                $tournament_games['TournamentMetaData'] = $tournament_metadata;
-                                $node->content['fgrtournament_games_ended'] = array(
-                                    "#markup" => theme('fgrtournament_games_ended', array('tournament_data' => $tournament_games,
-                                        'node' => $node, 'team_node_id' => $team_node_id['nid'], 'game_node_id' => $game_node_id['nid'], 'crumbs' => $crumbs))
-                                );
-                                break;
-                            case 'scheduled':
-                                $tournament_games = get_tournament_games_by_id($tournament_id, $games_type);
-                                $tournament_games['TournamentMetaData'] = $tournament_metadata;
-                                $node->content['fgrtournament_games_planned'] = array(
-                                    "#markup" => theme('fgrtournament_games_planned', array('tournament_data' => $tournament_games,
-                                        'node' => $node, 'team_node_id' => $team_node_id['nid'], 'game_node_id' => $game_node_id['nid'], 'crumbs' => $crumbs))
-                                );
-                                break;
-                            case 'online':
-                                $tournament_games = get_tournament_games_by_id($tournament_id, $games_type);
-                                $tournament_games['TournamentMetaData'] = $tournament_metadata;
-                                $node->content['fgrtournament_games_current'] = array(
-                                    "#markup" => theme('fgrtournament_games_current', array('tournament_data' => $tournament_games,
-                                        'node' => $node, 'team_node_id' => $team_node_id['nid'], 'game_node_id' => $game_node_id['nid'], 'crumbs' => $crumbs))
-                                );
-                                break;
-                        }
-                        break;
-                    case 'playoff':
-                        $tournament_data = get_tournament_by_id_playoff($tournament_id);
-                        $node->content['fgrtournament_playoff'] = array(
-                            "#markup" => theme('fgrtournament_playoff', array('tournament_data' => $tournament_data,
-                                'node' => $node, 'team_node_id' => $team_node_id['nid'], 'game_node_id' => $game_node_id['nid'], 'crumbs' => $crumbs))
-                        );
-                        break;
+                        fill_games_markup($node, $tournament_id, $tournament_metadata, $team_node_id, $game_node_id, $crumbs);
+                    break;
                     case 'competition':
-                        $tournament_view_type = 'without_result';
-                        if(isset($_GET['view'])) {
-                            $tournament_view_type = $_GET['view'];
-                        }
-                        drupal_add_js(drupal_get_path('module', 'fgrtournament') . '/js/sorttable.js');
-                        switch($tournament_view_type) {
-                            case 'chess_mates':
-                                $tournament_data = get_tournament_by_id_chess_mates($tournament_id);
-                                $tournament_data['TournamentMetaData'] = $tournament_metadata;
-                                $node->content['fgrtournament_table_sort'] = array(
-                                    "#markup" => theme('fgrtournament_table_sort', array('tournament_data' => $tournament_data,
-                                        'node' => $node, 'team_node_id' => $team_node_id['nid'], 'crumbs' => $crumbs))
-                                );
-                                break;
-                            case 'without_result':
-                                $tournament_data = get_tournament_team_stats_by_id($tournament_id);
-                                $tournament_data['TournamentMetaData'] = $tournament_metadata;
-                                $node->content['fgrtournament_table_without_result'] = array(
-                                    "#markup" => theme('fgrtournament_table_without_result', array('tournament_data' => $tournament_data,
-                                        'node' => $node, 'team_node_id' => $team_node_id['nid'], 'crumbs' => $crumbs))
-                                );
-                                break;
-                            case 'mini':
-                                $tournament_data = get_tournament_team_stats_by_id($tournament_id);
-                                $tournament_data['TournamentMetaData'] = $tournament_metadata;
-                                $node->content['fgrtournament_table_mini'] = array(
-                                    "#markup" => theme('fgrtournament_table_mini', array('tournament_data' => $tournament_data,
-                                        'node' => $node, 'team_node_id' => $team_node_id['nid'], 'crumbs' => $crumbs))
-                                );
-                                break;
-                        }
+                        fill_team_stats_markup($node, $tournament_id, $tournament_metadata, $team_node_id, $crumbs);
                         break;
+                    case 'info':
+                        fill_tournament_info_markup($node, $tournament_id, $tournament_metadata, $team_node_id, $game_node_id, $crumbs);
                 }
             } else {
                 $result = get_last_tournaments();
@@ -151,34 +86,29 @@ function fgrtournament_theme() {
             'template' => 'templates/fgrtournament-list',
             'file' => 'fgrtournament.pages.inc',
         ),
+        'fgrtournament_info' => array(
+            'variables' => array('tournament_data' => NULL, 'node' => NULL, 'crumbs' => NULL),
+            'template' => 'templates/fgrtournament-info',
+            'file' => 'fgrtournament.pages.inc',
+        ),
         'fgrtournament_playoff' => array(
             'variables' => array('tournament_data' => NULL, 'node' => NULL, 'team_node_id' => NULL, 'game_node_id' => NULL, 'crumbs' => NULL),
             'template' => 'templates/fgrtournament-playoff',
             'file' => 'fgrtournament.pages.inc',
         ),
-        'fgrtournament_table_sort' => array(
-            'variables' => array('tournament_data' => NULL, 'node' => NULL, 'team_node_id' => NULL, 'crumbs' => NULL),
-            'template' => 'templates/fgrtournament-table-sort',
-            'file' => 'fgrtournament.pages.inc',
-        ),
-        'fgrtournament_table_unsort' => array(
-            'variables' => array('tournament_data' => NULL, 'node' => NULL, 'team_node_id' => NULL, 'crumbs' => NULL),
-            'template' => 'templates/fgrtournament-table-unsort',
-            'file' => 'fgrtournament.pages.inc',
-        ),
-        'fgrtournament_table_without_result' => array(
-            'variables' => array('tournament_data' => NULL, 'node' => NULL, 'team_node_id' => NULL, 'crumbs' => NULL),
-            'template' => 'templates/fgrtournament-table-without-result',
-            'file' => 'fgrtournament.pages.inc',
-        ),
-        'fgrtournament_table_mini' => array(
-            'variables' => array('tournament_data' => NULL, 'node' => NULL, 'team_node_id' => NULL, 'crumbs' => NULL),
-            'template' => 'templates/fgrtournament-table-mini',
-            'file' => 'fgrtournament.pages.inc',
-        ),
-        'fgrtournament_games' => array(
+        'fgrtournament_chessmates' => array(
             'variables' => array('tournament_data' => NULL, 'node' => NULL, 'team_node_id' => NULL, 'game_node_id' => NULL, 'crumbs' => NULL),
-            'template' => 'templates/fgrtournament-games',
+            'template' => 'templates/fgrtournament-chessmates',
+            'file' => 'fgrtournament.pages.inc',
+        ),
+        'fgrtournament_table_stat' => array(
+            'variables' => array('tournament_data' => NULL, 'node' => NULL, 'team_node_id' => NULL, 'crumbs' => NULL),
+            'template' => 'templates/fgrtournament-table-stat',
+            'file' => 'fgrtournament.pages.inc',
+        ),
+        'fgrtournament_table_stat_mini' => array(
+            'variables' => array('tournament_data' => NULL, 'node' => NULL, 'team_node_id' => NULL, 'crumbs' => NULL),
+            'template' => 'templates/fgrtournament-table-stat-mini',
             'file' => 'fgrtournament.pages.inc',
         ),
         'fgrtournament_games_current' => array(
@@ -231,6 +161,166 @@ function fgrtournament_menu() {
 }
 
 /**
+ * @param $node
+ * @param $tournament_id
+ * @param $tournament_metadata
+ * @param $team_node_id
+ * @param $crumbs
+ * @throws Exception
+ */
+function fill_team_stats_markup($node, $tournament_id, $tournament_metadata, $team_node_id, $crumbs)
+{
+    $tournament_view_type = 'without_result';
+    if (isset($_GET['view'])) {
+        $tournament_view_type = $_GET['view'];
+    }
+    $tournament_info['TournamentMetaData'] = $tournament_metadata;
+    $menu_markup = theme('fgrtournament_info', array('tournament_data' => $tournament_info,
+        'node' => $node, 'crumbs' => $crumbs));
+    drupal_add_js(drupal_get_path('module', 'fgrtournament') . '/js/sorttable.js');
+    switch ($tournament_view_type) {
+        case 'without_result':
+            $tournament_data = get_tournament_team_stats_by_id($tournament_id);
+            $tournament_data['TournamentMetaData'] = $tournament_metadata;
+            $node->content['fgrtournament_table_stat'] = array(
+                "#markup" => $menu_markup . theme('fgrtournament_table_stat', array('tournament_data' => $tournament_data,
+                        'node' => $node, 'team_node_id' => $team_node_id['nid'], 'crumbs' => $crumbs))
+            );
+            break;
+        case 'mini':
+            $tournament_data = get_tournament_team_stats_by_id($tournament_id);
+            $tournament_data['TournamentMetaData'] = $tournament_metadata;
+            $node->content['fgrtournament_table_stat_mini'] = array(
+                "#markup" => $menu_markup . theme('fgrtournament_table_stat_mini', array('tournament_data' => $tournament_data,
+                        'node' => $node, 'team_node_id' => $team_node_id['nid'], 'crumbs' => $crumbs))
+            );
+            break;
+    }
+}
+
+/**
+ * @param $node
+ * @param $tournament_id
+ * @param $tournament_metadata
+ * @param $team_node_id
+ * @param $game_node_id
+ * @param $crumbs
+ * @throws Exception
+ */
+function fill_games_markup($node, $tournament_id, $tournament_metadata, $team_node_id, $game_node_id, $crumbs)
+{
+    $games_type = 'result';
+    if (isset($_GET['game_type'])) {
+        $games_type = $_GET['game_type'];
+    }
+    $tournament_info['TournamentMetaData'] = $tournament_metadata;
+    $menu_markup = theme('fgrtournament_info', array('tournament_data' => $tournament_info,
+        'node' => $node, 'crumbs' => $crumbs));
+    switch ($games_type) {
+        case 'result':
+            $tournament_games = get_tournament_games_by_id($tournament_id, $games_type);
+            $tournament_games['TournamentMetaData'] = $tournament_metadata;
+            $node->content['fgrtournament_games_ended'] = array(
+                "#markup" => $menu_markup . theme('fgrtournament_games_ended', array('tournament_data' => $tournament_games,
+                        'node' => $node, 'team_node_id' => $team_node_id['nid'], 'game_node_id' => $game_node_id['nid'], 'crumbs' => $crumbs))
+            );
+            break;
+        case 'scheduled':
+            $tournament_games = get_tournament_games_by_id($tournament_id, $games_type);
+            $tournament_games['TournamentMetaData'] = $tournament_metadata;
+            $node->content['fgrtournament_games_planned'] = array(
+                "#markup" => $menu_markup . theme('fgrtournament_games_planned', array('tournament_data' => $tournament_games,
+                        'node' => $node, 'team_node_id' => $team_node_id['nid'], 'game_node_id' => $game_node_id['nid'], 'crumbs' => $crumbs))
+            );
+            break;
+        case 'online':
+            $tournament_games = get_tournament_games_by_id($tournament_id, $games_type);
+            $tournament_games['TournamentMetaData'] = $tournament_metadata;
+            $node->content['fgrtournament_games_current'] = array(
+                "#markup" => $menu_markup . theme('fgrtournament_games_current', array('tournament_data' => $tournament_games,
+                        'node' => $node, 'team_node_id' => $team_node_id['nid'], 'game_node_id' => $game_node_id['nid'], 'crumbs' => $crumbs))
+            );
+            break;
+    }
+}
+
+/**
+ * @param $node
+ * @param $tournament_id
+ * @param $tournament_metadata
+ * @param $team_node_id
+ * @param $game_node_id
+ * @param $crumbs
+ * @throws Exception
+ */
+function fill_tournament_info_markup($node, $tournament_id, $tournament_metadata, $team_node_id, $game_node_id, $crumbs)
+{
+    $tournament_info['TournamentMetaData'] = $tournament_metadata;
+    $menu_markup = theme('fgrtournament_info', array('tournament_data' => $tournament_info,
+        'node' => $node, 'crumbs' => $crumbs));
+
+    $content_markup = get_markup_for_tournament($node, $tournament_id, $tournament_metadata, $team_node_id, $game_node_id, $crumbs);
+    $node->content['fgrtournament_games_planned'] = array(
+        "#markup" => $menu_markup . $content_markup
+    );
+}
+
+/**
+ * @param $node
+ * @param $tournament_id
+ * @param $tournament_metadata
+ * @param $team_node_id
+ * @param $game_node_id
+ * @param $crumbs
+ * @return string
+ */
+function get_markup_for_tournament($node, $tournament_id, $tournament_metadata, $team_node_id, $game_node_id, $crumbs) {
+    $markup = '';
+    if(is_league_type($tournament_metadata['TournamentTypeId'])) {
+        $childs = get_tournament_childs($tournament_id);
+
+    } else {
+        return get_markup_tournament_with_games($node, $tournament_id, $tournament_metadata, $team_node_id, $game_node_id, $crumbs);
+    }
+}
+
+/**
+ * @param $node
+ * @param $tournament_id
+ * @param $tournament_metadata
+ * @param $team_node_id
+ * @param $game_node_id
+ * @param $crumbs
+ * @return string
+ * @throws Exception
+ */
+function get_markup_tournament_with_games($node, $tournament_id, $tournament_metadata, $team_node_id, $game_node_id, $crumbs) {
+    $markup = '';
+    $comp_views = get_views_for_comp_type($tournament_metadata['TournamentTypeId']);
+    if($comp_views != null) {
+        foreach($comp_views as $key => $view) {
+            switch($view) {
+                case 'chessmates':
+                    $tournament_data = get_tournament_by_id_chess_mates($tournament_id);
+                    $tournament_data['TournamentMetaData'] = $tournament_metadata;
+                    return theme('fgrtournament_chessmates', array('tournament_data' => $tournament_data, 'node' => $node, 'team_node_id' => $team_node_id['nid'], 'game_node_id' => $game_node_id['nid'], 'crumbs' => $crumbs));
+                    break;
+                case 'playoff':
+                    break;
+                case 'group':
+                    $childs = get_tournament_childs($tournament_id);
+                    foreach($childs as $round_robin) {
+                        $round_robin_metadata = get_tournament_metadata($tournament_id);
+                        $markup .= get_markup_tournament_with_games($node, $round_robin['CompId'], $round_robin_metadata, $team_node_id, $game_node_id, $crumbs);
+                    }
+                    break;
+            }
+        }
+    }
+    return $markup;
+}
+
+/**
  * @return predefined tournament node id
  */
 function get_fgrtournament_node_id() {
@@ -241,6 +331,9 @@ function get_fgrtournament_node_id() {
         ->fetchAssoc();
 }
 
+/**
+ * @return predefined team node id
+ */
 function get_fgrteam_node_id() {
     return db_select('node', 'nid')
         ->fields('nid')
@@ -249,6 +342,9 @@ function get_fgrteam_node_id() {
         ->fetchAssoc();
 }
 
+/**
+ * @return predefined game node id
+ */
 function get_fgrgame_node_id() {
     return db_select('node', 'nid')
         ->fields('nid')
@@ -257,22 +353,134 @@ function get_fgrgame_node_id() {
         ->fetchAssoc();
 }
 
+/**
+ * @param $competition
+ */
 function print_competition_node($competition) {
     print '<li>';
+    $node = get_fgrtournament_node_id();
     if(count($competition['Children']) != 0) {
-        print '<input type="checkbox"/><label for="item-0" id="' . $competition['CompId'] . '">' . $competition['Name'] . '</label>';
+        if(get_views_for_comp_type($competition['CompTypeId']) != null) {
+            print '<input type="checkbox"/><label for="item-0" id="' . $competition['CompId'] . '">' .
+                '<a href="./' . $node['nid'] . '?tournament_id=' . $competition['CompId'] . '&type=competition&crumbs=;' . 'Турниры' . ':' . './' . $node['nid'] . '">' . $competition['Name'] . '</a>' .
+                '</label>';
+        } else {
+            print '<input type="checkbox"/><label for="item-0" id="' . $competition['CompId'] . '">' . $competition['Name'] . '</label>';
+        }
         print '<ul>';
-            foreach($competition['Children'] as $children) {
-                print_competition_node($children);
-            }
+        foreach($competition['Children'] as $children) {
+            print_competition_node($children);
+        }
         print '</ul>';
     } else {
-        $node = get_fgrtournament_node_id();
-        if($competition['CanHasGames']) {
-            print '<a href="./' . $node['nid'] . '?tournament_id=' . $competition['CompId'] . '&type=competition&crumbs=;' . $competition['Name'] . ':' . './' . $node['nid'] . '">' . $competition['Name'] . '</a>';
+        if(get_views_for_comp_type($competition['CompTypeId']) != null) {
+            print '<a href="./' . $node['nid'] . '?tournament_id=' . $competition['CompId'] . '&type=competition&crumbs=;' . 'Турниры' . ':' . './' . $node['nid'] . '">' . $competition['Name'] . '</a>';
         } else {
             print $competition['Name'];
         }
     }
     print '</li>';
+}
+
+/**
+ * @param $id
+ * @return bool
+ */
+function is_chessmates_type($id) {
+    switch($id) {
+        case 0:
+            return true;
+            break;
+        default:
+            return false;
+    }
+}
+
+/**
+ * @param $id
+ * @return bool
+ */
+function is_playoff_type($id) {
+    switch($id) {
+        case -1:
+            return true;
+            break;
+        case 1:
+            return true;
+            break;
+        case 2:
+            return true;
+            break;
+        case 3:
+            return true;
+            break;
+        case 5:
+            return true;
+            break;
+        case 7:
+            return true;
+            break;
+        default:
+            return false;
+    }
+}
+
+/**
+ * @param $id
+ * @return bool
+ */
+function is_league_type($id) {
+    switch($id) {
+        case -5:
+            return true;
+            break;
+        default:
+            return false;
+    }
+}
+
+/**
+ * @param $id
+ * @return null
+ */
+function get_views_for_comp_type($id) {
+    $available_views = array(
+        // Group stage
+        -2 => array(
+            'group'
+        ),
+        // Playoff type
+        -1 => array(
+            'playoff'
+        ),
+        // Round robin type
+        0 => array(
+            'chessmates'
+        ),
+        // One game
+        1 => array(
+            'playoff'
+        ),
+        // Home and away games
+        2 => array(
+            'playoff'
+        ),
+        // Best of 3
+        3 => array(
+            'playoff'
+        ),
+        // Best of 5
+        5 => array(
+            'playoff'
+        ),
+        // Best of 7
+        7 => array(
+            'playoff'
+        )
+    );
+    if(array_key_exists($id, $available_views)) {
+        return $available_views[$id];
+    } else {
+        return null;
+    }
 }
