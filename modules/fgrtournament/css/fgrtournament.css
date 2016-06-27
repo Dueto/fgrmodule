@@ -11,9 +11,9 @@ main{
     padding:0;
     margin:0;
 }
-.round .spacer{ flex-grow:1; }
+.round .spacer{ flex-grow:1; !important;}
 .round .spacer:first-child,
-.round .spacer:last-child{ flex-grow:.5; }
+.round .spacer:last-child{ flex-grow:.5; !important;}
 
 .round .game-spacer{
     flex-grow:1;
@@ -301,7 +301,7 @@ a.blank_link:hover {
 }
 
 .red {
-    color: red;
+    color: red !important;
 }
 
 .chess_mates_table td, th {
@@ -315,6 +315,27 @@ a.blank_link:hover {
 }
 .chess_mates_table td:nth-child(2) {
     text-align: left;
+}
+
+.chess_mates_table td a {
+    text-decoration: none;
+    color: black;
+}
+
+.chess_mates_table td a:hover {
+    cursor: pointer;
+    color: black;
+    text-decoration: underline;
+}
+
+.chess_mates_table td div:first-child {
+    height: 18px;
+    width: 100%;
+}
+
+.chess_mates_table td div:last-child {
+    height: 18px;
+    width: 100%;
 }
 
 .chess_mates_table img {
@@ -468,4 +489,40 @@ a.blank_link:hover {
     display: none;
     margin-top: 15px;
     margin-left: 10px;
+}
+
+.stat_tab:hover {
+    cursor: pointer;
+}
+
+.stat_mini_tab:hover {
+    cursor: pointer;
+}
+
+.chessmates_tab:hover {
+    cursor: pointer;
+}
+
+.playoff_button {
+    background: linear-gradient(to bottom, #52a9e5 0%,#227fbf 100%);
+    border-radius: 3px;
+    font-size:14px;
+    font-weight:600;
+    color:white;
+    display:inline-block;
+    padding:9px 15px;
+}
+
+.playoff_button:hover {
+    background:#fff;
+    color:#4c4c4c;
+    border: 1px solid #4c4c4c;
+    cursor: pointer;
+}
+
+.ui-dialog { z-index: 1000 !important ;}
+
+#container {
+    width: 710px;
+    height: 1000px;
 }

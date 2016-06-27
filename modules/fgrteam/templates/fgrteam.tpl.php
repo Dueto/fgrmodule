@@ -3,7 +3,7 @@
 <table class="team_info_table">
     <tbody>
     <tr>
-        <td class="club_photo"><img src="<?php print variable_get('fgrtournament_system_url', 'http://fgr.ntrlab.ru:81/api') . '/Media/Image/' . $fgrteam['Club']['LogoId'] ?>"></td>
+        <td class="club_photo"><img src="<?php if($fgrteam['Club']['LogoId'] != null) print variable_get('fgrtournament_system_url', 'http://fgr.ntrlab.ru:81/api') . '/Media/Image/' . $fgrteam['Club']['LogoId']; else print '../files/fgrmodule/logo.png';?>"></td>
         <td class="">
             <b>Клуб: </b><?php print $fgrteam['Club']['Name']?><br/>
             <b>Домашняя арена: </b><?php print $fgrteam['HomeArena']['Name'] . ' - ' . $fgrteam['HomeArena']['City']['Name'] ?><br/>

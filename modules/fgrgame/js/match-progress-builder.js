@@ -134,10 +134,10 @@ MatchProgressBuilder = function(divId) {
                 return '<img src="../files/fgrmodule/2m.png">';
                 break;
             case 'defend':
-                return '<img src="../files/fgrmodule/shield.png">';;
+                return '<img src="../files/fgrmodule/shield.png">';
                 break;
             case 'attack':
-                return '<img src="../files/fgrmodule/attack.png">';;
+                return '<img src="../files/fgrmodule/attack.png">';
                 break;
             case 'red_card':
                 return '<img src="../files/fgrmodule/redcard.png">';

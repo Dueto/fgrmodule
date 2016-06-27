@@ -199,25 +199,27 @@ function get_tournament_by_id_chess_mates($id) {
 function form_games_table($teams_data) {
     $table_size = count($teams_data['Data']);
     $games_table = array();
-    array_fill(0, $table_size, array());
-    foreach($teams_data['Data'] as $row => $team) {
-        $games_table[$row][$row] = array();
-        foreach($team['GameScore'] as $column => $game_score) {
-            $i = $game_score['Team1Place'] - 1;
-            $j = $game_score['Team2Place'] - 1;
-            $node_object = array(
-                'Score' => $game_score['Score'],
-                'Winner' => $game_score['WinningTeam']
-            );
-            if(array_key_exists($j, $games_table[$i])) {
-                if(!is_array($games_table[$i][$j])) {
-                    $games_table[$i][$j] = array();
+    if($table_size != 0) {
+        array_fill(0, $table_size, array());
+        foreach($teams_data['Data'] as $row => $team) {
+            $games_table[$row][$row] = array();
+            foreach($team['GameScore'] as $column => $game_score) {
+                $i = $game_score['Team1Place'] - 1;
+                $j = $game_score['Team2Place'] - 1;
+                $node_object = array(
+                    'Score' => $game_score['Score'],
+                    'Winner' => $game_score['WinningTeam']
+                );
+                if(array_key_exists($j, $games_table[$i])) {
+                    if(!is_array($games_table[$i][$j])) {
+                        $games_table[$i][$j] = array();
+                    }
                 }
-            }
-            if($game_score['HomeTeam'] == 1) {
-                $games_table[$i][$j][0] = $node_object;
-            } else {
-                $games_table[$i][$j][1] = $node_object;
+                if($game_score['HomeTeam'] == 1) {
+                    $games_table[$i][$j][0] = $node_object;
+                } else {
+                    $games_table[$i][$j][1] = $node_object;
+                }
             }
         }
     }
@@ -234,7 +236,6 @@ function get_tournament_team_stats_by_id($id) {
         'timeout' => 15));
     if($response->code == 200) {
         $teams_data = drupal_json_decode($response->data);
-        print_r($id);
         return $teams_data;
     } else {
         return null;
@@ -252,11 +253,7 @@ function get_last_tournaments() {
         $season_tournaments = drupal_json_decode($response->data)['Data'];
         for($i = 0; $i < count($season_tournaments); $i++) {
             $childs = get_tournament_childs($season_tournaments[$i]['CompId']);
-            if($childs != null) {
-                $season_tournaments[$i]['Children'] = $childs;
-            } else {
-                return null;
-            }
+            $season_tournaments[$i]['Children'] = $childs;
         }
         return $season_tournaments;
     } else {
@@ -326,4 +323,69 @@ function form_tournament_name($tournament_obj) {
         $tournament_buff = $tournament_buff['Parent'];
     }
     return $full_tournament_name;
+}
+
+function get_playoff_pairs($id) {
+    $url = variable_get('fgrtournament_system_url', 'http://fgr.ntrlab.ru:81/api');
+    $method = '/CompetitionTeams/PlayoffPairs?compId=' . $id . '&$orderby=Round%20desc';
+    $response = drupal_http_request($url . $method, array(
+        'method' => 'GET',
+        'data' => NULL,
+        'timeout' => 15));
+    if($response->code == 200) {
+        $tournaments_data = drupal_json_decode($response->data)['Data'];
+        return format_playoff_pairs($tournaments_data);
+    } else {
+        return null;
+    }
+}
+
+function format_playoff_pairs($tournaments_data) {
+    $splitted_rounds = array();
+    if($tournaments_data == null || count($tournaments_data) == 0) return null;
+    $prev_round_buffer = null;
+    $counter = -1;
+    foreach($tournaments_data as $pair) {
+        $round_buffer = $pair['Round'];
+        if($round_buffer != $prev_round_buffer) {
+            $counter++;
+            $pair['PairAdded'] = 0;
+            array_push($splitted_rounds, array($pair));
+            $prev_round_buffer = $round_buffer;
+        } else {
+            $pair['PairAdded'] = 0;
+            array_push($splitted_rounds[$counter], $pair);
+        }
+    }
+
+    $sorted = array();
+    foreach($splitted_rounds as $round) {
+        array_push($sorted, array_msort($round, array('Sort' => SORT_ASC)));
+    }
+    return $sorted;
+}
+
+function array_msort($array, $cols)
+{
+    $colarr = array();
+    foreach ($cols as $col => $order) {
+        $colarr[$col] = array();
+        foreach ($array as $k => $row) { $colarr[$col]['_'.$k] = strtolower($row[$col]); }
+    }
+    $eval = 'array_multisort(';
+    foreach ($cols as $col => $order) {
+        $eval .= '$colarr[\''.$col.'\'],'.$order.',';
+    }
+    $eval = substr($eval,0,-1).');';
+    eval($eval);
+    $ret = array();
+    foreach ($colarr as $col => $arr) {
+        foreach ($arr as $k => $v) {
+            $k = substr($k,1);
+            if (!isset($ret[$k])) $ret[$k] = $array[$k];
+            $ret[$k][$col] = $array[$k][$col];
+        }
+    }
+    return $ret;
+
 }

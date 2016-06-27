@@ -41,6 +41,11 @@
         }
     }
 
+    var seasonId = $('#seasons').val();
+    if(seasonId) {
+        $('#' + seasonId).show();
+    }
+
     $('#seasons').change(function(){
         var seasonId = $(this).val();
         $('.tournament_list_container').hide();

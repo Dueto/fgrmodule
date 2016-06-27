@@ -23,7 +23,7 @@
                 <span class="team_name_table <?php if($game['Game']['WinnerTeam'] == $game['Game']['GameTeam1']['GameTeamId']){print 'winner';}; ?>">
                     <a href="<?php print './' . $team_node_id . '?team_id=' . $game['Game']['GameTeam1']['CompTeam']['TeamId'] ?>"><?php print $game['Game']['GameTeam1']['CompTeam']['Name'] ?></a>
                 </span>
-                <img class="team_icon" src="<?php print variable_get('fgrtournament_system_url', 'http://fgr.ntrlab.ru:81/api') . '/Media/Image/' . $game['Game']['GameTeam1']['CompTeam']['Team']['ClubLogoId'] ?>">
+                <img class="team_icon" src="<?php if($game['Game']['GameTeam1']['CompTeam']['Team']['ClubLogoId'] != null) print variable_get('fgrtournament_system_url', 'http://fgr.ntrlab.ru:81/api') . '/Media/Image/' . $game['Game']['GameTeam1']['CompTeam']['Team']['ClubLogoId']; else print '../files/fgrmodule/logo.png'; ?>">
             </td>
             <td>
                 <span class="game_score_table">
@@ -32,7 +32,7 @@
                 </span>
             </td>
             <td class="left">
-                <img class="team_icon" src="<?php print variable_get('fgrtournament_system_url', 'http://fgr.ntrlab.ru:81/api') . '/Media/Image/' . $game['Game']['GameTeam2']['CompTeam']['Team']['ClubLogoId'] ?>">
+                <img class="team_icon" src="<?php if($game['Game']['GameTeam2']['CompTeam']['Team']['ClubLogoId']) print variable_get('fgrtournament_system_url', 'http://fgr.ntrlab.ru:81/api') . '/Media/Image/' . $game['Game']['GameTeam2']['CompTeam']['Team']['ClubLogoId']; else print '../files/fgrmodule/logo.png'; ?>">
                 <span class="team_name_table <?php if($game['Game']['WinnerTeam'] == $game['Game']['GameTeam2']['GameTeamId']){print 'winner';}; ?>">
                     <a href="<?php print './' . $team_node_id . '?team_id=' . $game['Game']['GameTeam2']['CompTeam']['TeamId'] ?>"><?php print $game['Game']['GameTeam2']['CompTeam']['Name'] ?></a>
                 </span>

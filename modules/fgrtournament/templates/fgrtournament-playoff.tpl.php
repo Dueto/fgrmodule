@@ -1,73 +1,110 @@
-<main id="tournament-head">
-    <?php foreach ($tournament_data['rounds'] as $key => $round): ?>
-        <ul class="round round-<?php print $key + 1 ?>">
-            <?php if($key + 1 == count($tournament_data['rounds'])): ?>
-                <h3 class="stage">Финал</h3>
-            <?php elseif($key + 2 == count($tournament_data['rounds'])): ?>
-                <h3 class="stage">Полуфинал</h3>
-            <?php elseif($key + 3 == count($tournament_data['rounds'])): ?>
-                <h3 class="stage">1/4 финала</h3>
-            <?php elseif($key + 4 == count($tournament_data['rounds'])): ?>
-                <h3 class="stage">1/8 финала</h3>
-            <?php else: ?>
-                <h3 class="stage">Раунд <?php print $key + 1?></h3>
-            <?php endif; ?>
-        </ul>
-    <?php endforeach; ?>
-    <ul class="round round-<?php print count($tournament_data['rounds']) + 1 ?>">
-        <h3 class="stage">Победитель</h3>
-    </ul>
-</main>
+<!--<div id="playoff_dialog_button" class="playoff_button">Плейофф</div>-->
+<!--<div id="playoff_dialog">-->
+<h2>Плейофф</h2>
+<?php
+$buffer = $tournament_data;
+$counter = 0;
+?>
 
-<main id="tournament">
-    <?php foreach ($tournament_data['rounds'] as $key => $round): ?>
+<?php while(count($buffer) != 0): ?>
+<main id="tournament-head">
+    <?php foreach ($buffer as $key => $round): ?>
         <ul class="round round-<?php print $key + 1 ?>">
-            <li class="spacer">&nbsp;</li>
-            <?php foreach ($round as $key_game => $round_game): ?>
-                <li class="game game-top <?php if($round_game['winner'] == $round_game['team_a']['id']){print 'winner';}; ?>">
-                    <img src="<?php print $round_game['team_a']['icon_url']?>" class="team_icon">
-                    <span class="team_name">
-                        <a href="<?php print './' . $team_node_id . '?team_id=' . $round_game['team_a']['id'] ?>">
-                            <?php print $round_game['team_a']['title']?>
-                        </a>
-                    </span>
-                    <span class="count">
-                        <a class="blank_link" href="<?php print './' . $game_node_id . '?game_id=' . $round_game['game_id']?>">
-                            <?php print $round_game['score_a']?>
-                        </a>
-                    </span>
-                </li>
-                <li class="game game-spacer">&nbsp;</li>
-                <li class="game game-bottom <?php if($round_game['winner'] == $round_game['team_b']['id']){print 'winner';}; ?>">
-                    <img src="<?php print $round_game['team_b']['icon_url']?>" class="team_icon">
-                    <span class="team_name">
-                        <a href="<?php print './' . $team_node_id . '?team_id=' . $round_game['team_b']['id'] ?>">
-                            <?php print $round_game['team_b']['title']?>
-                        </a>
-                    </span>
-                    <span class="count">
-                        <a class="blank_link" href="<?php print './' . $game_node_id . '?game_id=' . $round_game['game_id']?>">
-                            <?php print $round_game['score_b']?>
-                        </a>
-                    </span>
-                </li>
-                <li class="spacer">&nbsp;</li>
-            <?php endforeach; ?>
+            <h3 class="stage"><?php print $round[0]['RoundName']?></h3>
         </ul>
     <?php endforeach; ?>
-    <ul class="round round-<?php print count($tournament_data['rounds']) + 1 ?>">
-        <li class="spacer">&nbsp;</li>
-        <li class="game game-top winner">
-            <img src="<?php if(end($tournament_data['rounds'])[0]['winner'] ==
-                    end($tournament_data['rounds'])[0]['team_a']['id']) {
-                    print end($tournament_data['rounds'])[0]['team_a']['icon_url'];}
-                else {
-                    print end($tournament_data['rounds'])[0]['team_b']['icon_url'];}; ?>" class="team_icon">
-            <span class="team_name"><?php if(end($tournament_data['rounds'])[0]['winner'] ==
-                    end($tournament_data['rounds'])[0]['team_a']['id']) {
-                    print end($tournament_data['rounds'])[0]['team_a']['title'];}
-                else {
-                    print end($tournament_data['rounds'])[0]['team_b']['title'];}; ?></span>
-        </li>
-    </ul>
 </main>
+<main id="tournament">
+        <?php foreach ($buffer as $key => $round): ?>
+            <ul class="round round-<?php print $key + 1 ?>">
+                <li class="spacer">&nbsp;</li>
+                <?php $counter = 0; ?>
+                <?php $broken = false; ?>
+                <?php foreach ($round as $key_game => $round_game): ?>
+                    <?php if($round_game['PairAdded'] == 1) continue;?>
+                    <?php flag_round($buffer[$key][$key_game])?>
+                    <li class="game game-top <?php if($round_game['Winner'] == 1){print 'winner';}; ?>">
+                        <img src="<?php if($round_game['TeamName1']['ClubLogoId'] != null) print variable_get('fgrtournament_system_url', 'http://fgr.ntrlab.ru:81/api') . '/Media/Image/' . $round_game['TeamName1']['ClubLogoId']; else print '../files/fgrmodule/logo.png';?>" class="team_icon">
+                    <span class="team_name">
+                        <a href="<?php print './' . $team_node_id . '?team_id=' . $round_game['TeamName1']['TeamId'] ?>">
+<!--                            --><?php //print $round_game['TeamName1']['Name'] . $round_game['Sort']?>
+                            <?php print $round_game['TeamName1']['Name']?>
+                        </a>
+                    </span>
+                    <span class="count">
+                        <a class="blank_link">
+                            <?php print $round_game['Score1']?>
+                        </a>
+                    </span>
+                    </li>
+                    <li class="game game-spacer">&nbsp;</li>
+                    <li class="game game-bottom <?php if($round_game['Winner'] == 2){print 'winner';}; ?>">
+                        <img src="<?php if($round_game['TeamName2']['ClubLogoId'] != null) print variable_get('fgrtournament_system_url', 'http://fgr.ntrlab.ru:81/api') . '/Media/Image/' . $round_game['TeamName2']['ClubLogoId']; else print '../files/fgrmodule/logo.png';?>" class="team_icon">
+                    <span class="team_name">
+                        <a href="<?php print './' . $team_node_id . '?team_id=' . $round_game['TeamName2']['TeamId'] ?>">
+                            <?php print $round_game['TeamName2']['Name']?>
+                        </a>
+                    </span>
+                    <span class="count">
+                        <a class="blank_link">
+                            <?php print $round_game['Score2']?>
+                        </a>
+                    </span>
+                    </li>
+                <li class="spacer">&nbsp;</li>
+                <?php if($round_game['Round'] == $counter + 1) { $broken = true; break; }?>
+                <?php $counter++; ?>
+                <?php endforeach; ?>
+                <?php if($round[0]['Round'] > $counter && $broken == false):?>
+                    <?php $max = $round[0]['Round'] - ($counter + 1); ?>
+                    <?php for($i = 0; $i < $max; $i++):?>
+                        <li class="game game-top">
+                            <img src="" class="team_icon">
+                            <span class="team_name">
+                                <a></a>
+                            </span>
+                            <span class="count">
+                                <a class="blank_link"></a>
+                            </span>
+                                </li>
+                                <li class="game game-spacer">&nbsp;</li>
+                                <li class="game game-bottom">
+                                    <img src="" class="team_icon">
+                            <span class="team_name">
+                                <a></a>
+                            </span>
+                            <span class="count">
+                                <a class="blank_link"> </a>
+                            </span>
+                        </li>
+                        <li class="spacer">&nbsp;</li>
+                    <?php endfor; ?>
+                <?php endif; ?>
+        </ul>
+    <?php endforeach; ?>
+<!--    <ul class="round round---><?php //print count($buffer)?><!--">-->
+<!--        <li class="spacer">&nbsp;</li>-->
+<!--        <li class="game game-top winner">-->
+<!--            <img src="--><?php //if(end($buffer)[0]['Winner'] == 1) { print variable_get('fgrtournament_system_url', 'http://fgr.ntrlab.ru:81/api') . '/Media/Image/' . end($buffer)[0]['TeamName1']['ClubLogoId']; }
+//                else { print variable_get('fgrtournament_system_url', 'http://fgr.ntrlab.ru:81/api') . '/Media/Image/' . end($buffer)[0]['TeamName2']['ClubLogoId']; }; ?><!--" class="team_icon">-->
+<!--            <span class="team_name">--><?php //if(end($buffer)[0]['Winner'] == 1) { print end($buffer)[0]['TeamName1']['Name']; }
+//                else { print end($buffer)[0]['TeamName2']['Name']; }; ?><!--</span>-->
+<!--        </li>-->
+<!--    </ul>-->
+</main>
+<?php $buffer = cut_added_pairs($buffer) ?>
+<?php endwhile; ?>
+<!--</div>-->
+<!---->
+<!--<script>-->
+<!--    jQuery( "#playoff_dialog" ).dialog({-->
+<!--        autoOpen: false,-->
+<!--        width: 1000,-->
+<!--        zIndex: 99999-->
+<!--    });-->
+<!--    $("#playoff_dialog_button").click(function( event ) {-->
+<!--        $("#playoff_dialog").dialog("open");-->
+<!--        event.preventDefault();-->
+<!--    });-->
+<!--</script>-->
+

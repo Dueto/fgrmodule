@@ -1,3 +1,4 @@
+<div id="chessmates<?php print $tournament_data['TournamentMetaData']['TournamentId'] ?>" style="display: none">
 <?php if(array_key_exists('Data', $tournament_data) && count($tournament_data['Data']) != 0):?>
 <table class="chess_mates_table">
     <thead>
@@ -30,11 +31,15 @@
             <?php for($i = 0; $i < count($tournament_data['GamesTable'][$row_num]); $i++):?>
                 <td>
                     <?php if($row_num != $i): ?>
-                        <div class="<?php if($tournament_data['GamesTable'][$row_num][$i][0]['Winner'] == 1) { print 'red';}?>">
-                            <?php print $tournament_data['GamesTable'][$row_num][$i][0]['Score'] ?>
+                        <div>
+                            <a class="<?php if(array_key_exists(0, $tournament_data['GamesTable'][$row_num][$i])) if ($tournament_data['GamesTable'][$row_num][$i][0]['Winner'] == 1) { print 'red';}?>">
+                                <?php if(array_key_exists(0, $tournament_data['GamesTable'][$row_num][$i])) print $tournament_data['GamesTable'][$row_num][$i][0]['Score'] ?>
+                            </a>
                         </div>
-                        <div class="<?php if($tournament_data['GamesTable'][$row_num][$i][1]['Winner'] == 1) { print 'red';}?>">
-                            <?php print $tournament_data['GamesTable'][$row_num][$i][1]['Score'] ?>
+                        <div>
+                            <a class="<?php if(array_key_exists(1, $tournament_data['GamesTable'][$row_num][$i])) if($tournament_data['GamesTable'][$row_num][$i][1]['Winner'] == 1) { print 'red';}?>">
+                                <?php if(array_key_exists(1, $tournament_data['GamesTable'][$row_num][$i])) print $tournament_data['GamesTable'][$row_num][$i][1]['Score'] ?>
+                            </a>
                         </div>
                     <?php else: ?>
                         <img src="../files/ball.png">
@@ -54,3 +59,4 @@
 <?php else:?>
     <h2>Нет статистики</h2>
 <?php endif?>
+</div>
