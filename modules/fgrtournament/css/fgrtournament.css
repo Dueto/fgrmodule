@@ -526,3 +526,130 @@ a.blank_link:hover {
     width: 710px;
     height: 1000px;
 }
+
+/* Slider and games announcer */
+
+/* Frame */
+
+.frame {
+    height: 95px;
+    /*line-height: 120px;*/
+    overflow: hidden;
+}
+
+.frame ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    /*height: 100%;*/
+}
+
+.frame ul li {
+    float: left;
+    width: 200px;
+    height: 100%;
+    margin: 0 1px 0 0;
+    padding: 0;
+    /*background: #333;*/
+    /*color: #ddd;*/
+    text-align: center;
+    cursor: pointer;
+}
+
+.frame ul li.active {
+    /*color: #fff;*/
+    background: #e1e4ff;
+}
+
+
+/* Scrollbar */
+
+.scrollbar {
+    margin: 0 0 1em 0;
+    height: 4px;
+    /*background: #ccc;*/
+    border: 1px solid rgba(0, 0, 0, .2);
+    border-radius: 1px;
+    line-height: 0;
+}
+
+.scrollbar .handle {
+    width: 100px;
+    height: 100%;
+    background: #227fbf;
+    cursor: pointer;
+}
+
+.scrollbar .handle .mousearea {
+    position: absolute;
+    top: -9px;
+    left: 0;
+    width: 100%;
+    height: 20px;
+}
+
+
+/* Pages */
+
+.pages {
+    list-style: none;
+    margin: 20px 0;
+    padding: 0;
+    text-align: center;
+}
+
+.pages li {
+    display: inline-block;
+    width: 14px;
+    height: 14px;
+    margin: 0 4px;
+    text-indent: -999px;
+    border-radius: 10px;
+    cursor: pointer;
+    overflow: hidden;
+    background: #fff;
+    box-shadow: inset 0 0 0 1px rgba(0, 0, 0, .2);
+}
+
+.pages li:hover {
+    background: #52a9e5;
+}
+
+.pages li.active {
+    background: #227fbf;
+}
+
+.announce_table th {
+    color: black;
+    background: #bcbcbc;
+    border-top-right-radius: 0 !important;;
+    padding: 2px;
+    font-size: 14px;
+}
+
+.announce_table td {
+     padding: 0px;
+}
+
+.announce_table td:nth-child(1) {
+    width: 36px;
+}
+
+.announce_table td:nth-child(2) {
+    text-align: left;
+}
+
+.announce_table td:nth-child(3) {
+    width: 35px;
+}
+
+.announce_table td div {
+    color: black;
+    background: #bcbcbc;
+    margin-right: 5px;
+    width: 30px;
+}
+
+.announce_table tr:nth-child(2n+2) {
+    background: none !important;
+}

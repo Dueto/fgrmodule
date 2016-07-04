@@ -5,13 +5,13 @@
     <tr>
         <td class="club_photo"><img src="<?php if($fgrteam['Club']['LogoId'] != null) print variable_get('fgrtournament_system_url', 'http://fgr.ntrlab.ru:81/api') . '/Media/Image/' . $fgrteam['Club']['LogoId']; else print '../files/fgrmodule/logo.png';?>"></td>
         <td class="">
-            <b>Клуб: </b><?php print $fgrteam['Club']['Name']?><br/>
-            <b>Домашняя арена: </b><?php print $fgrteam['HomeArena']['Name'] . ' - ' . $fgrteam['HomeArena']['City']['Name'] ?><br/>
-            <b>Адрес: </b><?php print $fgrteam['Address']?><br/>
-            <b>Почтовый индекс: </b><?php print $fgrteam['ZipCode'] ?><br/>
-            <b>Сайт: </b><?php print $fgrteam['InternetAddress'] ?><br/>
-            <b>Email: </b><?php print $fgrteam['Email'] ?><br/>
-            <b>Телефон: </b><?php print $fgrteam['Phone'] ?><br/>
+            <?php if($fgrteam['Club'] != null):?><b>Клуб: </b><?php print $fgrteam['Club']['Name']?><br/><?php endif; ?>
+            <?php if($fgrteam['HomeArena'] != null):?><b>Домашняя арена: </b><?php print $fgrteam['HomeArena']['Name'] . ' - ' . $fgrteam['HomeArena']['City']['Name'] ?><br/><?php endif; ?>
+            <?php if($fgrteam['Address'] != null):?><b>Адрес: </b><?php print $fgrteam['Address']?><br/><?php endif; ?>
+            <?php if($fgrteam['ZipCode'] != null):?><b>Почтовый индекс: </b><?php print $fgrteam['ZipCode'] ?><br/><?php endif; ?>
+            <?php if($fgrteam['InternetAddress'] != null):?><b>Сайт: </b><?php print $fgrteam['InternetAddress'] ?><br/><?php endif; ?>
+            <?php if($fgrteam['Email'] != null):?><b>Email: </b><?php print $fgrteam['Email'] ?><br/><?php endif; ?>
+            <?php if($fgrteam['Phone'] != null):?><b>Телефон: </b><?php print $fgrteam['Phone'] ?><br/><?php endif; ?>
         </td>
     </tr>
     </tbody>
@@ -21,6 +21,7 @@
         <img class="team_photo" src="<?php print variable_get('fgrtournament_system_url', 'http://fgr.ntrlab.ru:81/api') . '/Media/LegalEntityImage/' . $fgrteam['Photos'][0]['LegalEntityId'] ?>">
     </div>
 <?php endif; ?>
+<?php if($fgrteam['Players'] != null && count($fgrteam['Players']) != 0): ?>
 <h2 style="text-align: center">Игроки</h2>
 <table class="member_table sortable">
     <thead>
@@ -84,3 +85,5 @@
         });
     </script>
 <?php endforeach; ?>
+
+<?php endif; ?>

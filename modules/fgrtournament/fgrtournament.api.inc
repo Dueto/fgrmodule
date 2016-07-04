@@ -278,7 +278,7 @@ function get_tournament_childs($id) {
 function get_tournament_games_by_id($tournament_id, $type) {
 //    $tournament_id = '103';
     $url = variable_get('fgrtournament_system_url', 'http://fgr.ntrlab.ru:81/api');
-    $method = '/CompetitionGames?compId=' . $tournament_id . '&$filter=Game/GameStatusId%20eq%20\'' . ucfirst($type) . '\'&$orderby=Game/GameNumber%20desc';
+    $method = '/CompetitionGames?compId=' . $tournament_id . '&$filter=Game/GameStatusId%20eq%20\'' . ucfirst($type) . '\'&$orderby=Game/LocalDate%20desc';
     $response = drupal_http_request($url . $method, array(
         'method' => 'GET',
         'data' => NULL,
@@ -307,6 +307,20 @@ function get_tournament_metadata($id) {
             'TournamentTypeId' => $tournaments_data['CompTypeId'],
             'TournamentName' => $tournaments_data['Name']
         );
+    } else {
+        return null;
+    }
+}
+
+function get_last_tournament_games($id) {
+    $url = variable_get('fgrtournament_system_url', 'http://fgr.ntrlab.ru:81/api');
+    $method = '/CompetitionGames?compId=' . $id . '&$orderby=Game/LocalDate%20desc&$top=20';
+    $response = drupal_http_request($url . $method, array(
+        'method' => 'GET',
+        'data' => NULL,
+        'timeout' => 15));
+    if($response->code == 200) {
+        return drupal_json_decode($response->data);
     } else {
         return null;
     }

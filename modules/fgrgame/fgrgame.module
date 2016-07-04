@@ -52,34 +52,43 @@ function fgrgame_node_view($node, $view_mode, $langcode)
 
                 //Get games data
                 $game_id = $_GET['game_id'];
-                $game_data = get_game_by_id2($game_id);
+                $game_data = get_game_by_id($game_id);
 
                 //Get tournament data
-                $tournament_metadata = form_tournament_metadata($game_data);
-                $game_data['TournamentMetaData'] = $tournament_metadata;
+//                $tournament_metadata = form_tournament_metadata($game_data);
+//                $game_data['TournamentMetaData'] = $tournament_metadata;
 
-                //Define which tab should be presented
                 $tab_type = 'info';
+                if($game_data['StatsStatusId'] == 0) {
+                    //Define which tab should be presented
+                    $tab_type = 'statistics';
+                }
+
                 if(isset($_GET['tab_type'])) {
                     $tab_type = $_GET['tab_type'];
                 }
                 $tab_markup = form_tab_markup($node, $tab_type, $game_id, $team_node_id);
 
                 //Define which view should be produced
-                switch ($game_data['status']) {
-                    case 'scheduled':
+                switch ($game_data['GameStatusId']) {
+                    case 0:
                         $node->content['fgrgame_before'] = array(
                             "#markup" => (theme('fgrgame_before', array('game' => $game_data, 'node' => $node, 'team_node_id' => $team_node_id['nid'], 'crumbs' => $crumbs)) . $tab_markup)
                         );
                         break;
-                    case 'online':
+                    case 2:
                         $node->content['fgrgame_current'] = array(
                             "#markup" => (theme('fgrgame_current', array('game' => $game_data, 'node' => $node, 'team_node_id' => $team_node_id['nid'], 'crumbs' => $crumbs)) . $tab_markup)
                         );
                         break;
-                    case 'result':
+                    case 1:
                         $node->content['fgrgame_ended'] = array(
                             "#markup" => (theme('fgrgame_ended', array('game' => $game_data, 'node' => $node, 'team_node_id' => $team_node_id['nid'], 'crumbs' => $crumbs)) . $tab_markup)
+                        );
+                        break;
+                    default:
+                        $node->content['fgrgame_ended'] = array(
+                            "#markup" => 'Невезможно отобразить данные игры: статус игры' . $game_data['GameStatusId']
                         );
                         break;
                 }
@@ -121,9 +130,11 @@ function form_tab_markup($node, $tab_type, $game_id, $team_node_id)
             $tab_markup = theme('fgrgame_info', array('game_info' => $game_info, 'node' => $node, 'team_node_id' => $team_node_id['nid']));
             break;
         case 'statistics':
-            $game_statistics = get_game_statistics_by_id($game_id);
+            $game_statistics = get_game_by_id($game_id);
             $game_statistics['game_id'] = $game_id;
-            $tab_markup = theme('fgrgame_statistics', array('game_statistics' => $game_statistics, 'node' => $node, 'team_node_id' => $team_node_id['nid']));
+            if($game_statistics['GameStarts'] != null && count($game_statistics['GameStarts']) != 0) {
+                $tab_markup = theme('fgrgame_statistics', array('game_statistics' => $game_statistics, 'node' => $node, 'team_node_id' => $team_node_id['nid']));
+            }
             break;
         case 'throws':
             $game_throws = get_game_throws_by_id($game_id);
@@ -190,9 +201,208 @@ function fgrgame_theme() {
     );
 }
 
+function print_stats_param($stat_param_id, $game_stat_values) {
+    foreach($game_stat_values as $stat) {
+        if($stat['Param'] == $stat_param_id) {
+            print $stat['Value'];
+            return;
+        }
+    }
+    print '';
+}
+
+function print_referee_inspector($game_starts) {
+    $referee_node_id = get_fgrreferee_node_id();
+    foreach($game_starts as $person) {
+        if($person['StartTypeId'] == 4 && $person['PositionId'] == 3) {
+            print '<a class="blank_link" href="./' . $referee_node_id['nid'] . '?referee_id=' . $person['PersonId'] . '">' . $person['FirstName'] . ' ' . $person['LastName'] . '</a>';
+            return;
+        }
+    }
+}
+
+function print_referees_on_game($game_starts) {
+    $referee_node_id = get_fgrreferee_node_id();
+    $referees_markup = '';
+    foreach($game_starts as $person) {
+        if($person['StartTypeId'] == 4 && ($person['PositionId'] == 2 || $person['PositionId'] == 1)) {
+            $referees_markup .= '<a class="blank_link" href="./' . $referee_node_id['nid'] . '?referee_id=' . $person['PersonId'] . '">' . $person['FirstName'] . ' ' . $person['LastName'] . '</a>&nbsp;&nbsp;&nbsp;&nbsp;';
+        }
+    }
+    print $referees_markup;
+}
+
+function print_technical_delegate($game_starts) {
+    $referee_node_id = get_fgrreferee_node_id();
+    foreach($game_starts as $person) {
+        if($person['StartTypeId'] == 4 && $person['PositionId'] == 4) {
+            print '<a class="blank_link" href="./' . $referee_node_id['nid'] . '?referee_id=' . $person['PersonId'] . '">' . $person['FirstName'] . ' ' . $person['LastName'] . '</a>';
+            return;
+        }
+    }
+}
+
+function print_team_members($team_id, $game_starts) {
+    if($game_starts == null) return;
+    if($team_id == 1) {
+        print '<table class="gamers_table_game"><tbody>';
+    } else {
+        print '<table class="gamers_table_game right"><tbody>';
+    }
+    foreach($game_starts as $person) {
+        if($person['StartTypeId'] == 1 && $person['TeamNum'] == $team_id) {
+            print '<tr>';
+            //Person image
+            $image  = '<td><img class="member_icon" src="';
+            if(isset($person['PhotoId']) && $person['PhotoId'] != null) {
+                $image .= variable_get('fgrtournament_system_url', 'http://fgr.ntrlab.ru:81/api') . '/Media/PersonImage/' . $person['PersonId'];
+            } else {
+                $image .= '../files/fgrmodule/avatar.png';
+            }
+            $image .= '"></td>';
+
+            //Person name
+            $info_start = '<td id="dialoga' . $person['PersonId'] . '">';
+            $person_number = '<span class="tiny">&nbsp;' . $person['PersonNum'] . '&nbsp;</span>';
+            $person_name = '<span>' . $person['LastName'] . ' ' . $person['FirstName'] . '</span>';
+            $penalties = get_penalties_markup($person);
+            $info_end = '</td>';
+
+            //Person score
+            $score = '<td><span class="bold gamer_score">' . get_player_score($person);
+            $score .= '</span></td>';
+
+            if($team_id == 1) {
+                print $image . $info_start . $person_number . $person_name . $penalties . $info_end . $score;
+            } else {
+                print $score . $info_start . $penalties . $person_name . $person_number . $info_end . $image;
+            }
+            print '</tr>';
+        }
+    }
+    print '</tbody></table>';
+}
+
+function get_penalties_markup($person) {
+    $penalties_markup = '';
+    if(count($person['GameStatsValues']) == 0) return $penalties_markup;
+    foreach($person['GameStatsValues'] as $stat_value) {
+        switch($stat_value['Param']) {
+            //Yellow card
+            case 81:
+                $penalties_markup .= '<img class="penalty" src="../files/fgrmodule/yellowcard.png">';
+                break;
+            //2 minutes
+            case 82:
+                $penalties_markup .= '<img class="penalty" src="../files/fgrmodule/2m.png">';
+                break;
+            //Red card
+            case 83:
+                $penalties_markup .= '<img class="penalty" src="../files/fgrmodule/redcard.png">';
+                break;
+            //Blue card
+            case 84:
+                $penalties_markup .= '<img class="penalty" src="../files/fgrmodule/bluecard.png">';
+                break;
+        }
+    }
+    return $penalties_markup;
+}
+
+function get_player_score($person) {
+    if(count($person['GameStatsValues']) == 0) return 0;
+    if($person['StartTypeId'] != 1) return 0;
+    foreach($person['GameStatsValues'] as $stat_value) {
+        switch($stat_value['Param']) {
+            //Goals
+            case 10:
+                return $stat_value['Value'];
+                break;
+        }
+    }
+    return 0;
+}
+
 function age_from_string_time($birthdayDate) {
     $date = new DateTime($birthdayDate);
     $now = new DateTime();
     $interval = $now->diff($date);
     return $interval->y;
 }
+
+function get_person_time($person) {
+    if(count($person['GameStatsValues']) == 0) return '-';
+    if($person['StartTypeId'] != 1) return '';
+    foreach($person['GameStatsValues'] as $stat_value) {
+        if($stat_value['Param'] == 1) {
+            return number_format($stat_value['Value'] / 60, 0);
+        }
+    }
+    return '-';
+}
+
+function get_stat_by_param($person, $id) {
+    if(count($person['GameStatsValues']) == 0) return 0;
+    foreach($person['GameStatsValues'] as $stat_value) {
+        if($stat_value['Param'] == $id) {
+            return $stat_value['Value'];
+        }
+    }
+    return 0;
+}
+
+function get_sum_stat_by_goalkeepers_param($persons, $id, $team_id) {
+    $param_sum = 0;
+    foreach($persons as $person) {
+        if($person['StartTypeId'] == 2 && $person['TeamNum'] == $team_id) {
+            if(count($person['GameStatsValues']) == 0) continue;
+            foreach($person['GameStatsValues'] as $stat_value) {
+                if($stat_value['Param'] == $id) {
+                    $param_sum += $stat_value['Value'];
+                }
+            }
+        }
+    }
+    return $param_sum;
+}
+
+function get_team_goals($stats, $team_id) {
+    foreach($stats as $team) {
+        if($team['StartTypeId'] == 0 && $team['TeamNum'] == $team_id) {
+            if(count($team['GameStatsValues']) == 0) continue;
+            foreach($team['GameStatsValues'] as $stat_value) {
+                if($stat_value['Param'] == 10) {
+                    return $stat_value['Value'];
+                }
+            }
+        }
+    }
+}
+
+function get_team_throws($stats, $team_id) {
+    foreach($stats as $team) {
+        if($team['StartTypeId'] == 0 && $team['TeamNum'] == $team_id) {
+            if(count($team['GameStatsValues']) == 0) continue;
+            foreach($team['GameStatsValues'] as $stat_value) {
+                if($stat_value['Param'] == 30) {
+                    return $stat_value['Value'];
+                }
+            }
+        }
+    }
+}
+
+function get_team_stat($stats, $team_id, $id) {
+    foreach($stats as $team) {
+        if($team['StartTypeId'] == 0 && $team['TeamNum'] == $team_id) {
+            if(count($team['GameStatsValues']) == 0) continue;
+            foreach($team['GameStatsValues'] as $stat_value) {
+                if($stat_value['Param'] == $id) {
+                    return $stat_value['Value'];
+                }
+            }
+        }
+    }
+    return 0;
+}
+

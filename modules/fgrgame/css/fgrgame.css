@@ -239,7 +239,7 @@ a.blank_link:hover {
 
 .score_game_ended {
     font-size: 40px;
-    margin-bottom: 100px;
+    /*margin-bottom: 100px;*/
     /*margin-top: 90px;*/
 }
 
@@ -635,3 +635,18 @@ table.right {
     font-size: 12px;
 }
 
+.statistic_table {
+    text-align: center;
+    line-height: 1em;
+    margin-bottom: 10px;
+}
+
+.statistic_table td {
+    padding: 2px;
+    font-size: 12px;
+}
+
+.statistic_table th {
+    padding: 5px;
+    font-size: 14px;
+}

@@ -38,7 +38,7 @@ function get_all_referee_count($method) {
         'timeout' => 15));
     if($response->code == 200) {
         $referees_count = drupal_json_decode($response->data);
-        return 50;
+        return 1000;
     } else {
         return null;
     }
@@ -91,10 +91,39 @@ function get_method_string_with_filters($params) {
             $filter_added = true;
         }
     }
+    if($params['competition_id'] != null) {
+        $season_dates = get_competition_dates($params['competition_id']);
+        if($season_dates != null) {
+            if($filter_added) {
+                $method_string .= '&seasonStartDate=' . $season_dates['start'];
+                $method_string .= '&seasonEndDate=' . $season_dates['end'];
+            } else {
+                $method_string .= '?seasonStartDate=' . $season_dates['start'];
+                $method_string .= '&seasonEndDate=' . $season_dates['end'];
+                $filter_added = true;
+            }
+        }
+    }
     if($filter_added) {
         $method_string .= '&$orderby=LastName%20asc';
     }
     return $method_string;
+}
+
+function get_competition_dates($competition_id) {
+    // todo: solved that for now season dates is taken from season name
+    $splitted = explode(' ', $competition_id);
+    if(array_key_exists(1, $splitted)) {
+        $splitted_years = explode('/', $splitted[1]);
+        print_r($splitted_years);
+        if(array_key_exists(0, $splitted_years) && array_key_exists(1, $splitted_years)) {
+            $return_dates = array();
+            $return_dates['start'] = $splitted[0] . '-08-15T00%3A00%3A00.000';
+            $return_dates['end'] = $splitted[1] . '-08-14T59%3A59%3A59.999';
+            return $return_dates;
+        }
+    }
+    return null;
 }
 
 function get_all_seasons() {

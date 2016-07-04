@@ -29,16 +29,17 @@
                 </span>
             </td>
             <?php for($i = 0; $i < count($tournament_data['GamesTable'][$row_num]); $i++):?>
+<!--            --><?php //foreach($tournament_data['GamesTable'][$row_num] as $i => $data):?>
                 <td>
                     <?php if($row_num != $i): ?>
                         <div>
-                            <a class="<?php if(array_key_exists(0, $tournament_data['GamesTable'][$row_num][$i])) if ($tournament_data['GamesTable'][$row_num][$i][0]['Winner'] == 1) { print 'red';}?>">
-                                <?php if(array_key_exists(0, $tournament_data['GamesTable'][$row_num][$i])) print $tournament_data['GamesTable'][$row_num][$i][0]['Score'] ?>
+                            <a class="<?php if(array_key_exists($i, $tournament_data['GamesTable'][$row_num])) if($tournament_data['GamesTable'][$row_num][$i] != null) if(array_key_exists(0, $tournament_data['GamesTable'][$row_num][$i])) if ($tournament_data['GamesTable'][$row_num][$i][0]['Winner'] == 1) { print 'red';}?>">
+                                <?php if(array_key_exists($i, $tournament_data['GamesTable'][$row_num])) if($tournament_data['GamesTable'][$row_num][$i] != null) if(array_key_exists(0, $tournament_data['GamesTable'][$row_num][$i])) print $tournament_data['GamesTable'][$row_num][$i][0]['Score'] ?>
                             </a>
                         </div>
                         <div>
-                            <a class="<?php if(array_key_exists(1, $tournament_data['GamesTable'][$row_num][$i])) if($tournament_data['GamesTable'][$row_num][$i][1]['Winner'] == 1) { print 'red';}?>">
-                                <?php if(array_key_exists(1, $tournament_data['GamesTable'][$row_num][$i])) print $tournament_data['GamesTable'][$row_num][$i][1]['Score'] ?>
+                            <a class="<?php if(array_key_exists($i, $tournament_data['GamesTable'][$row_num])) if($tournament_data['GamesTable'][$row_num][$i] != null) if(array_key_exists(1, $tournament_data['GamesTable'][$row_num][$i])) if($tournament_data['GamesTable'][$row_num][$i][1]['Winner'] == 1) { print 'red';}?>">
+                                <?php if(array_key_exists($i, $tournament_data['GamesTable'][$row_num])) if($tournament_data['GamesTable'][$row_num][$i] != null) if(array_key_exists(1, $tournament_data['GamesTable'][$row_num][$i])) print $tournament_data['GamesTable'][$row_num][$i][1]['Score'] ?>
                             </a>
                         </div>
                     <?php else: ?>
@@ -46,6 +47,15 @@
                     <?php endif ?>
                 </td>
             <?php endfor;?>
+            <?php if(count($tournament_data['GamesTable'][$row_num]) < count($tournament_data['Data'])): ?>
+                <?php for($i = 0; $i < count($tournament_data['Data']) - count($tournament_data['GamesTable'][$row_num]); $i++):?>
+                <td>
+                    <?php if($row_num == $i + count($tournament_data['GamesTable'][$row_num])):?>
+                        <img src="../files/ball.png">
+                    <?php endif ?>
+                </td>
+                <?php endfor;?>
+            <?php endif; ?>
             <td><?php print $team_stat['CompTeam']['Games'] ?></td>
             <td><?php print $team_stat['CompTeam']['Winnings'] ?></td>
             <td><?php print $team_stat['CompTeam']['Draws'] ?></td>

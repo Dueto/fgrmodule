@@ -12,7 +12,8 @@ function get_team_by_id($team_id) {
         'data' => NULL,
         'timeout' => 15));
     if($team->code == 200) {
-        return drupal_json_decode($team->data)['Data'];
+        $team = drupal_json_decode($team->data)['Data'];
+        return $team;
     } else {
         return null;
     }

@@ -274,3 +274,39 @@ div.center span:hover {
     text-decoration: underline;
     cursor: pointer;
 }
+
+div.pagination {
+    padding: 3px;
+    margin: 3px;
+    text-align:center;
+}
+
+div.pagination a {
+    padding: 2px 5px 2px 5px;
+    margin: 2px;
+    border: 1px solid black;
+
+    text-decoration: none;
+    color: black;
+    border-radius: 3px;
+}
+div.pagination a:hover, div.digg a:active {
+    border: 1px solid #227fbf;
+    color: #000;
+}
+div.pagination span.current {
+    padding: 2px 5px 2px 5px;
+    margin: 2px;
+    border: 1px solid #227fbf;
+    border-radius: 3px;
+    font-weight: bold;
+    background-color: #227fbf;
+    color: #FFF;
+}
+div.pagination span.disabled {
+    padding: 2px 5px 2px 5px;
+    margin: 2px;
+    border: 1px solid #EEE;
+    border-radius: 3px;
+    color: #DDD;
+}

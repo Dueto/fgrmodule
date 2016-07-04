@@ -32,13 +32,14 @@ function fgrtournament_node_info() {
  */
 function fgrtournament_node_view($node, $view_mode, $langcode)
 {
-    module_load_include('inc', 'fgrtournament', 'fgrtournament.api');
-    drupal_add_js(drupal_get_path('module', 'fgrtournament') . '/js/lib/jquery-2.2.4.min.js');
-    drupal_add_css(drupal_get_path('module', 'fgrtournament') . '/css/jquery-ui.min.css', array('group' => CSS_DEFAULT, 'type' => 'file'));
-    drupal_add_js(drupal_get_path('module', 'fgrtournament') . '/js/lib/jquery-ui.min.js');
-    drupal_add_js(drupal_get_path('module', 'fgrtournament') . '/js/sorttable.js');
     switch ($node->type) {
         case 'fgrtournament':
+            module_load_include('inc', 'fgrtournament', 'fgrtournament.api');
+            drupal_add_css(drupal_get_path('module', 'fgrtournament') . '/css/jquery-ui.min.css', array('group' => CSS_DEFAULT, 'type' => 'file'));
+            drupal_add_js(drupal_get_path('module', 'fgrtournament') . '/js/lib/jquery-2.2.4.min.js');
+            drupal_add_js(drupal_get_path('module', 'fgrtournament') . '/js/lib/jquery-ui.min.js');
+            drupal_add_js(drupal_get_path('module', 'fgrtournament') . '/js/lib/sorttable.js');
+            drupal_add_js(drupal_get_path('module', 'fgrtournament') . '/js/lib/sly.js');
             $crumbs = array();
             if(isset($_GET['crumbs'])) {
                 $crumbs_buff = explode(';', $_GET['crumbs']);
@@ -172,6 +173,7 @@ function fill_games_markup($node, $tournament_id, $tournament_metadata, $team_no
         $games_type = $_GET['game_type'];
     }
     $tournament_info['TournamentMetaData'] = $tournament_metadata;
+    $tournament_info['LastGames'] = get_last_tournament_games($tournament_id);
     $menu_markup = theme('fgrtournament_info', array('tournament_data' => $tournament_info,
         'node' => $node, 'crumbs' => $crumbs));
     switch ($games_type) {
@@ -214,6 +216,7 @@ function fill_games_markup($node, $tournament_id, $tournament_metadata, $team_no
 function fill_tournament_info_markup($node, $tournament_id, $tournament_metadata, $team_node_id, $game_node_id, $crumbs)
 {
     $tournament_info['TournamentMetaData'] = $tournament_metadata;
+    $tournament_info['LastGames'] = get_last_tournament_games($tournament_id);
     $menu_markup = theme('fgrtournament_info', array('tournament_data' => $tournament_info,
         'node' => $node, 'crumbs' => $crumbs));
 
@@ -273,7 +276,6 @@ function get_markup_tournament_with_games($node, $tournament_id, $tournament_met
                     $tournament_data = get_tournament_team_stats_by_id($tournament_id);
                     $tournament_data['TournamentMetaData'] = $tournament_metadata;
                     $markup .= theme('fgrtournament_table_stat', array('tournament_data' => $tournament_data, 'node' => $node, 'team_node_id' => $team_node_id['nid'], 'crumbs' => $crumbs));
-                    print_r($tournament_id . '            ');
                     // Chessmates table markup
                     $tournament_data = get_tournament_by_id_chess_mates($tournament_id);
                     $tournament_data['TournamentMetaData'] = $tournament_metadata;
@@ -342,6 +344,17 @@ function get_fgrgame_node_id() {
     return db_select('node', 'nid')
         ->fields('nid')
         ->condition('type', 'fgrgame', '=')
+        ->execute()
+        ->fetchAssoc();
+}
+
+/**
+ * @return predefined game node id
+ */
+function get_fgrreferee_node_id() {
+    return db_select('node', 'nid')
+        ->fields('nid')
+        ->condition('type', 'fgrreferee', '=')
         ->execute()
         ->fetchAssoc();
 }
@@ -471,9 +484,11 @@ function get_views_for_comp_type($id) {
             'playoff'
         )
     );
-    if(array_key_exists($id, $available_views)) {
-        return $available_views[$id];
-    } else {
-        return null;
+    if($available_views != null) {
+        if(array_key_exists($id, $available_views)) {
+            return $available_views[$id];
+        } else {
+            return null;
+        }
     }
 }

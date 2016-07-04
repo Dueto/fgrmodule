@@ -1,3 +1,9 @@
+<?php $crumb_string = null;?>
+<?php if($crumbs != NULL): ?>
+    <?php foreach($crumbs as $key => $crumb) {
+        $crumb_string = $crumb_string . ';' . $crumb['title'] . ':' . $crumb['ref'];
+    }?>
+<?php endif ?>
 <div class="tabs">
     <ul class="tab-links">
         <li><a href="<?php print './' . $node->nid . '?tournament_id=' . $tournament_data['TournamentMetaData']['TournamentId'] . '&type=games&game_type=online&crumbs=' . $crumb_string ?>">Текущие</a></li>

@@ -84,11 +84,11 @@ function fgrreferee_node_view($node, $view_mode, $langcode)
                 $skip = (isset($_GET['skip'])) ? $_GET['skip'] : 0;
                 $seasons = get_all_seasons();
                 $params = array(
-                    'name' => (isset($_GET['name'])) ? $_GET['name'] : NULL,
-                    'sername' => (isset($_GET['sername'])) ? $_GET['sername'] : NULL,
-                    'second_name' => (isset($_GET['second_name'])) ? $_GET['second_name'] : NULL,
-                    'show_all' => (isset($_GET['show_all'])) ? $_GET['show_all'] : NULL,
-                    'competition_id' => (isset($_GET['competition_id'])) ? $_GET['competition_id'] : NULL,
+                    'name' => (isset($_GET['name'])) ? $_GET['name'] : null,
+                    'sername' => (isset($_GET['sername'])) ? $_GET['sername'] : null,
+                    'second_name' => (isset($_GET['second_name'])) ? $_GET['second_name'] : null,
+                    'show_all' => (isset($_GET['show_all'])) ? $_GET['show_all'] : null,
+                    'competition_id' => (isset($_GET['competition_id'])) ? $_GET['competition_id'] : null,
                     'top' => $top,
                     'skip' => $skip
                 );

@@ -699,8 +699,8 @@ function get_game_by_id2($id) {
 
 function get_game_by_id($id) {
     $url = variable_get('fgrtournament_system_url', 'http://fgr.ntrlab.ru:81/api');
-    $method = '/CompetitionGames/%s';
-    $response = drupal_http_request($url . sprintf($method, $id), array(
+    $method = '/Games/WithStats/';
+    $response = drupal_http_request($url . $method . $id, array(
         'method' => 'GET',
         'data' => NULL,
         'timeout' => 15));

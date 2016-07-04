@@ -4,7 +4,7 @@
     <select id="seasons" name="season">
         <option value="null">Не выбрано</option>
         <?php foreach($fgrtournaments as $season): ?>
-            <option value="<?php print $season['CompId'] ?>" label="<?php print $season['Name']; ?>">
+            <option value="<?php print $season['CompId'] ?>" label="<?php print $season['Name']; ?>"><?php print $season['Name']; ?>
             </option>
         <?php endforeach; ?>
     </select>
