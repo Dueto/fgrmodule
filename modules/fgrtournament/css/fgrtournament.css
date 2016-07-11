@@ -206,7 +206,6 @@ td .winner {
     text-align: center;
 }
 
-
 .table_games td{
     border:1px solid #C0C0C0;
 }
@@ -250,7 +249,6 @@ a.blank_link:hover {
     text-decoration: underline;
     color: black;
 }
-
 
 .tree,
 .tree ul {
@@ -468,7 +466,6 @@ a.blank_link:hover {
     line-height: 1;
 }
 
-
 #seasons select {
     -webkit-appearance: textfield;
     -moz-box-sizing: content-box;
@@ -487,8 +484,7 @@ a.blank_link:hover {
 
 .tournament_list_container {
     display: none;
-    margin-top: 15px;
-    margin-left: 10px;
+    margin-left: 5px;
 }
 
 .stat_tab:hover {
@@ -561,7 +557,6 @@ a.blank_link:hover {
     background: #e1e4ff;
 }
 
-
 /* Scrollbar */
 
 .scrollbar {
@@ -587,7 +582,6 @@ a.blank_link:hover {
     width: 100%;
     height: 20px;
 }
-
 
 /* Pages */
 
@@ -627,6 +621,22 @@ a.blank_link:hover {
     font-size: 14px;
 }
 
+li.active .announce_table th a {
+    background: #bcbcbc;
+    border-radius: 0;
+    border: 0;
+    box-shadow: 0px 0px 0px 0px;
+    color: black;
+}
+
+li.active .announce_table td a {
+    background: #e1e4ff;
+    border-radius: 0;
+    border: 0;
+    box-shadow: 0px 0px 0px 0px;
+    color: black;
+}
+
 .announce_table td {
      padding: 0px;
 }
@@ -646,10 +656,100 @@ a.blank_link:hover {
 .announce_table td div {
     color: black;
     background: #bcbcbc;
+    text-align: center;
     margin-right: 5px;
     width: 30px;
 }
 
 .announce_table tr:nth-child(2n+2) {
     background: none !important;
+}
+
+div.pagination {
+    padding: 3px;
+    margin: 3px;
+    text-align:center;
+}
+
+div.pagination a {
+    padding: 2px 5px 2px 5px;
+    margin: 2px;
+    border: 1px solid black;
+
+    text-decoration: none;
+    color: black;
+    border-radius: 3px;
+}
+
+div.pagination a:hover, div.digg a:active {
+    border: 1px solid #227fbf;
+    color: #000;
+}
+
+div.pagination span.current {
+    padding: 2px 5px 2px 5px;
+    margin: 2px;
+    border: 1px solid #227fbf;
+    border-radius: 3px;
+    font-weight: bold;
+    background-color: #227fbf;
+    color: #FFF;
+}
+
+div.pagination span.disabled {
+    padding: 2px 5px 2px 5px;
+    margin: 2px;
+    border: 1px solid #EEE;
+    border-radius: 3px;
+    color: #DDD;
+}
+
+.games_filters {
+    display: inline-flex;
+}
+
+.games_filters p {
+    margin-left: 5px;
+    /*width: 210px;*/
+}
+
+.games_filters input {
+    width: 100px;
+}
+
+.games_filters select {
+    width: 100px;
+}
+
+.button {
+    margin-top: 17px !important;
+    margin-left: 5px !important;
+    border-radius: 3px;
+    font-size: 12px;
+    background: #227fbf;
+    color: #fff;
+    height: 22px;
+    width: 100px;
+    font-weight: bold;
+}
+
+
+.button:hover {
+    background: #7DA2EC;
+}
+
+.devider {
+    color: #cccccc;
+    padding: 0 5px;
+}
+
+.crumbs {
+    margin: 0 2px;
+    display: inline-block;
+    list-style: none;
+}
+
+.crumbs li {
+    display: inline-block;
+    list-style: none;
 }

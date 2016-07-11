@@ -10,8 +10,8 @@
                 <input type="checkbox" id="show_all" name="show_all" value="show_all">
                 <div class="inline_block va_middle">Сезон:</div>
                 <select id="seasons" name="season">
-                <option value="null">Не выбрано</option>
-                <?php foreach($seasons as $season): ?>
+                    <option value="null">Не выбрано</option>
+                    <?php foreach($seasons as $season): ?>
                     <option
                         label="<?php print $season['Name']; ?>"
                         value="<?php print $season['Name']; ?>"
@@ -62,7 +62,7 @@
                 <td><?php print $referee['RefereePositionId'] ?></td>
                 <td>
                 <span>
-                    <a href="<?php print './' . $node->nid . '?referee_id=' . $referee['PersonId'] ?>"><?php print $referee['LastName'] . ' ' . $referee['FirstName'] ?></a>
+                    <a class="blank_link" href="<?php print './' . $node->nid . '?referee_id=' . $referee['PersonId'] ?>"><?php print $referee['LastName'] . ' ' . $referee['FirstName'] ?></a>
                 </span>
                 </td>
                 <td><?php $birthday = new DateTime($referee['Birthday']); print $birthday->format('Y.m.d') ?></td>

@@ -180,7 +180,6 @@ function get_tournament_by_id_playoff($id) {
  * @return mixed|null
  */
 function get_tournament_by_id_chess_mates($id) {
-//    $id = '103';
     $url = variable_get('fgrtournament_system_url', 'http://fgr.ntrlab.ru:81/api');
     $method = '/CompetitionTeams/CrossTable?compId=%s&dateFormat=dd.MM.yyyy&byStartPlaces=false';
     $response = drupal_http_request($url . sprintf($method, $id), array(
@@ -196,6 +195,10 @@ function get_tournament_by_id_chess_mates($id) {
     }
 }
 
+/**
+ * @param $teams_data
+ * @return array
+ */
 function form_games_table($teams_data) {
     $table_size = count($teams_data['Data']);
     $games_table = array();
@@ -226,8 +229,11 @@ function form_games_table($teams_data) {
     return $games_table;
 }
 
+/**
+ * @param $id
+ * @return mixed|null
+ */
 function get_tournament_team_stats_by_id($id) {
-//    $id = '103';
     $url = variable_get('fgrtournament_system_url', 'http://fgr.ntrlab.ru:81/api');
     $method = '/CompetitionTeams?compId=%s';
     $response = drupal_http_request($url . sprintf($method, $id), array(
@@ -242,6 +248,9 @@ function get_tournament_team_stats_by_id($id) {
     }
 }
 
+/**
+ * @return null
+ */
 function get_last_tournaments() {
     $url = variable_get('fgrtournament_system_url', 'http://fgr.ntrlab.ru:81/api');
     $method = '/Competitions?$filter=CompTypeId%20eq%20\'Season\'&$orderby=CompSort%20asc';
@@ -261,6 +270,10 @@ function get_last_tournaments() {
     }
 }
 
+/**
+ * @param $id
+ * @return null
+ */
 function get_tournament_childs($id) {
     $url = variable_get('fgrtournament_system_url', 'http://fgr.ntrlab.ru:81/api');
     $tournament_with_childs_method = '/Competitions/withChilds/';
@@ -275,10 +288,23 @@ function get_tournament_childs($id) {
     }
 }
 
-function get_tournament_games_by_id($tournament_id, $type) {
-//    $tournament_id = '103';
+/**
+ * @param $tournament_id
+ * @param $type
+ * @param $filter_params
+ * @return mixed|null
+ */
+function get_tournament_games_by_id($tournament_id, $type, $filter_params) {
     $url = variable_get('fgrtournament_system_url', 'http://fgr.ntrlab.ru:81/api');
-    $method = '/CompetitionGames?compId=' . $tournament_id . '&$filter=Game/GameStatusId%20eq%20\'' . ucfirst($type) . '\'&$orderby=Game/LocalDate%20desc';
+    $api_method = '/CompetitionGames';
+    $method = get_method_string_tournament_games($tournament_id, $type, $filter_params, $api_method);
+    if($filter_params['top'] != null) {
+        $method .= '&$top=' . $filter_params['top'];
+    }
+    if($filter_params['skip'] != null) {
+        $method .= '&$skip=' . $filter_params['skip'];
+    }
+    print $url . $method;
     $response = drupal_http_request($url . $method, array(
         'method' => 'GET',
         'data' => NULL,
@@ -290,16 +316,50 @@ function get_tournament_games_by_id($tournament_id, $type) {
     }
 }
 
-function get_tournament_metadata($id) {
-//    $id = '103';
+/**
+ * @param $tournament_id
+ * @param $type
+ * @param $filter_params
+ * @return string
+ */
+function get_method_string_tournament_games($tournament_id, $type, $filter_params, $api_method) {
+    $method = $api_method . '?compId=' . $tournament_id . '&$orderby=Game/LocalDate%20desc&$filter=Game/GameStatusId%20eq%20\'' . ucfirst($type) . '\'';
+    if($filter_params['team_id'] != null) {
+        $method .= '%20and%20(Game/Team1Id%20eq%20' . $filter_params['team_id'] . '%20or%20Game/Team2Id%20eq%20' . $filter_params['team_id'] . ')';
+    }
+    if($filter_params['start_date'] != null) {
+        $start_date = strtotime($filter_params['start_date']);
+        $method .= '%20and%20Game/LocalDate%20gt%20DATETIME\'' . date('Y-m-d\TH:i:s', $start_date) . '\'';
+    }
+    if($filter_params['end_date'] != null) {
+        $end_date = strtotime($filter_params['end_date']);
+        $method .= '%20and%20Game/LocalDate%20lt%20DATETIME\'' . date('Y-m-d\TH:i:s', $end_date) . '\'';
+    }
+    return $method;
+}
+
+function get_games_count($tournament_id, $type, $filter_params) {
     $url = variable_get('fgrtournament_system_url', 'http://fgr.ntrlab.ru:81/api');
-    $method = '/Competitions/withParents/%s';
-    $response = drupal_http_request($url . sprintf($method, $id), array(
+    $api_method = '/CompetitionGames/Count';
+    $method = get_method_string_tournament_games($tournament_id, $type, $filter_params, $api_method);
+    $response = drupal_http_request($url . $method, array(
         'method' => 'GET',
         'data' => NULL,
         'timeout' => 15));
     if($response->code == 200) {
-        $tournaments_data = drupal_json_decode($response->data)['Data'];
+        return drupal_json_decode($response->data)['Data']['Count'];
+    } else {
+        return null;
+    }
+}
+
+/**
+ * @param $id
+ * @return array|null
+ */
+function get_tournament_metadata($id) {
+    $tournaments_data = get_tournament_with_parents($id);
+    if($tournaments_data != null) {
         $full_name = form_tournament_name($tournaments_data);
         return array(
             'TournamentFullName' => $full_name,
@@ -312,6 +372,24 @@ function get_tournament_metadata($id) {
     }
 }
 
+function get_tournament_with_parents($id) {
+    $url = variable_get('fgrtournament_system_url', 'http://fgr.ntrlab.ru:81/api');
+    $method = '/Competitions/withParents/%s';
+    $response = drupal_http_request($url . sprintf($method, $id), array(
+        'method' => 'GET',
+        'data' => NULL,
+        'timeout' => 15));
+    if($response->code == 200) {
+        return drupal_json_decode($response->data)['Data'];
+    } else {
+        return null;
+    }
+}
+
+/**
+ * @param $id
+ * @return mixed|null
+ */
 function get_last_tournament_games($id) {
     $url = variable_get('fgrtournament_system_url', 'http://fgr.ntrlab.ru:81/api');
     $method = '/CompetitionGames?compId=' . $id . '&$orderby=Game/LocalDate%20desc&$top=20';
@@ -326,6 +404,10 @@ function get_last_tournament_games($id) {
     }
 }
 
+/**
+ * @param $tournament_obj
+ * @return string
+ */
 function form_tournament_name($tournament_obj) {
     $tournament_buff = $tournament_obj;
     $full_tournament_name = '';
@@ -339,6 +421,10 @@ function form_tournament_name($tournament_obj) {
     return $full_tournament_name;
 }
 
+/**
+ * @param $id
+ * @return array|null
+ */
 function get_playoff_pairs($id) {
     $url = variable_get('fgrtournament_system_url', 'http://fgr.ntrlab.ru:81/api');
     $method = '/CompetitionTeams/PlayoffPairs?compId=' . $id . '&$orderby=Round%20desc';
@@ -354,6 +440,10 @@ function get_playoff_pairs($id) {
     }
 }
 
+/**
+ * @param $tournaments_data
+ * @return array|null
+ */
 function format_playoff_pairs($tournaments_data) {
     $splitted_rounds = array();
     if($tournaments_data == null || count($tournaments_data) == 0) return null;
@@ -379,6 +469,11 @@ function format_playoff_pairs($tournaments_data) {
     return $sorted;
 }
 
+/**
+ * @param $array
+ * @param $cols
+ * @return array
+ */
 function array_msort($array, $cols)
 {
     $colarr = array();

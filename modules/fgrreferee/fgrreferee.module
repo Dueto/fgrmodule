@@ -35,17 +35,6 @@ function fgrreferee_node_view($node, $view_mode, $langcode)
     module_load_include('inc', 'fgrreferee', 'fgrreferee.api');
     switch ($node->type) {
         case 'fgrreferee':
-            $crumbs = array();
-            if(isset($_GET['crumbs'])) {
-                $crumbs_buff = explode(';', $_GET['crumbs']);
-                foreach($crumbs_buff as $crumb) {
-                    $buff = explode(':', $crumb);
-                    array_push($crumbs, array(
-                        'title' => $buff[0],
-                        'ref' => $buff[1]
-                    ));
-                }
-            }
             if(isset($_GET['referee_id'])) {
                 $referee_id = $_GET['referee_id'];
                 $referee_data = get_referee_by_id($referee_id);
@@ -57,24 +46,24 @@ function fgrreferee_node_view($node, $view_mode, $langcode)
                     case 'competitions':
                         if($referee_data['RefereePositionId'] == 1 || $referee_data['RefereePositionId'] == 2) {
                             $node->content['fgrreferee_inspector_competitions'] = array(
-                                "#markup" => theme('fgrreferee_inspector_competitions', array('fgrreferee' => $referee_data, 'node' => $node, 'crumbs' => $crumbs))
+                                "#markup" => theme('fgrreferee_inspector_competitions', array('fgrreferee' => $referee_data, 'node' => $node))
                             );
                             break;
                         } else {
                             $node->content['fgrreferee_competitions'] = array(
-                                "#markup" => theme('fgrreferee_competitions', array('fgrreferee' => $referee_data, 'node' => $node, 'crumbs' => $crumbs))
+                                "#markup" => theme('fgrreferee_competitions', array('fgrreferee' => $referee_data, 'node' => $node))
                             );
                             break;
                         }
                     case 'games':
                         if($referee_data['RefereePositionId'] == 1 || $referee_data['RefereePositionId'] == 2) {
                             $node->content['fgrreferee_inspector_games'] = array(
-                                "#markup" => theme('fgrreferee_inspector_games', array('fgrreferee' => $referee_data, 'node' => $node, 'crumbs' => $crumbs))
+                                "#markup" => theme('fgrreferee_inspector_games', array('fgrreferee' => $referee_data, 'node' => $node))
                             );
                             break;
                         } else {
                             $node->content['fgrreferee_games'] = array(
-                                "#markup" => theme('fgrreferee_games', array('fgrreferee' => $referee_data, 'node' => $node, 'crumbs' => $crumbs))
+                                "#markup" => theme('fgrreferee_games', array('fgrreferee' => $referee_data, 'node' => $node))
                             );
                             break;
                         }

@@ -1,6 +1,6 @@
 <!--<div id="playoff_dialog_button" class="playoff_button">Плейофф</div>-->
 <!--<div id="playoff_dialog">-->
-<h2>Плейофф</h2>
+<h3>Плейофф</h3>
 <?php
 $buffer = $tournament_data;
 $counter = 0;

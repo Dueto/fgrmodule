@@ -1,7 +1,7 @@
 /**
  * Created by PRIMA on 25.04.2016.
  */
-ChartBuilder = function(pointChartDiv, histogramChartDiv) {
+ChartBuilder = function(pointChartDiv, histogramChartDiv, gameId) {
 
     var self = {};
 
@@ -22,6 +22,7 @@ ChartBuilder = function(pointChartDiv, histogramChartDiv) {
     //DivId
     self.pointChartDiv = pointChartDiv;
     self.histogramChartDiv = histogramChartDiv;
+    self.gameId = gameId;
 
     self.pointDifferenceOptions = {
         title: 'Онлайн счет - диаграмма',
@@ -101,25 +102,49 @@ ChartBuilder = function(pointChartDiv, histogramChartDiv) {
     };
 
     self.updateData = function(callback) {
-        self.teamA = {name: "Каустик"};
-        self.teamB = {name: "Медведи"};
-        self.data = [
-            [0, 0, 0],    [1, 40, 5],   [2, 23, 40],  [3, 17, 40],   [4, 40, 10],  [5, 9, 40],
-            [6, 11, 3],   [7, 40, 19],  [8, 33, 40],  [9, 40, 32],  [10, 32, 24], [11, 35, 27],
-            [12, 30, 22], [13, 40, 32], [14, 42, 34], [15, 47, 39], [16, 44, 36], [17, 48, 40],
-            [18, 52, 44], [19, 54, 46], [20, 42, 34], [21, 55, 47], [22, 56, 48], [23, 57, 49],
-            [24, 60, 52], [25, 50, 42], [26, 52, 44], [27, 51, 43], [28, 49, 41], [29, 53, 45],
-            [30, 55, 47], [31, 60, 52], [32, 61, 53], [33, 59, 51], [34, 62, 54], [35, 65, 57],
-            [36, 62, 54], [37, 58, 50], [38, 55, 47], [39, 61, 53], [40, 64, 56], [41, 65, 57],
-            [42, 63, 55], [43, 66, 58], [44, 67, 59], [45, 69, 61], [46, 69, 61], [47, 70, 62],
-            [48, 72, 64], [49, 68, 60], [50, 66, 58], [51, 65, 57], [52, 67, 59], [53, 70, 62],
-            [54, 71, 63], [55, 72, 64], [56, 73, 65], [57, 75, 67], [58, 70, 62], [59, 68, 60],
-            [60, 64, 56], [61, 60, 52], [62, 65, 57], [63, 67, 59], [64, 68, 60], [65, 69, 61],
-            [66, 70, 62], [67, 72, 64], [68, 75, 67], [69, 80, 72]
-        ];
-        if(callback) callback();
+        $.ajax({
+            url: "http://fgr.ntrlab.ru:81/api/Games/WithStats/" + self.gameId,
+            success: function(data){
+                if(data.Data == null) return;
+                if(data.Data.GamePlays.length == null) return;
+                var gamePlays = data.Data.GamePlays;
+                var gameStarts = data.Data.GameStarts;
+                var scoreTeamA = 0;
+                var scoreTeamB = 0;
+                self.data = [];
+                for(var i = 0; i < gamePlays.length; i++) {
+                    var event = gamePlays[i];
+                    if(event.PlayTypeId == EventType.Goal.value) {
+                        var eventPlayer = self.getPlayerByStartNum(event.StartNum, gameStarts);
+                        var TeamNumber = eventPlayer.TeamNum;
+                        if(TeamNumber == 0) continue;
+                        var pointData = null;
+                        if(TeamNumber == 1) {
+                            scoreTeamA++;
+                        } else {
+                            scoreTeamB++;
+                        }
+                        pointData = [i, scoreTeamA, scoreTeamB];
+                        self.data.push(pointData);
+                    }
+                }
+                console.log(self.data);
+                if(callback) callback();
+            },
+            fail: function(){
+                console.log('server fail');
+            }
+        });
     };
 
+    self.getPlayerByStartNum = function (playerNumber, gameStarts) {
+        for(var i = 0; i < gameStarts.length; i++) {
+            if(gameStarts[i].StartNum == playerNumber) {
+                return gameStarts[i];
+            }
+        }
+        return null;
+    };
 
     self.updateHistogramDifferenceChart = function() {
         if(self.histagramChart!== null) {

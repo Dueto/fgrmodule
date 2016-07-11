@@ -1,4 +1,4 @@
-<h2><?php print $tournament_data['TournamentMetaData']['TournamentName']?></h2>
+<h3><?php print $tournament_data['TournamentMetaData']['TournamentName']?></h3>
 <div class="tabs">
     <ul class="tab-links">
         <li id="stat_tab<?php print $tournament_data['TournamentMetaData']['TournamentId'] ?>" class="active" onclick="

@@ -1,3 +1,4 @@
+<?php print get_tournament_crumbs($game['GameTeam1']['CompTeam']['CompId']) . '</ul>'?>
 <!--<h2>--><?php //print $game['TournamentMetaData']['TournamentFullName']?><!--</h2>-->
 <table class="table_game_head">
     <tr>

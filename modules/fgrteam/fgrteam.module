@@ -35,29 +35,19 @@ function fgrteam_node_view($node, $view_mode, $langcode)
     module_load_include('inc', 'fgrteam', 'fgrteam.api');
     switch ($node->type) {
         case 'fgrteam':
-            $crumbs = array();
-            if(isset($_GET['crumbs'])) {
-                $crumbs_buff = explode(';', $_GET['crumbs']);
-                foreach($crumbs_buff as $crumb) {
-                    $buff = explode(':', $crumb);
-                    array_push($crumbs, array(
-                        'title' => $buff[0],
-                        'ref' => $buff[1]
-                    ));
-                }
-            }
             if(isset($_GET['team_id'])) {
                 drupal_add_js(drupal_get_path('module', 'fgrteam') . '/js/sorttable.js');
                 drupal_add_js(drupal_get_path('module', 'fgrteam') . '/js/jquery-ui.min.js');
                 $team_id = $_GET['team_id'];
                 $team_data = get_team_by_id($team_id);
+                $team_games_markup = theme('fgrteam_games', array('fgrteam_games' => get_last_team_games($team_id), 'node' => $node));
                 $node->content['fgrteam'] = array(
-                    "#markup" => theme('fgrteam', array('fgrteam' => $team_data, 'node' => $node, 'crumbs' => $crumbs))
+                    "#markup" => theme('fgrteam', array('fgrteam' => $team_data, 'node' => $node)) . $team_games_markup
                 );
             } else {
                 $result = get_fgr_teams();
                 $node->content['fgrteam_list'] = array(
-                    "#markup" => theme('fgrteam_list', array('fgrteam_list' => $result, 'node' => $node, 'crumbs' => $crumbs))
+                    "#markup" => theme('fgrteam_list', array('fgrteam_list' => $result, 'node' => $node))
                 );
             }
             break;
@@ -77,6 +67,11 @@ function fgrteam_theme() {
         'fgrteam' => array(
             'variables' => array('fgrteam' => NULL, 'node' => NULL, 'crumbs' => NULL),
             'template' => 'templates/fgrteam',
+            'file' => 'fgrteam.pages.inc',
+        ),
+        'fgrteam_games' => array(
+            'variables' => array('fgrteam_games' => NULL, 'node' => NULL),
+            'template' => 'templates/fgrteam-games',
             'file' => 'fgrteam.pages.inc',
         )
     );

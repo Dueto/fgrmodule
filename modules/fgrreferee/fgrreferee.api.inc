@@ -23,7 +23,7 @@ function get_fgr_referees($params) {
         'timeout' => 15));
     if($response->code == 200) {
         $referees = drupal_json_decode($response->data);
-        $all_count = get_all_referee_count($url . $method);
+        $all_count = get_all_referee_count($params);
         $referees['AllCount'] = $all_count;
         return $referees;
     } else {
@@ -31,14 +31,16 @@ function get_fgr_referees($params) {
     }
 }
 
-function get_all_referee_count($method) {
-    $response = drupal_http_request($method, array(
+function get_all_referee_count($params) {
+    $url = variable_get('fgrtournament_system_url', 'http://fgr.ntrlab.ru:81/api');
+    $method = get_method_string_with_filters_count($params);
+    $response = drupal_http_request($url . $method, array(
         'method' => 'GET',
         'data' => NULL,
         'timeout' => 15));
     if($response->code == 200) {
-        $referees_count = drupal_json_decode($response->data);
-        return 1000;
+        $referees_count = drupal_json_decode($response->data)['Data']['Count'];
+        return $referees_count;
     } else {
         return null;
     }
@@ -106,6 +108,55 @@ function get_method_string_with_filters($params) {
     }
     if($filter_added) {
         $method_string .= '&$orderby=LastName%20asc';
+    } else {
+        $method_string .= '$orderby=LastName%20asc';
+    }
+    return $method_string;
+}
+
+function get_method_string_with_filters_count($params) {
+    $method_string = '/Referees/Count';
+    $filter_added = false;
+    if($params['show_all'] == 'true') {
+        return $method_string;
+    } else {
+        if($params['name'] != null) {
+            if($filter_added) {
+                $method_string .= '%20and%20substringof(%27' . $params['name'] . '%27,FirstName)%20eq%20true';
+            } else {
+                $method_string .= '?$filter=substringof(%27' . $params['name'] . '%27,FirstName)%20eq%20true';
+                $filter_added = true;
+            }
+        }
+        if($params['sername'] != null) {
+            if($filter_added) {
+                $method_string .= '%20and%20substringof(%27' . $params['sername'] . '%27,LastName)%20eq%20true';
+            } else {
+                $method_string .= '?$filter=substringof(%27' . $params['sername'] . '%27,LastName)%20eq%20true';
+                $filter_added = true;
+            }
+        }
+        if($params['second_name'] != null) {
+            if($filter_added) {
+                $method_string .= '%20and%20substringof(%27' . $params['second_name'] . '%27,MiddleName)%20eq%20true';
+            } else {
+                $method_string .= '?$filter=substringof(%27' . $params['second_name'] . '%27,MiddleName)%20eq%20true';
+                $filter_added = true;
+            }
+        }
+    }
+    if($params['competition_id'] != null) {
+        $season_dates = get_competition_dates($params['competition_id']);
+        if($season_dates != null) {
+            if($filter_added) {
+                $method_string .= '&seasonStartDate=' . $season_dates['start'];
+                $method_string .= '&seasonEndDate=' . $season_dates['end'];
+            } else {
+                $method_string .= '?seasonStartDate=' . $season_dates['start'];
+                $method_string .= '&seasonEndDate=' . $season_dates['end'];
+                $filter_added = true;
+            }
+        }
     }
     return $method_string;
 }
@@ -115,11 +166,10 @@ function get_competition_dates($competition_id) {
     $splitted = explode(' ', $competition_id);
     if(array_key_exists(1, $splitted)) {
         $splitted_years = explode('/', $splitted[1]);
-        print_r($splitted_years);
         if(array_key_exists(0, $splitted_years) && array_key_exists(1, $splitted_years)) {
             $return_dates = array();
-            $return_dates['start'] = $splitted[0] . '-08-15T00%3A00%3A00.000';
-            $return_dates['end'] = $splitted[1] . '-08-14T59%3A59%3A59.999';
+            $return_dates['start'] = $splitted_years[0] . '-08-15T00%3A00%3A00';
+            $return_dates['end'] = $splitted_years[1] . '-08-14T00%3A00%3A00';
             return $return_dates;
         }
     }
