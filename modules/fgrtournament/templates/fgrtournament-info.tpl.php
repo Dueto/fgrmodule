@@ -1,7 +1,5 @@
+<!--<h2>--><?php //print $tournament_data['TournamentMetaData']['TournamentFullName']?><!--</h2>-->
 <?php print get_tournament_crumbs($tournament_data['TournamentMetaData']['TournamentId']) . '</ul>'; ?>
-
-<h3><?php print $tournament_data['TournamentMetaData']['TournamentFullName']?></h3>
-
 <div class="wrap">
     <div class="scrollbar">
         <div class="handle">
@@ -17,7 +15,12 @@
                 <table class="announce_table" id="game_id_<?php print $game['Game']['GameId'] ?>">
                     <thead>
                     <tr>
-                        <th colspan="3"><a class="blank_link" href="<?php print './' . $tournament_data['GameNodeId'] . '?game_id=' . $game['Game']['GameId']?>">
+                        <th colspan="3" class="
+                        <?php if($game['Game']['GameStatusId'] == 0) print 'game_before'?>
+                        <?php if($game['Game']['GameStatusId'] == 1) print 'game_ended'?>
+                        <?php if($game['Game']['GameStatusId'] == 2) print 'game_current'?>
+                        ">
+                            <a class="blank_link" href="<?php print './' . $tournament_data['GameNodeId'] . '?game_id=' . $game['Game']['GameId']?>">
                                 <?php $timestamp = date('Y.m.d H:i', strtotime($game['Game']['LocalDateTime']));
                                 $time = is_near_date($timestamp);
                                 if($time != 0) print $time . ' ' . date('H:i', strtotime($game['Game']['LocalDateTime']));
@@ -32,7 +35,7 @@
                         <td><div><?php print $game['Game']['GameTeam1']['Score'] ?></div></td>
                     </tr>
                     <tr>
-                        <td><img class="team_icon" src="<?php if($game['Game']['GameTeam1']['CompTeam']['Team']['ClubLogoId'] != null) print variable_get('fgrtournament_system_url', 'http://fgr.ntrlab.ru:81/api') . '/Media/Image/' . $game['Game']['GameTeam1']['CompTeam']['Team']['ClubLogoId']; else print '../files/fgrmodule/logo.png'; ?>"></td>
+                        <td><img class="team_icon" src="<?php if($game['Game']['GameTeam2']['CompTeam']['Team']['ClubLogoId'] != null) print variable_get('fgrtournament_system_url', 'http://fgr.ntrlab.ru:81/api') . '/Media/Image/' . $game['Game']['GameTeam2']['CompTeam']['Team']['ClubLogoId']; else print '../files/fgrmodule/logo.png'; ?>"></td>
                         <td><a class="blank_link" href="<?php print './' . $tournament_data['TeamNodeId'] . '?team_id=' . $game['Game']['GameTeam2']['CompTeam']['TeamId'] ?>"><?php print $game['Game']['GameTeam2']['CompTeam']['Name'] ?></a></td>
                         <td><div><?php print $game['Game']['GameTeam2']['Score'] ?></div></td>
                     </tr>
@@ -63,8 +66,8 @@
         </li>
     </ul>
 </div>
-
 <script>
+    $('#page-title').remove();
     var $frame = $('#basic');
     var $slidee = $frame.children('ul').eq(0);
     var $wrap = $frame.parent();

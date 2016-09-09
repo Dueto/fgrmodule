@@ -43,15 +43,17 @@
                 <span><?php print get_team_stat($game['GameStarts'], 2, 47) . '/' . get_team_stat($game['GameStarts'], 2, 17)?></span>
             </div>
 
-            <div class="tiny text-middle">Таймауты</div>
-            <div class="text-middle">
-                <span>1200</span>
-            </div>
+<!--            <div class="tiny text-middle">Таймауты</div>-->
+<!--            <div class="text-middle">-->
+<!--                <span>1200</span>-->
+<!--            </div>-->
 
-            <div class="tiny text-middle">Зрители</div>
-            <div class="text-middle">
-                <span><?php print $game['Attendance']; ?></span>
-            </div>
+            <?php if($game['Attendance'] != null): ?>
+                <div class="tiny text-middle">Зрители</div>
+                <div class="text-middle">
+                    <span><?php print $game['Attendance']; ?></span>
+                </div>
+            <?php endif; ?>
 
             <div><?php print date('Y.m.d', strtotime($game['LocalDateTime']))?></div>
             <div><?php print $game['LocalTimeString']?></div><br/>
@@ -88,7 +90,7 @@
 </table>
 <div class="tiny text-middle">Судьи на поле</div>
 <div class="text-middle bold">&nbsp;&nbsp;&nbsp;&nbsp;
-    <?php print_referees_on_game($game['GameStarts']); ?>
+    <?php if(get_referees_on_game($game['GameStarts']) != null) print get_referees_on_game($game['GameStarts']); else print 'Не определны'?>
 </div>
 <table>
     <tr>
@@ -97,17 +99,17 @@
     </tr>
     <tr>
         <td class="text-middle bold">
-            <?php print_technical_delegate($game['GameStarts'])?>
+            <?php if(get_technical_delegate($game['GameStarts']) != null) print get_technical_delegate($game['GameStarts']); else print 'Не определен'?>
         </td>
         <td class="text-middle bold">
-            <?php print_referee_inspector($game['GameStarts'])?>
+            <?php if(get_referee_inspector($game['GameStarts']) != null) print get_referee_inspector($game['GameStarts']); else print 'Не определен'?>
         </td>
     </tr>
 </table>
-<div class="text-middle bold display_inline">
-    <img style="width: 25px !important; vertical-align: middle;" src="../files/adobe_icon.png">
-    <a class="blank_link" href="">&nbsp;Итоговый судейский протокол</a>
-</div>
+<!--<div class="text-middle bold display_inline">-->
+<!--    <img style="width: 25px !important; vertical-align: middle;" src="../files/adobe_icon.png">-->
+<!--    <a class="blank_link" href="">&nbsp;Итоговый судейский протокол</a>-->
+<!--</div>-->
 
 <?php foreach ($game['GameStarts'] as $key => $person): ?>
     <?php if($person['StartTypeId'] == 1): ?>
@@ -144,3 +146,7 @@
     </script>
     <?php endif; ?>
 <?php endforeach; ?>
+
+<script>
+    $('#page-title').remove();
+</script>

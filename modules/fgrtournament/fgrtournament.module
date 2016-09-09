@@ -27,6 +27,22 @@ function fgrtournament_node_info() {
   return $items;
 }
 
+
+/**
+ * Implements hook_block_info().
+ */
+function games_block_info() {
+  $items = array(
+      'fgrtournament' => array(
+          'name' => t('FGR tournament bracket'),
+          'base' => 'node_content',
+          'description' => t('Displays tournament bracket.'),
+          'help' => 'Displays tournament bracket.',
+      ),
+  );
+  return $items;
+}
+
 /**
  * Implements hook_node_view().
  */

@@ -1,0 +1,102 @@
+<?php
+
+/**
+ * @file
+ * A block module that displays recent blog and forum posts.
+ */
+function fgrtopgames_help($path, $arg) {
+  switch ($path) {
+    case "admin/help#fgrtopgames":
+      return '' . t("Displays FGR games in top of menu") . '';
+      break;
+  }
+}
+
+
+/**
+ * Implements hook_block_info().
+ */
+function fgrtopgames_block_info() {
+    $block['fgrtopgames'] = array(
+        'info' => t('FGR top games'),
+        'cache' => DRUPAL_NO_CACHE,
+    );
+    return $block;
+}
+
+/**
+ * @param $delta
+ * @return array
+ */
+function fgrtopgames_block_view($delta)  {
+    $block = array();
+    switch ($delta) {
+        case 'fgrtopgames':
+            module_load_include('inc', 'fgrtopgames', 'fgrtopgames.api');
+            $tournament_id = '540';
+            $games['TeamNodeId'] = get_fgrteam_node()['nid'];
+            $games['GameNodeId'] = get_fgrgame_node()['nid'];
+            $games['LastGames'] =  get_last_games($tournament_id);
+            $block['content'] = theme('fgrtopgames', array('games' => $games));
+            break;
+    }
+    return $block;
+}
+
+function is_near_game($timestamp) {
+    $today = new DateTime();
+    $today->setTime( 0, 0, 0 );
+    $match_date = DateTime::createFromFormat("Y.m.d H:i", $timestamp);
+    $match_date->setTime( 0, 0, 0 );
+    $diff = $today->diff( $match_date );
+    $diffDays = (integer)$diff->format( "%R%a" );
+    switch( $diffDays ) {
+        case 0:
+            return 'Сегодня';
+            break;
+        case -1:
+            return 'Вчера';
+            break;
+        case +1:
+            return 'Завтра';
+            break;
+        default:
+            return 0;
+    }
+}
+
+/**
+ * Implements hook_theme();
+*/
+function fgrtopgames_theme() {
+    return array(
+        'fgrtopgames' => array(
+            'variables' => array('games' => NULL),
+            'template' => 'templates/fgrtopgames',
+            'file' => 'fgrtopgames.pages.inc',
+        )
+    );
+}
+
+/**
+ * @return predefined team node id
+ */
+function get_fgrteam_node() {
+    return db_select('node', 'nid')
+        ->fields('nid')
+        ->condition('type', 'fgrteam', '=')
+        ->execute()
+        ->fetchAssoc();
+}
+
+/**
+ * @return predefined game node id
+ */
+function get_fgrgame_node() {
+    return db_select('node', 'nid')
+        ->fields('nid')
+        ->condition('type', 'fgrgame', '=')
+        ->execute()
+        ->fetchAssoc();
+}
+

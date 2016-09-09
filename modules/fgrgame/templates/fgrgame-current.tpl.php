@@ -107,3 +107,8 @@
 <div class="text-middle bold display_inline">
     <a class="blank_link" href="">Новостная лента</a>
 </div>
+
+
+<script>
+    $('#page-title').remove();
+</script>

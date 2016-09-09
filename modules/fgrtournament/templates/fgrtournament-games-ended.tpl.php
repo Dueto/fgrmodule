@@ -1,8 +1,21 @@
+<?php $game_type = 'result'; if(isset($_GET['game_type'])) $game_type = $_GET['game_type']; ?>
 <div class="tabs">
     <ul class="tab-links">
-        <li><a href="<?php print './' . $node->nid . '?tournament_id=' . $tournament_data['TournamentMetaData']['TournamentId'] . '&type=games&game_type=online'?>">Текущие</a></li>
-        <li class="active"><a href="<?php print './' . $node->nid . '?tournament_id=' . $tournament_data['TournamentMetaData']['TournamentId'] . '&type=games&game_type=result'?>">Завершенные</a></li>
-        <li><a href="<?php print './' . $node->nid . '?tournament_id=' . $tournament_data['TournamentMetaData']['TournamentId'] . '&type=games&game_type=scheduled'?>">Запланированные</a></li>
+        <li <?php 
+            if($game_type == 'online') {
+                print 'class="active"';
+            }
+        ?>><a href="<?php print './' . $node->nid . '?tournament_id=' . $tournament_data['TournamentMetaData']['TournamentId'] . '&type=games&game_type=online'?>">Текущие</a></li>
+        <li <?php
+            if($game_type == 'result') {
+                print 'class="active"';
+            }
+        ?>><a href="<?php print './' . $node->nid . '?tournament_id=' . $tournament_data['TournamentMetaData']['TournamentId'] . '&type=games&game_type=result'?>">Завершенные</a></li>
+        <li <?php
+            if($game_type == 'scheduled') {
+                print 'class="active"';
+            }
+        ?>><a href="<?php print './' . $node->nid . '?tournament_id=' . $tournament_data['TournamentMetaData']['TournamentId'] . '&type=games&game_type=scheduled'?>">Запланированные</a></li>
     </ul>
 </div>
 
@@ -72,6 +85,7 @@
     <h2>Нет завершенных матчей</h2>
 <?php endif ?>
 
+
 <script>
     <?php $top = $filter_params['top']; $skip = $filter_params['skip'];
     $current_page = ceil(($skip + $top) / $top) == 0 ? 1 : ceil(($skip + $top) / $top); ?>
@@ -80,7 +94,7 @@
         var endDate = $('#date_picker2').val();
         var teamId = $('#teams option:selected').val();
         if(teamId == null) { teamId = ''; }
-        window.location = './<?php print './' . $node->nid . '?tournament_id=' . $tournament_data['TournamentMetaData']['TournamentId'] . '&type=games&game_type=result'?>'
+        window.location = './<?php print './' . $node->nid . '?tournament_id=' . $tournament_data['TournamentMetaData']['TournamentId'] . '&type=games&game_type=' . $game_type?>'
             + '&team_id=' + teamId
             + '&start_date=' + startDate
             + '&end_date=' + endDate
@@ -100,7 +114,7 @@
             var endDate = $('#date_picker2').val();
             var teamId = $('#teams option:selected').val();
             if(teamId == null) { teamId = ''; }
-            window.location = './<?php print './' . $node->nid . '?tournament_id=' . $tournament_data['TournamentMetaData']['TournamentId'] . '&type=games&game_type=result'?>'
+            window.location = './<?php print './' . $node->nid . '?tournament_id=' . $tournament_data['TournamentMetaData']['TournamentId'] . '&type=games&game_type=' . $game_type?>'
                 + '&skip=' + (page - 1) * <?php print $top?>
                 + '&top=<?php print $top?>'
                 + '&team_id=' + teamId

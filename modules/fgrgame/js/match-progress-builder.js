@@ -119,8 +119,13 @@ MatchProgressBuilder = function(divId, gameId) {
 
     self.formMatchTable = function() {
         self.getMatchEvents(function(){
+            var container = $('#' + self.divId);
+            if(self.data.length == 0) {
+                container.append('Нет информации об онлайн ходе матча');
+                return;
+            }
             var html = self.formHtmlFromEvents(self.data);
-            $('#' + self.divId).prepend(html);
+            container.prepend(html);
         });
     };
 

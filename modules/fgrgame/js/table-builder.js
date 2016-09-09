@@ -51,7 +51,6 @@ TableBuilder = function(divId, gameId) {
                     eventObj.score = scoreTeamA + ':' + scoreTeamB;
                     self.data.push(eventObj);
                 }
-                console.log(self.data);
                 if(callback) callback();
             },
             fail: function(){
@@ -101,6 +100,10 @@ TableBuilder = function(divId, gameId) {
 
     self.buildTable = function(callback) {
         self.getGameOnlineInfo(function(){
+            if(self.data.length == 0) {
+                $('#' + self.divId).append('Нет информации об онлайн ходе матча');
+                return;
+            }
             self.maxDepth = self.getMaxDepth(self.data);
             var rows = self.maxDepth.teamA + 1 + self.maxDepth.teamB + 1;
             var additionalRows = 0;

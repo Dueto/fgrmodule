@@ -46,17 +46,15 @@ function fgrgame_node_view($node, $view_mode, $langcode)
 //                $tournament_metadata = form_tournament_metadata($game_data);
 //                $game_data['TournamentMetaData'] = $tournament_metadata;
 
-                $tab_type = 'info';
-                if($game_data['StatsStatusId'] == 0) {
+                $tab_type = 'statistics';
+                $tab_markup = '';
+//                if($game_data['StatsStatusId'] == 0) {
                     //Define which tab should be presented
-                    $tab_type = 'statistics';
-                }
-
-                if(isset($_GET['tab_type'])) {
-                    $tab_type = $_GET['tab_type'];
-                }
-                $tab_markup = form_tab_markup($node, $tab_type, $game_id, $team_node_id);
-
+                    if(isset($_GET['tab_type'])) {
+                        $tab_type = $_GET['tab_type'];
+                    }
+                    $tab_markup = form_tab_markup($node, $tab_type, $game_id, $team_node_id);
+//                }
                 //Define which view should be produced
                 switch ($game_data['GameStatusId']) {
                     case 0:
@@ -65,8 +63,8 @@ function fgrgame_node_view($node, $view_mode, $langcode)
                         );
                         break;
                     case 2:
-                        $node->content['fgrgame_current'] = array(
-                            "#markup" => (theme('fgrgame_current', array('game' => $game_data, 'node' => $node, 'team_node_id' => $team_node_id['nid'])) . $tab_markup)
+                        $node->content['fgrgame_ended'] = array(
+                            "#markup" => (theme('fgrgame_ended', array('game' => $game_data, 'node' => $node, 'team_node_id' => $team_node_id['nid'])) . $tab_markup)
                         );
                         break;
                     case 1:
@@ -199,35 +197,37 @@ function print_stats_param($stat_param_id, $game_stat_values) {
     print '';
 }
 
-function print_referee_inspector($game_starts) {
+function get_referee_inspector($game_starts) {
     $referee_node_id = get_fgrreferee_node_id();
+    $referee_markup = null;
     foreach($game_starts as $person) {
         if($person['StartTypeId'] == 4 && $person['PositionId'] == 3) {
-            print '<a class="blank_link" href="./' . $referee_node_id['nid'] . '?referee_id=' . $person['PersonId'] . '">' . $person['FirstName'] . ' ' . $person['LastName'] . '</a>';
-            return;
+            $referee_markup = '<a class="blank_link" href="./' . $referee_node_id['nid'] . '?referee_id=' . $person['PersonId'] . '">' . $person['FirstName'] . ' ' . $person['LastName'] . '</a>';
         }
     }
+    return $referee_markup;
 }
 
-function print_referees_on_game($game_starts) {
+function get_referees_on_game($game_starts) {
     $referee_node_id = get_fgrreferee_node_id();
-    $referees_markup = '';
+    $referees_markup = null;
     foreach($game_starts as $person) {
         if($person['StartTypeId'] == 4 && ($person['PositionId'] == 2 || $person['PositionId'] == 1)) {
             $referees_markup .= '<a class="blank_link" href="./' . $referee_node_id['nid'] . '?referee_id=' . $person['PersonId'] . '">' . $person['FirstName'] . ' ' . $person['LastName'] . '</a>&nbsp;&nbsp;&nbsp;&nbsp;';
         }
     }
-    print $referees_markup;
+    return $referees_markup;
 }
 
-function print_technical_delegate($game_starts) {
+function get_technical_delegate($game_starts) {
     $referee_node_id = get_fgrreferee_node_id();
+    $referee_markup = null;
     foreach($game_starts as $person) {
         if($person['StartTypeId'] == 4 && $person['PositionId'] == 4) {
-            print '<a class="blank_link" href="./' . $referee_node_id['nid'] . '?referee_id=' . $person['PersonId'] . '">' . $person['FirstName'] . ' ' . $person['LastName'] . '</a>';
-            return;
+            $referee_markup = '<a class="blank_link" href="./' . $referee_node_id['nid'] . '?referee_id=' . $person['PersonId'] . '">' . $person['FirstName'] . ' ' . $person['LastName'] . '</a>';
         }
     }
+    return $referee_markup;
 }
 
 function print_team_members($team_id, $game_starts) {

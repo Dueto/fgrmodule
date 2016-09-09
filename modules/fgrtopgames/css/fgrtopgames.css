@@ -87,12 +87,12 @@ ul.round h3.stage{
 }
 
 img.team_icon {
-    width: 35px;
-    height: 35px;
-    float: left;
-    margin-right: 5px;
-    margin-top: 1px;
-    cursor: pointer;
+   width: 35px;
+   height: 35px;
+   float: left;
+   margin-right: 5px;
+   margin-top: 1px;
+   cursor: pointer;
 }
 
 /*----- Tabs -----*/
@@ -149,17 +149,17 @@ li.active a, li.active a:hover {
     /*color:#4c4c4c;*/
 }
 /*.table {*/
-/*border:1px solid #C0C0C0;*/
-/*border-collapse:collapse;*/
-/*padding:5px;*/
-/*font-size: 18px;*/
+    /*border:1px solid #C0C0C0;*/
+    /*border-collapse:collapse;*/
+    /*padding:5px;*/
+    /*font-size: 18px;*/
 /*}*/
 /*.table th {*/
-/*border:1px solid #C0C0C0;*/
-/*padding:10px;*/
-/*color: white;*/
-/*font-size: 20px;*/
-/*background:#7DA2EC;*/
+    /*border:1px solid #C0C0C0;*/
+    /*padding:10px;*/
+    /*color: white;*/
+    /*font-size: 20px;*/
+    /*background:#7DA2EC;*/
 /*}*/
 .table-tournament td {
     border:1px solid #C0C0C0;
@@ -692,7 +692,7 @@ li.active .announce_table td a {
 }
 
 .announce_table td {
-    padding: 0px;
+     padding: 0px;
 }
 
 .announce_table td:nth-child(1) {

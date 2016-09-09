@@ -8,7 +8,7 @@
     </ul>
 </div>
 
-<h3>Онлайн счет</h3>
+<!--<h3>Онлайн счет</h3>-->
 <div id="online_diagram" class="table_diagram"></div>
 <div id="point_difference_chart"></div>
 <div id="point_difference_histogram"></div>

@@ -84,6 +84,7 @@ ChartBuilder = function(pointChartDiv, histogramChartDiv, gameId) {
 
     self.initPointDataTable = function(callback) {
         self.updateData(function(){
+            if(self.data.length == 0) return;
             self.pointsDataTable = new google.visualization.DataTable();
             self.pointsDataTable.addColumn('number', 'Минута');
             self.pointsDataTable.addColumn('number', self.teamA.name);
@@ -128,7 +129,6 @@ ChartBuilder = function(pointChartDiv, histogramChartDiv, gameId) {
                         self.data.push(pointData);
                     }
                 }
-                console.log(self.data);
                 if(callback) callback();
             },
             fail: function(){
@@ -161,6 +161,7 @@ ChartBuilder = function(pointChartDiv, histogramChartDiv, gameId) {
     
     self.initHistogramDataTable = function(callback) {
         self.updateData(function(){
+            if(self.data.length == 0) return;
             self.prepareHistogramData();
             self.histogramDataTable = new google.visualization.DataTable();
             self.histogramDataTable.addColumn('number', 'Минута');

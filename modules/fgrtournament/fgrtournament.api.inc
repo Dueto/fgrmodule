@@ -304,7 +304,6 @@ function get_tournament_games_by_id($tournament_id, $type, $filter_params) {
     if($filter_params['skip'] != null) {
         $method .= '&$skip=' . $filter_params['skip'];
     }
-    print $url . $method;
     $response = drupal_http_request($url . $method, array(
         'method' => 'GET',
         'data' => NULL,
